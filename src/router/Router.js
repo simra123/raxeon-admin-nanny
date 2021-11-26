@@ -6,6 +6,7 @@ import { isUserLoggedIn } from '@utils'
 import { useLayout } from '@hooks/useLayout'
 import { AbilityContext } from '@src/utility/context/Can'
 import { useRouterTransition } from '@hooks/useRouterTransition'
+import Login from '@src/views/pages/authentication/Login'
 
 // ** Custom Components
 // import Spinner from '@components/spinner/Loading-spinner' // Uncomment if your require content fallback
@@ -190,9 +191,11 @@ const Router = () => {
         <Route
           exact
           path='/'
-          render={() => {
-            return isUserLoggedIn() ? <Redirect to={DefaultRoute} /> : <Redirect to='/login' />
-          }}
+          // render={() => {
+          //    return isUserLoggedIn() ? <Redirect to={DefaultRoute} /> : 
+          //   <Redirect to='/login' />
+          // }}
+          component={Login}
         />
         {/* Not Auth Route */}
         <Route

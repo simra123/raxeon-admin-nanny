@@ -208,6 +208,55 @@ const AppRoutes = [
     meta: {
       navLink: '/employee/form'
     }
+  },
+  {
+    path: '/category/list',
+    component: lazy(() => import('../../views/category/List')),
+    meta: {
+      navLink: '/category/list'
+    }
+  },
+  {
+    path: '/category/form',
+    component: lazy(() => import('../../views/category/Form')),
+    meta: {
+      navLink: '/category/form'
+    }
+  },
+  {
+    path: '/product/list',
+    component: lazy(() => import('../../views/product/List')),
+    meta: {
+      navLink: '/product/list'
+    }
+  },
+  {
+    path: '/product/form',
+    component: lazy(() => import('../../views/product/Form')),
+    meta: {
+      navLink: '/product/form'
+    }
+  },
+  {
+    path: '/attribute/name',
+    component: lazy(() => import('../../views/attribute/Name')),
+    meta: {
+      navLink: '/attribute/name'
+    }
+  },
+  { 
+    path: '/attribute/colors',
+    component: lazy(() => import('../../views/attribute/Colors')),
+    meta: {
+      navLink: '/attribute/colors'
+    }
+  }, 
+  {
+    path: '/attribute/value',
+    component: lazy(() => import('../../views/attribute/Value')),
+    meta: {
+      navLink: '/attribute/value'
+    }
   }
 ]
 

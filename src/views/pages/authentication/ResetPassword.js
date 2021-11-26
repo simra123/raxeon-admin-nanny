@@ -1,15 +1,16 @@
-import { Link } from 'react-router-dom'
 import { useSkin } from '@hooks/useSkin'
+import { Link } from 'react-router-dom'
 import { ChevronLeft } from 'react-feather'
-import { Row, Col, CardTitle, CardText, Form, FormGroup, Label, Input, Button } from 'reactstrap'
+import InputPassword from '@components/input-password-toggle'
+import { Row, Col, CardTitle, CardText, Form, FormGroup, Label, Button } from 'reactstrap'
 import '@styles/base/pages/page-auth.scss'
 import Logo from '../../../../src/assets/images/logo/logo-m.png'
 
 
-const ForgotPasswordV2 = () => {
+const ResetPasswordV2 = () => {
   const [skin, setSkin] = useSkin()
 
-  const illustration = skin === 'dark' ? 'forgot-password-v2-dark.svg' : 'forgot-password-v2.svg',
+  const illustration = skin === 'dark' ? 'reset-password-v2-dark.svg' : 'reset-password-v2.svg',
     source = require(`@src/assets/images/pages/${illustration}`).default
 
   return (
@@ -17,6 +18,7 @@ const ForgotPasswordV2 = () => {
       <Row className='auth-inner m-0'>
         <Link className='brand-logo' to='/' onClick={e => e.preventDefault()}>
         <img src={Logo} width="100" height="120" alt=""/>
+
         </Link>
         <Col className='d-none d-lg-flex align-items-center p-5' lg='8' sm='12'>
           <div className='w-100 d-lg-flex align-items-center justify-content-center px-5'>
@@ -26,28 +28,32 @@ const ForgotPasswordV2 = () => {
         <Col className='d-flex align-items-center auth-bg px-2 p-lg-5' lg='4' sm='12'>
           <Col className='px-xl-2 mx-auto' sm='8' md='6' lg='12'>
             <CardTitle tag='h2' className='font-weight-bold mb-1'>
-              Forgot Password? 🔒
+              Reset Password 🔒
             </CardTitle>
-            <CardText className='mb-2'>
-              Enter your email and we'll send you instructions to reset your password
-            </CardText>
-            <Form className='auth-forgot-password-form mt-2' onSubmit={e => e.preventDefault()}>
+            <CardText className='mb-2'>Your new password must be different from previously used passwords</CardText>
+            <Form className='auth-reset-password-form mt-2' onSubmit={e => e.preventDefault()}>
               <FormGroup>
-                <Label className='form-label' for='login-email'>
-                  Email
+                <Label className='form-label' for='new-password'>
+                  New Password
                 </Label>
-                <Input type='email' id='login-email' placeholder='john@example.com' autoFocus />
+                <InputPassword className='input-group-merge' id='new-password' autoFocus />
               </FormGroup>
-              <Link to="/otp">
-              <Button color='primary' block>
-                Send reset link
-              </Button>
+              <FormGroup>
+                <Label className='form-label' for='confirm-password'>
+                  Confirm Password
+                </Label>
+                <InputPassword className='input-group-merge' id='confirm-password' />
+              </FormGroup>
+              <Link to='/'>
+              <Button.Ripple color='primary' block>
+                Set New Password
+              </Button.Ripple>
               </Link>
             </Form>
             <p className='text-center mt-2'>
-              <Link to='/login'>
+              <Link to='/otp'>
                 <ChevronLeft className='mr-25' size={14} />
-                <span className='align-middle'>Back to login</span>
+                <span className='align-middle'>Back to Otp</span>
               </Link>
             </p>
           </Col>
@@ -57,4 +63,4 @@ const ForgotPasswordV2 = () => {
   )
 }
 
-export default ForgotPasswordV2
+export default ResetPasswordV2

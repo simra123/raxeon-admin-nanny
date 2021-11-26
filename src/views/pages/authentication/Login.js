@@ -50,36 +50,36 @@ const Login = props => {
   const ability = useContext(AbilityContext)
   const dispatch = useDispatch()
   const history = useHistory()
-  const [email, setEmail] = useState('admin@demo.com')
-  const [password, setPassword] = useState('admin')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const { register, errors, handleSubmit } = useForm()
   const illustration = skin === 'dark' ? 'login-v2-dark.svg' : 'login-v2.svg',
     source = require(`@src/assets/images/pages/${illustration}`).default
 
-  const onSubmit = data => {
-    if (isObjEmpty(errors)) {
-      useJwt
-        .login({ email, password })
-        .then(res => {
-          const data = { ...res.data.userData, accessToken: res.data.accessToken, refreshToken: res.data.refreshToken }
-          dispatch(handleLogin(data))
-          ability.update(res.data.userData.ability)
-          history.push(getHomeRouteForLoggedInUser(data.role))
-          toast.success(
-            <ToastContent name={data.fullName || data.username || 'John Doe'} role={data.role || 'admin'} />,
-            { transition: Slide, hideProgressBar: true, autoClose: 2000 }
-          )
-        })
-        .catch(err => console.log(err))
-    }
-  }
+  // const onSubmit = data => {
+  //   if (isObjEmpty(errors)) {
+  //     useJwt
+  //       .login({ email, password })
+  //       .then(res => {
+  //         const data = { ...res.data.userData, accessToken: res.data.accessToken, refreshToken: res.data.refreshToken }
+  //         dispatch(handleLogin(data))
+  //         ability.update(res.data.userData.ability)
+  //         history.push(getHomeRouteForLoggedInUser(data.role))
+  //         toast.success(
+  //           <ToastContent name={data.fullName || data.username || 'John Doe'} role={data.role || 'admin'} />,
+  //           { transition: Slide, hideProgressBar: true, autoClose: 2000 }
+  //         )
+  //       })
+  //       .catch(err => console.log(err))
+  //   }
+  // }
 
   return (
     <div className='auth-wrapper auth-v2'>
       <Row className='auth-inner m-0'>
         <Link className='brand-logo' to='/' onClick={e => e.preventDefault()}>
-          <img src={Logo} width="150" height="120" alt=""/>
+          <img src={Logo} width="100" height="120" alt=""/>
         </Link>
         <Col className='d-none d-lg-flex align-items-center p-5' lg='8' sm='12'>
           <div className='w-100 d-lg-flex align-items-center justify-content-center px-5'>
@@ -92,30 +92,8 @@ const Login = props => {
               Welcome to Admin!
             </CardTitle>
             <CardText className='mb-2'>Please sign-in to your account and start the adventure</CardText>
-            <Alert color='primary'>
-              <div className='alert-body font-small-2'>
-                <p>
-                  <small className='mr-50'>
-                    <span className='font-weight-bold'>Admin:</span> admin@demo.com | admin
-                  </small>
-                </p>
-                <p>
-                  <small className='mr-50'>
-                    <span className='font-weight-bold'>Client:</span> client@demo.com | client
-                  </small>
-                </p>
-              </div>
-              <HelpCircle
-                id='login-tip'
-                className='position-absolute'
-                size={18}
-                style={{ top: '10px', right: '10px' }}
-              />
-              <UncontrolledTooltip target='login-tip' placement='left'>
-                This is just for ACL demo purpose.
-              </UncontrolledTooltip>
-            </Alert>
-            <Form className='auth-login-form mt-2' onSubmit={handleSubmit(onSubmit)}>
+            
+            <Form className='auth-login-form mt-2'>
               <FormGroup>
                 <Label className='form-label' for='login-email'>
                   Email
@@ -137,9 +115,7 @@ const Login = props => {
                   <Label className='form-label' for='login-password'>
                     Password
                   </Label>
-                  <Link to='/forgot-password'>
-                    <small>Forgot Password?</small>
-                  </Link>
+                 
                 </div>
                 <InputPasswordToggle
                   value={password}
@@ -151,36 +127,23 @@ const Login = props => {
                   innerRef={register({ required: true, validate: value => value !== '' })}
                 />
               </FormGroup>
-              <FormGroup>
-                <CustomInput type='checkbox' className='custom-control-Primary' id='remember-me' label='Remember Me' />
+              <FormGroup className="d-flex">
+                <CustomInput type='checkbox' className='custom-control-Primary mr-80' id='remember-me' label='Remember Me' />
+               <div className="ml-auto">
+               <Link to='/forgot-password'>
+                    <small className="text-right">Forgot Password?</small>
+                </Link>
+               </div>
               </FormGroup>
+              <Link to="/dashboard/ecommerce">
               <Button.Ripple type='submit' color='primary' block>
                 Sign in
               </Button.Ripple>
-            </Form>
-            <p className='text-center mt-2'>
-              <span className='mr-25'>New on our platform?</span>
-              <Link to='/register'>
-                <span>Create an account</span>
               </Link>
-            </p>
-            <div className='divider my-2'>
-              <div className='divider-text'>or</div>
-            </div>
-            <div className='auth-footer-btn d-flex justify-content-center'>
-              <Button.Ripple color='facebook'>
-                <Facebook size={14} />
-              </Button.Ripple>
-              <Button.Ripple color='twitter'>
-                <Twitter size={14} />
-              </Button.Ripple>
-              <Button.Ripple color='google'>
-                <Mail size={14} />
-              </Button.Ripple>
-              <Button.Ripple className='mr-0' color='github'>
-                <GitHub size={14} />
-              </Button.Ripple>
-            </div>
+              
+            </Form>
+           
+           
           </Col>
         </Col>
       </Row>

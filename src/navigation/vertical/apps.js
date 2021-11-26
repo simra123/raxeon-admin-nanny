@@ -1,4 +1,7 @@
 import { Mail, MessageSquare, Octagon, BookOpen, Archive, Award, CheckSquare, Calendar, FileText, Circle, ShoppingCart, User } from 'react-feather'
+import {BiCategory} from 'react-icons/bi'
+import {MdOutlineProductionQuantityLimits} from 'react-icons/md'
+import {CgAttribution} from 'react-icons/cg'
 
 export default [
   {
@@ -123,6 +126,69 @@ export default [
       // }
     ]
   },
+  {
+    id: 'category',
+    title: 'Category',
+    icon: <BiCategory size={20} />,
+    children: [
+      {
+        id: 'view-category',
+        title: 'Add new Category',
+        icon: <Circle size={12} />,
+        navLink: '/category/form'
+      },
+      {
+        id: 'list-category',
+        title: 'Category List',
+        icon: <Circle size={12} />,
+        navLink: '/category/list'
+      }
+    ]
+  },
+  {
+    id: 'product',
+    title: 'Product Form',
+    icon: <MdOutlineProductionQuantityLimits size={20} />,
+    children: [
+      {
+        id: 'view-product',
+        title: 'Add new product',
+        icon: <Circle size={12} />,
+        navLink: '/product/form'
+      }, 
+      {
+        id: 'list-product',
+        title: 'product List',
+        icon: <Circle size={12} />,
+        navLink: '/product/list'
+      },
+      {
+        id: 'attribute',
+        title: 'Attribute',
+        icon: <CgAttribution size={20} />,
+        children: [
+          {
+            id: 'name-attribute',
+            title: 'Attribute Name',
+            icon: <Circle size={12} />,
+            navLink: '/attribute/name'
+          },
+          {
+            id: 'value-attribute',
+            title: 'Attribute Value',
+            icon: <Circle size={12} />,
+            navLink: '/attribute/value'
+          },
+          {
+            id: 'colors',
+            title: 'Colors',
+            icon: <Circle size={12} />,
+            navLink: '/attribute/colors'
+          }
+        ]
+      }
+    ]
+  },
     {
       id: 'bookings',
       title: 'Bookings',
@@ -141,12 +207,7 @@ export default [
       icon: <Archive  size={12} />,
       navLink: '/apps/view'
     },
-    {
-      id: 'categories',
-      title: 'Categories',
-      icon: <Octagon  size={12} />,
-      navLink: '/apps/user/view'
-    },
+    
 
     {
       id: 'Products',

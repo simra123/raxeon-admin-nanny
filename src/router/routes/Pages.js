@@ -20,17 +20,17 @@ const PagesRoutes = [
     component: lazy(() => import('../../views/pages/authentication/LoginV2')),
     layout: 'BlankLayout'
   },
+  // {
+  //   path: '/register',
+  //   component: lazy(() => import('../../views/pages/authentication/Register')),
+  //   layout: 'BlankLayout',
+  //   meta: {
+  //     authRoute: true
+  //   }
+  //},
   {
-    path: '/register',
-    component: lazy(() => import('../../views/pages/authentication/Register')),
-    layout: 'BlankLayout',
-    meta: {
-      authRoute: true
-    }
-  },
-  {
-    path: '/pages/register-v1',
-    component: lazy(() => import('../../views/pages/authentication/RegisterV1')),
+    path: '/otp',
+    component: lazy(() => import('../../views/pages/authentication/Otp')),
     layout: 'BlankLayout'
   },
   {
@@ -38,32 +38,25 @@ const PagesRoutes = [
     component: lazy(() => import('../../views/pages/authentication/RegisterV2')),
     layout: 'BlankLayout'
   },
-  {
-    path: '/forgot-password',
-    component: lazy(() => import('../../views/pages/authentication/ForgotPassword')),
-    layout: 'BlankLayout',
-    meta: {
-      authRoute: true
-    }
-  },
+ 
   {
     path: '/pages/forgot-password-v1',
     component: lazy(() => import('../../views/pages/authentication/ForgotPasswordV1')),
     layout: 'BlankLayout'
   },
   {
-    path: '/pages/forgot-password-v2',
+    path: '/forgot-password',
     component: lazy(() => import('../../views/pages/authentication/ForgotPasswordV2.js')),
     layout: 'BlankLayout'
   },
   {
-    path: '/pages/reset-password-v1',
-    component: lazy(() => import('../../views/pages/authentication/ResetPasswordV1')),
+    path: '/reset-password',
+    component: lazy(() => import('../../views/pages/authentication/ResetPassword')),
     layout: 'BlankLayout'
   },
   {
     path: '/pages/reset-password-v2',
-    component: lazy(() => import('../../views/pages/authentication/ResetPasswordV2')),
+    component: lazy(() => import('../../views/pages/authentication/ResetPassword')),
     layout: 'BlankLayout'
   },
   {

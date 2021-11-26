@@ -1,16 +1,18 @@
-import AvatarGroup from '@components/avatar-group'
+import { useState } from 'react'
+
+import {  Card, CardTitle, CardBody, Table,  Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap'
 import avatar1 from '@src/assets/images/portrait/small/avatar-s-5.jpg'
 import {Link} from 'react-router-dom'
 import { MoreVertical, Edit, Trash } from 'react-feather'
-import {  Card, CardTitle, CardBody, Table, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap'
 
 // table data
 const ALlServices = [
     {
+        id: 0,
         title: 'Peter Charles',
         Image : avatar1
     },
-    {
+    {   id: 1,
         title: 'Peter Charles',
         Image : avatar1
     }
@@ -18,6 +20,15 @@ const ALlServices = [
 
 
 const ServiceTable = () => {
+  const [modal, setModal] = useState(null)
+
+  const toggleModal = id => {
+    if (modal !== id) {
+      setModal(id)
+    } else {
+      setModal(null)
+    }
+  }
   return (
     <Card>
       <CardBody>
@@ -43,19 +54,38 @@ const ServiceTable = () => {
                 </td>
                 
                 <td>
-                    <UncontrolledDropdown>
+                <UncontrolledDropdown>
                     <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>
                         <MoreVertical size={15} />
                     </DropdownToggle>
                     <DropdownMenu right>
-                        <DropdownItem href='/services/form' onClick={e => e.preventDefault()}>
+                        <DropdownItem href='/employee/form' onClick={e => e.preventDefault()}>
                         <Edit className='mr-50' size={15} />  <span className='align-middle'>Edit</span>
                         </DropdownItem>
-                        <DropdownItem href='/' onClick={e => e.preventDefault()}>
+                        <DropdownItem href='/' onClick={(e) => { 
+                          e.preventDefault()  
+                          toggleModal(value.id) 
+                          }}>
                         <Trash className='mr-50' size={15} /> <span className='align-middle'>Delete</span>
                         </DropdownItem>
                     </DropdownMenu>
                     </UncontrolledDropdown>
+                    <Modal
+                      isOpen={modal === value.id}
+                      toggle={() => toggleModal(value.id)}
+                      className='modal-dialog-centered'
+                      modalClassName="modal-danger"
+                      key={value.id}>
+                      <ModalHeader toggle={() => toggleModal(value.id)}>Delete</ModalHeader>
+                      <ModalBody>
+                      Are you sure you want to delete this?
+                      </ModalBody>
+                      <ModalFooter>
+                        <Button color="danger" onClick={() => toggleModal(value.id)}>
+                          delete
+                        </Button>
+                      </ModalFooter>
+                    </Modal>
                 </td>
                 </tr>
                 )

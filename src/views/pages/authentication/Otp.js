@@ -26,28 +26,28 @@ const ForgotPasswordV2 = () => {
         <Col className='d-flex align-items-center auth-bg px-2 p-lg-5' lg='4' sm='12'>
           <Col className='px-xl-2 mx-auto' sm='8' md='6' lg='12'>
             <CardTitle tag='h2' className='font-weight-bold mb-1'>
-              Forgot Password? 🔒
+              OTP Code
             </CardTitle>
             <CardText className='mb-2'>
-              Enter your email and we'll send you instructions to reset your password
+              Enter your otp code we have sent to your email
             </CardText>
             <Form className='auth-forgot-password-form mt-2' onSubmit={e => e.preventDefault()}>
               <FormGroup>
                 <Label className='form-label' for='login-email'>
-                  Email
+                  Otp 
                 </Label>
-                <Input type='email' id='login-email' placeholder='john@example.com' autoFocus />
+                <Input type='email' id='login-email' placeholder='Enter your Code' autoFocus />
               </FormGroup>
-              <Link to="/otp">
+              <Link to="/reset-password">
               <Button color='primary' block>
-                Send reset link
+                Change Password
               </Button>
               </Link>
             </Form>
             <p className='text-center mt-2'>
-              <Link to='/login'>
+              <Link to='/forgot-password'>
                 <ChevronLeft className='mr-25' size={14} />
-                <span className='align-middle'>Back to login</span>
+                <span className='align-middle'>Back to Forgot password</span>
               </Link>
             </p>
           </Col>

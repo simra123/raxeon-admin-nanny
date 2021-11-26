@@ -1,41 +1,34 @@
 import { useState } from 'react'
 
-import AvatarGroup from '@components/avatar-group'
 import avatar1 from '@src/assets/images/portrait/small/avatar-s-5.jpg'
 import {Link} from 'react-router-dom'
 import { MoreVertical, Edit, Trash } from 'react-feather'
 import {  Card, CardTitle, CardBody, Table,  Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap'
 
-
 // table data
 const ALlEmployee = [
-    {   id : 0,
-        title: 'Peter Charles',
-        image : avatar1,
-        email : 'simrafcb@gmail.com'
-    },
-    { 
-        id : 1,
-        title: 'Peter Charles',
-        image : avatar1,
-        email : 'simrafcb@gmail.com'
+    {  id:0,
+        icon : avatar1,
+        name : 'categories',
+        descp:'lorem ipsum bonjour '
     },
     {
-      id : 2,
-      title: 'Peter Charles',
-      image : avatar1,
-      email : 'simrafcb@gmail.com'
-  },
-  {
-    id : 3,
-    title: 'Peter Charles',
-    image : avatar1,
-    email : 'simrafcb@gmail.com'
-}
+      id:1,
+        icon : avatar1,
+        name : 'categories',
+        descp:'lorem ipsum bonjour '
+    },
+    {
+       id:2,
+        icon : avatar1,
+        name : 'categories',
+        descp:'lorem ipsum bonjour '
+    }
+  
 ]
 
 
-const CustomerTable = () => {
+const CategoryTable = () => {
   const [modal, setModal] = useState(null)
 
   const toggleModal = id => {
@@ -53,9 +46,9 @@ const CustomerTable = () => {
     <Table responsive>
       <thead>
         <tr>
-          <th>Image</th>
+          <th>Icon</th>
           <th>Name</th>
-          <th>Email</th>
+          <th>Description</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -65,16 +58,16 @@ const CustomerTable = () => {
                 return (
                 <tr key={index}>
                 <td>
-                  <img src={value.image} class="rounded-circle" height="40" width="40" alt=""/>
+                  <img src={value.icon} class="rounded-circle" height="40" width="40" alt=""/>
                 </td>
         
-                <td>{value.title}</td>
+                <td>{value.name}</td>
 
-                <td>{value.email}</td>
+                <td>{value.descp}</td>
                
                 
                 <td>
-                <UncontrolledDropdown>
+                    <UncontrolledDropdown>
                     <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>
                         <MoreVertical size={15} />
                     </DropdownToggle>
@@ -120,4 +113,4 @@ const CustomerTable = () => {
   )
 }
 
-export default CustomerTable
+export default CategoryTable

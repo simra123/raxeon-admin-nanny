@@ -93,6 +93,8 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "craco test",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js src/**/*.jsx",
@@ -106,6 +108,7 @@
     "eslint": "7.8.0",
     "eslint-plugin-import": "2.22.0",
     "eslint-plugin-react": "7.20.6",
+    "gh-pages": "^3.2.3",
     "sass-loader": "^8.0.2"
   },
   "browserslist": [
@@ -113,5 +116,5 @@
     "not dead",
     "not op_mini all"
   ],
-  "homepage": ""
+  "homepage": "https://simra123.github.io/raxeon-admin-nanny"
 }

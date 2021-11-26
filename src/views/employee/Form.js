@@ -53,107 +53,107 @@ import {
         <CardBody>
           <Form>
             <Row>
-              <Col sm='12'>
+            <Col sm='12' md="6">
                 {/*employee form */}
-                <Label for='nameVerticalIcons'>Full Name</Label>
+                <Label for='name'> Name</Label>
                 <InputGroup className='input-group-merge' tag={FormGroup}>
                 <InputGroupAddon addonType='prepend'>
                     <InputGroupText>
                     <User size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
-                <Input type='text'  id='nameVerticalIcons' placeholder='Name' />
+                <Input type='text'  id='name' placeholder='Enter your Name' />
                 </InputGroup>
               </Col>
-              <Col sm='12'>
+              <Col sm='12' md="6">
                 {/*employee form */}
-                <Label for='nameVerticalIcons'>Email</Label>
+                <Label for='email'>Email</Label>
                 <InputGroup className='input-group-merge' tag={FormGroup}>
                 <InputGroupAddon addonType='prepend'>
                     <InputGroupText>
                     <Mail size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
-                <Input type='email'  id='nameVerticalIcons' placeholder='@' />
+                <Input type='email'  id='email' placeholder='Enter your Email' />
                 </InputGroup>
               </Col>
-              <Col sm='12'>
+              <Col sm='12' md="6">
                 {/*employee form */}
-                <Label for='nameVerticalIcons'>Phone Number</Label>
+                <Label for='phone'>Phone Number</Label>
                 <InputGroup className='input-group-merge' tag={FormGroup}>
                 <InputGroupAddon addonType='prepend'>
                     <InputGroupText>
                     <Smartphone size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
-                <Input type='number'  id='nameVerticalIcons' placeholder='XXXXXXXXXX' />
+                <Input type='number'  id='phone' placeholder='Enter your phone number' />
                 </InputGroup>
               </Col>
-              <Col sm='12'>
+              <Col sm='12' md="6">
                 {/*employee form */}
-                <Label for='nameVerticalIcons'>Password</Label>
+                <Label for='password'>Password</Label>
                 <InputGroup className='input-group-merge' tag={FormGroup}>
                 <InputGroupAddon addonType='prepend'>
                     <InputGroupText>
                     <Lock size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
-                <Input type='password'  id='nameVerticalIcons' placeholder='******' />
+                <Input type='password'  id='password' placeholder='Enter your password' />
                 </InputGroup>
               </Col>
-              <Col sm='12'>
+              <Col sm='12' md="6">
                 {/*employee form */}
-                <Label for='nameVerticalIcons'>Confirm Password</Label>
+                <Label for='confirm-pass'>Confirm Password</Label>
                 <InputGroup className='input-group-merge' tag={FormGroup}>
                 <InputGroupAddon addonType='prepend'>
                     <InputGroupText>
                     <Lock size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
-                <Input type='text'  id='nameVerticalIcons' placeholder='******' />
+                <Input type='text'  id='confirm-pass' placeholder='Enter your confirm password' />
                 </InputGroup>
               </Col>
-              <Col sm='12'>
+              <Col sm='12' md="6">
                 {/*employee form */}
-                <Label for='nameVerticalIcons'>Gender</Label>
+                <Label for='gender'>Gender</Label>
                 <InputGroup className='input-group-merge' tag={FormGroup}>
                 <InputGroupAddon addonType='prepend'>
                     <InputGroupText>
                     <BsGenderAmbiguous size={15}/>
                     </InputGroupText>
                 </InputGroupAddon>
-                <Input type='text'  id='nameVerticalIcons' placeholder='M/F' />
+                <Input type='text'  id='gender' placeholder='Enter your gender' />
                 </InputGroup>
               </Col>
-              <Col sm='12'>
+              <Col sm='12' md="6">
                 {/*employee form */}
-                <Label for='nameVerticalIcons'>Address</Label>
+                <Label for='address'>Address (location or manually)</Label>
                 <InputGroup className='input-group-merge' tag={FormGroup}>
                 <InputGroupAddon addonType='prepend'>
                     <InputGroupText>
                     <FaAddressBook size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
-                <Input type='text'  id='nameVerticalIcons' placeholder='location or manually' />
+                <Input type='text'  id='address' placeholder='Enter your address' />
                 </InputGroup>
               </Col>
-              <Col sm='12'>
+              <Col sm='12' md="6">
                 {/*employee form */}
-                <Label for='nameVerticalIcons'>City</Label>
+                <Label for='city'>City</Label>
                 <InputGroup className='input-group-merge' tag={FormGroup}>
                 <InputGroupAddon addonType='prepend'>
                     <InputGroupText>
                     <User size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
-                <Input type='text'  id='nameVerticalIcons' placeholder='karachi' />
+                <Input type='text'  id='city' placeholder='Enter your City' />
                 </InputGroup>
-              </Col> 
+              </Col>
               <Col sm='12'>
                 {/*employee textarea */}
                <Label>Short Bio</Label>
 
-               <Input type='textarea' name='text' id='exampleText' rows='3' placeholder='Short Bio' />
+               <Input type='textarea' name='text' id='exampleText' rows='3' placeholder='Enter your Biography' />
                
               </Col>
               <Col sm='12' className="mt-2">
@@ -170,9 +170,7 @@ import {
                   <Button.Ripple className='mr-1' color='primary' type='submit' onClick={e => e.preventDefault()}>
                     Submit
                   </Button.Ripple>
-                  <Button.Ripple outline color='secondary' type='reset'>
-                    Reset
-                  </Button.Ripple>
+                 
                 </FormGroup>
               </Col>
             </Row>
