@@ -84,9 +84,7 @@ import {
                   <Button.Ripple className='mr-1' color='primary' type='submit' onClick={e => e.preventDefault()}>
                     Submit
                   </Button.Ripple>
-                  <Button.Ripple outline color='secondary' type='reset'>
-                    Reset
-                  </Button.Ripple>
+               
                 </FormGroup>
               </Col>
             </Row>

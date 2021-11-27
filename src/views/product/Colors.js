@@ -3,32 +3,25 @@ import '../../@core/scss/react/libs/editor/editor.scss'
 import '../../@core/scss/react/libs/file-uploader/file-uploader.scss'
 import 'uppy/dist/uppy.css'
 import { MoreVertical, Edit, Trash, User } from 'react-feather'
-import { selectThemeColors } from '@utils'
-import Select from 'react-select'
-import {CgAttribution} from 'react-icons/cg'
+import {VscSymbolColor} from 'react-icons/vsc'
+import {IoColorWandOutline} from 'react-icons/io5'
+
 import {  Card, CardHeader, Form, Row, Col, Label, InputGroup, FormGroup, InputGroupAddon, InputGroupText, Input, CardTitle, CardBody, Table,  Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap'
 
-  const attributeValues = [
+  const colors = [
     {   id:0,
-        value : 'value',
-        name : 'Ocean'
+        name : 'red',
+        code : '#ff0000'
     },
     {
         id:1,
-        value : 'value',
-        name : 'Purple'
+        name : 'purple',
+        code : '#800080'
     }
   
   
 ]
-const attributeNames = [
-    { value: 'ocean', label: 'Ocean' },
-    { value: 'blue', label: 'Blue' },
-    { value: 'purple', label: 'Purple' },
-    { value: 'red', label: 'Red' },
-    { value: 'orange', label: 'Orange' }
-  ]
-  const ServiceForm = () => {
+  const Colors = () => {
     const [modal, setModal] = useState(null)
     const [modal2, setModal2] = useState(null)
 
@@ -50,67 +43,68 @@ const attributeNames = [
         <>
       <Card>
         <CardHeader>
-          <CardTitle tag='h4'>Add New Attribute Value</CardTitle>
+          <CardTitle tag='h4'>Add New Colors</CardTitle>
         </CardHeader>
         <CardBody>
           <Form>
             <Row>
               <Col sm='12' md="6">
-                    {/* value form */}
-                    <Label for='att-name'>Attribute Value</Label>
-                    <InputGroup className='input-group-merge' tag={FormGroup}>
-                    <InputGroupAddon addonType='prepend'>
-                        <InputGroupText>
-                        <CgAttribution size={15} />
-                        </InputGroupText>
-                    </InputGroupAddon>
-                    <Input type='text' name='name' id='att-name' placeholder='Enter your Attibute name' />
-                    </InputGroup>
-                </Col>
-                <Col className='mb-1' md='6' sm='12'>
-                <Label>Attribute Name</Label>
-                <Select
-                theme={selectThemeColors}
-                className='react-select'
-                classNamePrefix='select'
-                defaultValue={attributeNames[0]}
-                options={attributeNames}
-                isClearable={false}
-                />
-                </Col>
-                <Col sm='12' className="">
+                {/* color form */}
+                <Label for='color'>Color Name</Label>
+                <InputGroup className='input-group-merge' tag={FormGroup}>
+                <InputGroupAddon addonType='prepend'>
+                    <InputGroupText>
+                    <VscSymbolColor size={15} />
+                    </InputGroupText>
+                </InputGroupAddon>
+                <Input type='text' name='name' id='color' placeholder='Enter your color name' />
+                </InputGroup>
+              </Col>
+              <Col sm='12' md="6">
+                {/* color form */}
+                <Label for='code'>Color Code</Label>
+                <InputGroup className='input-group-merge' tag={FormGroup}>
+                <InputGroupAddon addonType='prepend'>
+                    <InputGroupText>
+                    <IoColorWandOutline size={15} />
+                    </InputGroupText>
+                </InputGroupAddon>
+                <Input type='text' name='name' id='code' placeholder='Enter your color code' />
+                </InputGroup>
+              </Col>
+               <Col sm='12' className="">
                 <FormGroup className='d-flex mb-0'>
-                    <Button.Ripple className='mr-1' color='primary' type='submit' onClick={e => e.preventDefault()}>
+                  <Button.Ripple className='mr-1' color='primary' type='submit' onClick={e => e.preventDefault()}>
                     Submit
-                    </Button.Ripple>
+                  </Button.Ripple>
                 </FormGroup>
-                </Col>
+              </Col>
             </Row>
           </Form>
         </CardBody>
       </Card>
       <Card>
       <CardBody>
-      <CardTitle>All Attribute Values</CardTitle>
+      <CardTitle>All Colors</CardTitle>
 
     <Table responsive>
       <thead>
         <tr>
-          <th>Attribute Value</th>
-          <th>Attribute Name</th>
+          <th>Color Name</th>
+          <th>Color Code</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
       {
-          attributeValues.map((value, index) => {
+          colors.map((value, index) => {
               return (
               <tr key={index}>
               <td>
-                {value.value}
+                {value.name}
               </td>
       
-              <td>{value.name}</td>
+              <td>{value.code}</td>
                 <td>
                   <UncontrolledDropdown>
                   <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>
@@ -140,35 +134,35 @@ const attributeNames = [
                     key={value.id}>
                     <ModalHeader toggle={() => toggleModalPrimary(value.id)}>Edit</ModalHeader>
                     <ModalBody>
-                        <Form>
+                       <Form>
                             <Row>
-                                
-                                <Col className='mb-1' md='6' sm='12'>
-                                    <Label>Attribute Name</Label>
-                                    <Select
-                                    theme={selectThemeColors}
-                                    className='react-select'
-                                    classNamePrefix='select'
-                                    defaultValue={attributeNames[0]}
-                                    options={attributeNames}
-                                    isClearable={false}
-                                    />
-                                </Col>
                                 <Col sm='12' md="6">
-                                    {/* value form */}
-                                    <Label for='att-name'>Attribute Value</Label>
+                                    {/* color form */}
+                                    <Label for='color'>Color Name</Label>
                                     <InputGroup className='input-group-merge' tag={FormGroup}>
                                     <InputGroupAddon addonType='prepend'>
                                         <InputGroupText>
-                                        <CgAttribution size={15} />
+                                        <VscSymbolColor size={15} />
                                         </InputGroupText>
                                     </InputGroupAddon>
-                                    <Input type='text' name='name' id='att-name' placeholder='Enter your Attibute name' />
+                                    <Input type='text' name='name' id='color' placeholder='Enter your color name' />
                                     </InputGroup>
                                 </Col>
-                                   
+                                <Col sm='12' md="6">
+                                    {/* color form */}
+                                    <Label for='code'>Color Code</Label>
+                                    <InputGroup className='input-group-merge' tag={FormGroup}>
+                                    <InputGroupAddon addonType='prepend'>
+                                        <InputGroupText>
+                                        <IoColorWandOutline size={15} />
+                                        </InputGroupText>
+                                    </InputGroupAddon>
+                                    <Input type='text' name='name' id='code' placeholder='Enter your color code' />
+                                    </InputGroup>
+                                </Col>
+                            
                             </Row>
-                        </Form>
+                       </Form>
                     </ModalBody>
                     <ModalFooter>
                             
@@ -209,5 +203,5 @@ const attributeNames = [
   </>
     )
   }
-  export default ServiceForm
+  export default Colors
   

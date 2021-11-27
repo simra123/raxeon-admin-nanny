@@ -163,6 +163,12 @@ export default [
         navLink: '/product/list'
       },
       {
+        id: 'colors',
+        title: 'Colors',
+        icon: <Circle size={12} />,
+        navLink: '/product/colors'
+      },
+      {
         id: 'attribute',
         title: 'Attribute',
         icon: <CgAttribution size={20} />,
@@ -178,13 +184,8 @@ export default [
             title: 'Attribute Value',
             icon: <Circle size={12} />,
             navLink: '/attribute/value'
-          },
-          {
-            id: 'colors',
-            title: 'Colors',
-            icon: <Circle size={12} />,
-            navLink: '/attribute/colors'
           }
+          
         ]
       }
     ]

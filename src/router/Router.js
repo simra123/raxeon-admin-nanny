@@ -13,7 +13,7 @@ import Login from '@src/views/pages/authentication/Login'
 import LayoutWrapper from '@layouts/components/layout-wrapper'
 
 // ** Router Components
-import { BrowserRouter as AppRouter, HashRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter as AppRouter, Route, Switch, Redirect } from 'react-router-dom'
 
 // ** Routes & Default Routes
 import { DefaultRoute, Routes } from './routes'
@@ -185,7 +185,7 @@ const Router = () => {
   }
 
   return (
-    <HashRouter basename="/">
+    <AppRouter basename={process.env.REACT_APP_BASENAME}>
       <Switch>
         {/* If user is logged in Redirect user to DefaultRoute else to login */}
         <Route
@@ -212,7 +212,7 @@ const Router = () => {
         {/* NotFound Error page */}
         <Route path='*' component={Error} />
       </Switch>
-    </HashRouter>
+    </AppRouter>
   )
 }
 

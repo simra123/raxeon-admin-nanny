@@ -245,10 +245,10 @@ const AppRoutes = [
     }
   },
   { 
-    path: '/attribute/colors',
-    component: lazy(() => import('../../views/attribute/Colors')),
+    path: '/product/colors',
+    component: lazy(() => import('../../views/product/Colors')),
     meta: {
-      navLink: '/attribute/colors'
+      navLink: '/product/colors'
     }
   }, 
   {

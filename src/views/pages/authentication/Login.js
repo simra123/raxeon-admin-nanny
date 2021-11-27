@@ -13,6 +13,7 @@ import InputPasswordToggle from '@components/input-password-toggle'
 import { getHomeRouteForLoggedInUser, isObjEmpty } from '@utils'
 import { Facebook, Twitter, Mail, GitHub, HelpCircle, Coffee } from 'react-feather'
 import Logo from '../../../../src/assets/images/logo/logo-m.png'
+import LoginBg from '@src/assets/images/pages/login-bg.jpeg'
 
 import {
   Alert,
