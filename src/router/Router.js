@@ -67,7 +67,7 @@ const Router = () => {
    ** Final Route Component Checks for Login & User Role and then redirects to the route
    */
   const FinalRoute = props => {
-    // const route = props.route
+    const route = props.route
     // let action, resource
 
     // // ** Assign vars based on route meta
