@@ -2,12 +2,13 @@ import { FileText, Circle, Codesandbox, Settings, Smartphone} from 'react-feathe
 export default [
   {
     header: 'Pages'
-  },
-  {
-    id: 'pages',
-    title: 'Pages',
-    icon: <FileText size={20} />,
-    children: [
+  }
+  // {
+  //   id: 'pages',
+  //   title: 'Pages',
+  //   icon: <FileText size={20} />,
+  //   navLink: '/page-setting'
+    //children: [
       // {
       //   id: 'authentication',
       //   title: 'Authentication',
@@ -71,28 +72,28 @@ export default [
       //     }
       //   ]
       // },
-      {
-        id: 'privacy-policy:',
-        title: 'Privacy Policy',
-        icon: <Circle size={12} />,
-        permissions: ['admin', 'editor'],
-        navLink: '/pages/account-settings'
-      },
-      {
-        id: 'terms-and-conditions',
-        title: 'Terms And Conditions',
-        icon: <Circle size={12} />,
-        permissions: ['admin', 'editor'],
-        navLink: '/pages/profile',
-        collapsed: true
-      },
-      {
-        id: 'refund-policy',
-        title: 'Refund Policy',
-        icon: <Circle size={12} />,
-        permissions: ['admin', 'editor'],
-        navLink: '/pages/faq'
-      }
+      // {
+      //   id: 'privacy-policy:',
+      //   title: 'Privacy Policy',
+      //   icon: <Circle size={12} />,
+      //   permissions: ['admin', 'editor'],
+      //   navLink: '/pages/account-settings'
+      // },
+      // {
+      //   id: 'terms-and-conditions',
+      //   title: 'Terms And Conditions',
+      //   icon: <Circle size={12} />,
+      //   permissions: ['admin', 'editor'],
+      //   navLink: '/pages/profile',
+      //   collapsed: true
+      // },
+      // {
+      //   id: 'refund-policy',
+      //   title: 'Refund Policy',
+      //   icon: <Circle size={12} />,
+      //   permissions: ['admin', 'editor'],
+      //   navLink: '/pages/faq'
+      // }
       // {
       //   id: 'knowledgeBase',
       //   title: 'Knowledge Base',
@@ -218,95 +219,95 @@ export default [
       //     }
       //   ]
       // }
-     
-    ]
-  },
-  {
-    id: 'front-end',
-    title: 'Front End',
-    icon: <Codesandbox size={20} />,
-    children: [
-      {
-        id: 'header',
-        icon: <Circle size={12} />,
-        title: 'Top Header',
-        permissions: ['admin', 'editor'],
-        navLink: '/misc/coming-soon',
-        newTab: true
-      },
-      {
-        id: 'about',
-        icon: <Circle size={12} />,
-        title: 'About Us',
-        permissions: ['admin', 'editor'],
-        navLink: '/misc/coming-soon',
-        newTab: true
-      }, 
-      {
-        id: 'work',
-        icon: <Circle size={12} />,
-        title: 'How it Works',
-        permissions: ['admin', 'editor'],
-        navLink: '/misc/coming-soon',
-        newTab: true
-      }, 
-      {
-        id: 'header',
-        icon: <Circle size={12} />,
-        title: 'Top Header',
-        permissions: ['admin', 'editor'],
-        navLink: '/misc/coming-soon',
-        newTab: true
-      },
-      {
-        id: 'application',
-        title: 'Mobile Applications',
-        icon: <Smartphone size={20} />,
-        children: [
-          {
-            id: 'customer',
-            title: 'For Customer',
-            icon: <Circle size={12} />,
-            permissions: ['admin', 'editor'],
-            navLink: '/misc/comicng-soon',
-            newTab: true
-          },
-          {
-            id: 'employee',
-            title: 'For Employees',
-            icon: <Circle size={12} />,
-            permissions: ['admin', 'editor'],
-            navLink: '/misc/cooicng-soon',
-            newTab: true
-          }
-        ]
-      }  
-    ]
-  },
-  {
-    header: 'Settings'
-  },
-  {
-    id: 'settings',
-    title: 'Settings',
-    icon: <Settings size={20} />,
-    children: [
-      {
-        id: 'customer',
-        title: 'General Settings',
-        icon: <Circle size={12} />,
-        permissions: ['admin', 'editor'],
-        navLink: '/misc/comicng-soon',
-        newTab: true
-      },
-      {
-        id: 'languages',
-        title: 'Languages',
-        icon: <Circle size={12} />,
-        permissions: ['admin', 'editor'],
-        navLink: '/misc/cooicng-soon',
-        newTab: true
-      }
-    ]
-  }  
+
+    
+  //},
+  // {
+  //   id: 'front-end',
+  //   title: 'Front End',
+  //   icon: <Codesandbox size={20} />,
+  //   children: [
+  //     {
+  //       id: 'header',
+  //       icon: <Circle size={12} />,
+  //       title: 'Top Header',
+  //       permissions: ['admin', 'editor'],
+  //       navLink: '/misc/coming-soon',
+  //       newTab: true
+  //     },
+  //     {
+  //       id: 'about',
+  //       icon: <Circle size={12} />,
+  //       title: 'About Us',
+  //       permissions: ['admin', 'editor'],
+  //       navLink: '/misc/coming-soon',
+  //       newTab: true
+  //     },
+  //     {
+  //       id: 'work',
+  //       icon: <Circle size={12} />,
+  //       title: 'How it Works',
+  //       permissions: ['admin', 'editor'],
+  //       navLink: '/misc/coming-soon',
+  //       newTab: true
+  //     },
+  //     {
+  //       id: 'header',
+  //       icon: <Circle size={12} />,
+  //       title: 'Top Header',
+  //       permissions: ['admin', 'editor'],
+  //       navLink: '/misc/coming-soon',
+  //       newTab: true
+  //     },
+  //     {
+  //       id: 'application',
+  //       title: 'Mobile Applications',
+  //       icon: <Smartphone size={20} />,
+  //       children: [
+  //         {
+  //           id: 'customer',
+  //           title: 'For Customer',
+  //           icon: <Circle size={12} />,
+  //           permissions: ['admin', 'editor'],
+  //           navLink: '/misc/comicng-soon',
+  //           newTab: true
+  //         },
+  //         {
+  //           id: 'employee',
+  //           title: 'For Employees',
+  //           icon: <Circle size={12} />,
+  //           permissions: ['admin', 'editor'],
+  //           navLink: '/misc/cooicng-soon',
+  //           newTab: true
+  //         }
+  //       ]
+  //     }
+  //   ]
+  // },
+  // {
+  //   header: 'Settings'
+  // },
+  // {
+  //   id: 'settings',
+  //   title: 'Settings',
+  //   icon: <Settings size={20} />,
+  //   children: [
+  //     {
+  //       id: 'customer',
+  //       title: 'General Settings',
+  //       icon: <Circle size={12} />,
+  //       permissions: ['admin', 'editor'],
+  //       navLink: '/misc/comicng-soon',
+  //       newTab: true
+  //     },
+  //     {
+  //       id: 'languages',
+  //       title: 'Languages',
+  //       icon: <Circle size={12} />,
+  //       permissions: ['admin', 'editor'],
+  //       navLink: '/misc/cooicng-soon',
+  //       newTab: true
+  //     }
+  //   ]
+  // }
 ]

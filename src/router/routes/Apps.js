@@ -257,6 +257,41 @@ const AppRoutes = [
     meta: {
       navLink: '/attribute/value'
     }
+  },
+  {
+    path: '/banners',
+    component: lazy(() => import('../../views/banners')),
+    meta: {
+      navLink: '/banners'
+    }
+  },
+  {
+    path: '/page-setting',
+    component: lazy(() => import('../../views/page')),
+    meta: {
+      navLink: '/page-setting'
+    }
+  },
+  {
+    path: '/edit-page',
+    component: lazy(() => import('../../views/page/Edit')),
+    meta: {
+      navLink: '/edit-page'
+    }
+  },
+  {
+    path: '/frontend/header',
+    component: lazy(() => import('../../views/front-end/header')),
+    meta: {
+      navLink: '/frontend/header'
+    }
+  },
+  {
+    path: '/frontend/about/form',
+    component: lazy(() => import('../../views/front-end/about/Form')),
+    meta: {
+      navLink: '/frontend/about/form'
+    }
   }
 ]
 

@@ -1,7 +1,7 @@
-import { Mail, MessageSquare, Octagon, BookOpen, Archive, Award, CheckSquare, Calendar, FileText, Circle, ShoppingCart, User } from 'react-feather'
+import { Mail, MessageSquare, Octagon, BookOpen, Archive, Award, CheckSquare, Calendar, FileText, Circle, Codesandbox, Smartphone, Settings, User } from 'react-feather'
 import {BiCategory} from 'react-icons/bi'
 import {MdOutlineProductionQuantityLimits} from 'react-icons/md'
-import {CgAttribution} from 'react-icons/cg'
+import {CgAttribution, CgWebsite} from 'react-icons/cg'
 
 export default [
   {
@@ -231,8 +231,100 @@ export default [
     {
       id: 'Banners',
       title: 'Banners',
-      icon: <Octagon  size={12} />,
-      navLink: '/apps/users/view'
+      icon: <CgWebsite  size={12} />,
+      navLink: '/banners'
+    },
+    {
+      id: 'pages',
+      title: 'Pages',
+      icon: <FileText size={20} />,
+      navLink: '/page-setting'
+    },
+    {
+      id: 'front-end',
+      title: 'Front End',
+      icon: <Codesandbox size={20} />,
+      children: [
+        {
+          id: 'header',
+          icon: <Circle size={12} />,
+          title: 'Top Header',
+          navLink: '/frontend/header',
+          newTab: true
+        },
+        {
+          id: 'about',
+          icon: <Circle size={12} />,
+          title: 'About Us',
+          navLink: '/frontend/header',
+          newTab: true
+        },
+        {
+          id: 'work',
+          icon: <Circle size={12} />,
+          title: 'How it Works',
+          permissions: ['admin', 'editor'],
+          navLink: '/misc/coming-soon',
+          newTab: true
+        },
+        {
+          id: 'header',
+          icon: <Circle size={12} />,
+          title: 'Top Header',
+          permissions: ['admin', 'editor'],
+          navLink: '/misc/coming-soon',
+          newTab: true
+        },
+        {
+          id: 'application',
+          title: 'Mobile Applications',
+          icon: <Smartphone size={20} />,
+          children: [
+            {
+              id: 'customer',
+              title: 'For Customer',
+              icon: <Circle size={12} />,
+              permissions: ['admin', 'editor'],
+              navLink: '/misc/comicng-soon',
+              newTab: true
+            },
+            {
+              id: 'employee',
+              title: 'For Employees',
+              icon: <Circle size={12} />,
+              permissions: ['admin', 'editor'],
+              navLink: '/misc/cooicng-soon',
+              newTab: true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      header: 'Settings'
+    },
+    {
+      id: 'settings',
+      title: 'Settings',
+      icon: <Settings size={20} />,
+      children: [
+        {
+          id: 'customer',
+          title: 'General Settings',
+          icon: <Circle size={12} />,
+          permissions: ['admin', 'editor'],
+          navLink: '/misc/comicng-soon',
+          newTab: true
+        },
+        {
+          id: 'languages',
+          title: 'Languages',
+          icon: <Circle size={12} />,
+          permissions: ['admin', 'editor'],
+          navLink: '/misc/cooicng-soon',
+          newTab: true
+        }
+      ]
     },
     {
       id: 'Marketing Banner',
