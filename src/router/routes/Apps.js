@@ -287,10 +287,51 @@ const AppRoutes = [
     }
   },
   {
+    path: '/frontend/about',
+    component: lazy(() => import('../../views/front-end/about/')),
+    exact: true,
+    meta: {
+      navLink: '/frontend/about'
+    }
+  },
+  {
     path: '/frontend/about/form',
     component: lazy(() => import('../../views/front-end/about/Form')),
+    exact: true,
     meta: {
       navLink: '/frontend/about/form'
+    }
+  },
+  {
+    path: '/faq/list',
+    component: lazy(() => import('../../views/faq/List')),
+    exact: true,
+    meta: {
+      navLink: '/faq/list'
+    }
+  },
+  {
+    path: '/faq/form',
+    component: lazy(() => import('../../views/faq/Form')),
+    exact: true,
+    meta: {
+      navLink: '/faq/form'
+    }
+  },
+  {
+    path: '/frontend/work',
+    component: lazy(() => import('../../views/front-end/how-it-works')),
+    exact: true,
+    meta: {
+      navLink: '/frontend/work'
+    }
+  },
+  {
+    path: '/frontend/work/edit',
+    component: lazy(() => import('../../views/front-end/how-it-works/Form')),
+    exact: true,
+    meta: {
+      navLink: '/frontend/work/edit'
     }
   }
 ]

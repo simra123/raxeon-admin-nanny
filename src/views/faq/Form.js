@@ -22,7 +22,7 @@ import {
   import { User, Mail, Smartphone, Lock } from 'react-feather'
 
   
-  const EditPage = () => {
+  const FAQForm = () => {
    
     //text editor
      const [value, setValue] = useState(EditorState.createEmpty())
@@ -30,27 +30,27 @@ import {
     return (
       <Card>
         <CardHeader>
-          <CardTitle tag='h4'>Edit Page</CardTitle>
+          <CardTitle tag='h4'>Add New FAQ</CardTitle>
         </CardHeader>
         <CardBody>
           <Form>
             <Row>
               <Col sm='12'>
                 {/* service form */}
-                <Label for='nameVerticalIcons'>Page Title</Label>
+                <Label for='ques'>Question</Label>
                 <InputGroup className='input-group-merge' tag={FormGroup}>
                 <InputGroupAddon addonType='prepend'>
                     <InputGroupText>
                     <User size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
-                <Input type='text' name='name' id='nameVerticalIcons' placeholder='Enter your Page Title' />
+                <Input type='text' name='name' id='ques' placeholder='Enter your Question' />
                 </InputGroup>
               </Col>
               
               <Col sm='12' className="mt-2">
                 {/* text editor */}
-              <h6>Page Description </h6>
+              <h6>Answer</h6>
               <Editor editorState={value} onEditorStateChange={data => setValue(data)} />
               </Col>
               
@@ -68,5 +68,5 @@ import {
       </Card>
     )
   }
-  export default EditPage
+  export default FAQForm
   

@@ -2,6 +2,7 @@ import { Mail, MessageSquare, Octagon, BookOpen, Archive, Award, CheckSquare, Ca
 import {BiCategory} from 'react-icons/bi'
 import {MdOutlineProductionQuantityLimits} from 'react-icons/md'
 import {CgAttribution, CgWebsite} from 'react-icons/cg'
+import {FaQuestionCircle} from 'react-icons/fa'
 
 export default [
   {
@@ -190,6 +191,87 @@ export default [
       }
     ]
   },
+  {
+    id: 'pages',
+    title: 'Pages',
+    icon: <FileText size={20} />,
+    navLink: '/page-setting'
+  },
+  {
+    id: 'front-end',
+    title: 'Front End',
+    icon: <Codesandbox size={20} />,
+    children: [
+      {
+        id: 'header',
+        icon: <Circle size={12} />,
+        title: 'Top Header',
+        navLink: '/frontend/header'
+      },
+      {
+        id: 'about',
+        icon: <Circle size={12} />,
+        title: 'About Us',
+        navLink: '/frontend/about'
+      },
+      {
+        id: 'works',
+        icon: <Circle size={12} />,
+        title: 'How it Works',
+        permissions: ['admin', 'editor'],
+        navLink: '/frontend/work'
+      },
+      {
+        id: 'application',
+        title: 'Mobile Applications',
+        icon: <Smartphone size={28} />,
+        children: [
+          {
+            id: 'customer',
+            title: 'For Customer',
+            icon: <Circle size={12} />,
+            permissions: ['admin', 'editor'],
+            navLink: '/misc/comicng-soon'
+
+          },
+          {
+            id: 'employee',
+            title: 'For Employees',
+            icon: <Circle size={12} />,
+            permissions: ['admin', 'editor'],
+            navLink: '/misc/cooicng-soon'
+
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'FAQ',
+    title: 'FAQ',
+    icon: <FaQuestionCircle  size={12} />,
+    children: [
+      {
+        id: 'form',
+        title: 'Add New FAQ',
+        icon: <Circle size={12} />,
+        navLink: '/faq/form'
+      },
+      {
+        id: 'list',
+        title: 'FAQ List',
+        icon: <Circle size={12} />,
+        navLink: '/faq/list'
+      }
+    ]
+  },
+  {
+    id: 'Banners',
+    title: 'Banners',
+    icon: <CgWebsite  size={12} />,
+    navLink: '/banners'
+  },
+ 
     {
       id: 'bookings',
       title: 'Bookings',
@@ -228,78 +310,7 @@ export default [
       icon: <Octagon  size={12} />,
       navLink: '/apps/view'
     },
-    {
-      id: 'Banners',
-      title: 'Banners',
-      icon: <CgWebsite  size={12} />,
-      navLink: '/banners'
-    },
-    {
-      id: 'pages',
-      title: 'Pages',
-      icon: <FileText size={20} />,
-      navLink: '/page-setting'
-    },
-    {
-      id: 'front-end',
-      title: 'Front End',
-      icon: <Codesandbox size={20} />,
-      children: [
-        {
-          id: 'header',
-          icon: <Circle size={12} />,
-          title: 'Top Header',
-          navLink: '/frontend/header',
-          newTab: true
-        },
-        {
-          id: 'about',
-          icon: <Circle size={12} />,
-          title: 'About Us',
-          navLink: '/frontend/header',
-          newTab: true
-        },
-        {
-          id: 'work',
-          icon: <Circle size={12} />,
-          title: 'How it Works',
-          permissions: ['admin', 'editor'],
-          navLink: '/misc/coming-soon',
-          newTab: true
-        },
-        {
-          id: 'header',
-          icon: <Circle size={12} />,
-          title: 'Top Header',
-          permissions: ['admin', 'editor'],
-          navLink: '/misc/coming-soon',
-          newTab: true
-        },
-        {
-          id: 'application',
-          title: 'Mobile Applications',
-          icon: <Smartphone size={20} />,
-          children: [
-            {
-              id: 'customer',
-              title: 'For Customer',
-              icon: <Circle size={12} />,
-              permissions: ['admin', 'editor'],
-              navLink: '/misc/comicng-soon',
-              newTab: true
-            },
-            {
-              id: 'employee',
-              title: 'For Employees',
-              icon: <Circle size={12} />,
-              permissions: ['admin', 'editor'],
-              navLink: '/misc/cooicng-soon',
-              newTab: true
-            }
-          ]
-        }
-      ]
-    },
+   
     {
       header: 'Settings'
     },
@@ -313,16 +324,14 @@ export default [
           title: 'General Settings',
           icon: <Circle size={12} />,
           permissions: ['admin', 'editor'],
-          navLink: '/misc/comicng-soon',
-          newTab: true
+          navLink: '/misc/comicng-soon'
         },
         {
           id: 'languages',
           title: 'Languages',
           icon: <Circle size={12} />,
           permissions: ['admin', 'editor'],
-          navLink: '/misc/cooicng-soon',
-          newTab: true
+          navLink: '/misc/cooicng-soon'
         }
       ]
     },
@@ -341,8 +350,8 @@ export default [
     {
       id: 'FAQ',
       title: 'FAQ',
-      icon: <Octagon  size={12} />,
-      navLink: '/appss/user/n1view'
+      icon: <FaQuestionCircle  size={12} />,
+      navLink: '/faq/From'
     }
   
 ]
