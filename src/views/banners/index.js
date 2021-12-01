@@ -5,10 +5,9 @@ import { DragDrop } from '@uppy/react'
 import '../../@core/scss/react/libs/file-uploader/file-uploader.scss'
 import 'uppy/dist/uppy.css'
 import { MoreVertical, Edit, Trash, User } from 'react-feather'
-import {VscSymbolColor} from 'react-icons/vsc'
-import {IoColorWandOutline} from 'react-icons/io5'
 
-import {  Card, CardHeader, Form, Row, Col, Label, InputGroup, FormGroup, InputGroupAddon, InputGroupText, Input, CardTitle, CardBody, Table,  Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap'
+
+import {  Card, Spinner, Form, Row, Col, CardTitle, CardBody, Table,  Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap'
 
   const banner = [
     {  
@@ -97,6 +96,8 @@ import {  Card, CardHeader, Form, Row, Col, Label, InputGroup, FormGroup, InputG
                             
             <Button color="primary" onClick={() => toggleAddNew(0)}>
               Submit
+                {/* spinner */}
+                {/* <Spinner color='light' /> */}
             </Button>
           </ModalFooter>
         </Modal>
@@ -165,6 +166,8 @@ import {  Card, CardHeader, Form, Row, Col, Label, InputGroup, FormGroup, InputG
                             
                       <Button color="primary" onClick={() => toggleModalPrimary(value.id)}>
                         Submit
+                          {/* spinner */}
+                          {/* <Spinner color='light' /> */}
                       </Button>
                     </ModalFooter>
                   </Modal>

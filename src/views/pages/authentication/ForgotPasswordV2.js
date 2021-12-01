@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useSkin } from '@hooks/useSkin'
 import { ChevronLeft } from 'react-feather'
-import { Row, Col, CardTitle, CardText, Form, FormGroup, Label, Input, Button } from 'reactstrap'
+import { Row, Col, CardTitle, CardText, Form, Spinner, FormGroup, Label, Input, Button } from 'reactstrap'
 import '@styles/base/pages/page-auth.scss'
 import Logo from '../../../../src/assets/images/logo/logo-m.png'
 
@@ -41,6 +41,8 @@ const ForgotPasswordV2 = () => {
               <Link to="/otp">
               <Button color='primary' block>
                 Send reset link
+                  {/* spinner */}
+                {/* <Spinner color='light' /> */}
               </Button>
               </Link>
             </Form>

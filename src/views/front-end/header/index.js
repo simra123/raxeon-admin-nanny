@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { MoreVertical, Edit, User } from 'react-feather'
 import {BsFillMenuButtonFill} from 'react-icons/bs'
 import {FaTextWidth} from 'react-icons/fa'
-import {  Card, CustomInput,  Form, Row, Col, Label, InputGroup, FormGroup, InputGroupAddon, InputGroupText, Input, CardTitle, CardBody, Table,  Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap'
+import {  Card, CustomInput, Spinner, Form, Row, Col, Label, InputGroup, FormGroup, InputGroupAddon, InputGroupText, Input, CardTitle, CardBody, Table,  Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap'
 
   const header = [
     {   id:0,
@@ -126,6 +126,8 @@ import {  Card, CustomInput,  Form, Row, Col, Label, InputGroup, FormGroup, Inpu
                             
                       <Button color="primary" onClick={() => toggleModalPrimary(value.id)}>
                         Submit
+                        {/* spinner */}
+                        {/* <Spinner color='light' /> */}
                       </Button>
                     </ModalFooter>
                   </Modal>

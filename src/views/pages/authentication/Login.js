@@ -13,7 +13,7 @@ import InputPasswordToggle from '@components/input-password-toggle'
 import { getHomeRouteForLoggedInUser, isObjEmpty } from '@utils'
 import { Facebook, Twitter, Mail, GitHub, HelpCircle, Coffee } from 'react-feather'
 import Logo from '../../../../src/assets/images/logo/logo-m.png'
-import LoginBg from '@src/assets/images/pages/login-bg.jpeg'
+import LoginBg from '@src/assets/images/backgrounds/Marketing.png'
 import {
   Alert,
   Row,
@@ -26,7 +26,7 @@ import {
   Label,
   CustomInput,
   Button,
-  UncontrolledTooltip
+  Spinner
 } from 'reactstrap'
 
 import '@styles/base/pages/page-auth.scss'
@@ -77,12 +77,12 @@ const Login = props => {
   return (
         <div className='auth-wrapper auth-v2'>
     <Row className='auth-inner m-0'>
-    <Link className='brand-logo' to='/' onClick={e => e.preventDefault()}>
+    {/* <Link className='brand-logo lg:hidden' to='/' onClick={e => e.preventDefault()}>
       <img src={Logo} width="100" height="120" alt=""/>
-    </Link>
+    </Link> */}
     <Col className='d-none d-lg-flex align-items-center p-5' lg='8' sm='12'>
       <div className='w-100 d-lg-flex align-items-center justify-content-center px-5'>
-        <img className='img-fluid' src={source} alt='Login V2' />
+        <img className='img-fluid' src={Logo} alt='Login' width="400" height="400" />
       </div>
     </Col>
     <Col className='d-flex align-items-center auth-bg px-2 p-lg-5' lg='4' sm='12'>
@@ -135,7 +135,9 @@ const Login = props => {
               </FormGroup>
            
               <Button.Ripple type='submit' color='primary' block>
-                Sign in
+                Sign in 
+                {/* spinner */}
+                {/* <Spinner color='light' /> */}
               </Button.Ripple>
           
               

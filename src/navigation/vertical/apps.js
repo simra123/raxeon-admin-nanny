@@ -230,16 +230,14 @@ export default [
             id: 'customer',
             title: 'For Customer',
             icon: <Circle size={12} />,
-            permissions: ['admin', 'editor'],
-            navLink: '/misc/comicng-soon'
+            navLink: '/frontend/app/customer'
 
           },
           {
             id: 'employee',
             title: 'For Employees',
             icon: <Circle size={12} />,
-            permissions: ['admin', 'editor'],
-            navLink: '/misc/cooicng-soon'
+            navLink: '/frontend/app/employee'
 
           }
         ]

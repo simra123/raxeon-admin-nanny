@@ -333,6 +333,38 @@ const AppRoutes = [
     meta: {
       navLink: '/frontend/work/edit'
     }
+  },
+  {
+    path: '/frontend/app/customer',
+    component: lazy(() => import('../../views/front-end/application/for-customer')),
+    exact: true,
+    meta: {
+      navLink: '/frontend/app/customer'
+    }
+  },
+  {
+    path: '/frontend/app/customer/form',
+    component: lazy(() => import('../../views/front-end/application/for-customer/Form')),
+    exact: true,
+    meta: {
+      navLink: '/frontend/app/customer/form'
+    }
+  },
+  {
+    path: '/frontend/app/employee',
+    component: lazy(() => import('../../views/front-end/application/for-employee')),
+    exact: true,
+    meta: {
+      navLink: '/frontend/app/employee'
+    }
+  },
+  {
+    path: '/frontend/app/employee/form',
+    component: lazy(() => import('../../views/front-end/application/for-employee/Form')),
+    exact: true,
+    meta: {
+      navLink: '/frontend/app/employee/form'
+    }
   }
 ]
 

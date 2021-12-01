@@ -4,7 +4,7 @@ import { MoreVertical, Edit, Trash, User } from 'react-feather'
 import {FaTextWidth} from 'react-icons/fa'
 
 
-import {  Card, CustomInput, Form, Row, Col, Label, InputGroup, FormGroup, InputGroupAddon, InputGroupText, Input, CardTitle, CardBody, Table,  Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap'
+import {  Card, CustomInput, Spinner, Form, Row, Col, Label, InputGroup, FormGroup, InputGroupAddon, InputGroupText, Input, CardTitle, CardBody, Table,  Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap'
 
   const sections = [
     {
@@ -135,6 +135,8 @@ import {  Card, CustomInput, Form, Row, Col, Label, InputGroup, FormGroup, Input
                     <ModalFooter>
                       <Button color="primary" onClick={() => toggleModalPrimary(value.id)}>
                         Submit
+                          {/* spinner */}
+                          {/* <Spinner color='light' /> */}
                       </Button>
                     </ModalFooter>
                   </Modal>

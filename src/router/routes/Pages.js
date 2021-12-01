@@ -10,16 +10,7 @@ const PagesRoutes = [
       authRoute: true
     }
   },
-  {
-    path: '/pages/login-v1',
-    component: lazy(() => import('../../views/pages/authentication/LoginV1')),
-    layout: 'BlankLayout'
-  },
-  {
-    path: '/pages/login-v2',
-    component: lazy(() => import('../../views/pages/authentication/LoginV2')),
-    layout: 'BlankLayout'
-  },
+  
   // {
   //   path: '/register',
   //   component: lazy(() => import('../../views/pages/authentication/Register')),
@@ -38,12 +29,7 @@ const PagesRoutes = [
     component: lazy(() => import('../../views/pages/authentication/RegisterV2')),
     layout: 'BlankLayout'
   },
- 
-  {
-    path: '/pages/forgot-password-v1',
-    component: lazy(() => import('../../views/pages/authentication/ForgotPasswordV1')),
-    layout: 'BlankLayout'
-  },
+
   {
     path: '/forgot-password',
     component: lazy(() => import('../../views/pages/authentication/ForgotPasswordV2.js')),

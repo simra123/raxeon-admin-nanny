@@ -42,6 +42,8 @@ const ForgotPasswordV2 = () => {
               <Button color='primary' block>
                 Change Password
               </Button>
+                {/* spinner */}
+                {/* <Spinner color='light' /> */}
               </Link>
             </Form>
             <p className='text-center mt-2'>

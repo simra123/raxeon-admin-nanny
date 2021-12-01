@@ -21,7 +21,8 @@ import {
   Label,
   InputGroup,
   InputGroupText,
-  InputGroupAddon
+  InputGroupAddon,
+  Spinner
   } from 'reactstrap'
   import { User, Mail, Smartphone, Lock } from 'react-feather'
 
@@ -83,6 +84,8 @@ import {
                 <FormGroup className='d-flex mb-0'>
                   <Button.Ripple className='mr-1' color='primary' type='submit' onClick={e => e.preventDefault()}>
                     Submit
+                    {/* spinner */}
+                      {/* <Spinner color='light' /> */}
                   </Button.Ripple>
                
                 </FormGroup>

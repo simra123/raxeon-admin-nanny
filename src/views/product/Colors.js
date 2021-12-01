@@ -6,7 +6,7 @@ import { MoreVertical, Edit, Trash, User } from 'react-feather'
 import {VscSymbolColor} from 'react-icons/vsc'
 import {IoColorWandOutline} from 'react-icons/io5'
 
-import {  Card, CardHeader, Form, Row, Col, Label, InputGroup, FormGroup, InputGroupAddon, InputGroupText, Input, CardTitle, CardBody, Table,  Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap'
+import {  Card, CardHeader, Form, Spinner, Row, Col, Label, InputGroup, FormGroup, InputGroupAddon, InputGroupText, Input, CardTitle, CardBody, Table,  Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap'
 
   const colors = [
     {   id:0,
@@ -76,6 +76,8 @@ import {  Card, CardHeader, Form, Row, Col, Label, InputGroup, FormGroup, InputG
                 <FormGroup className='d-flex mb-0'>
                   <Button.Ripple className='mr-1' color='primary' type='submit' onClick={e => e.preventDefault()}>
                     Submit
+                      {/* spinner */}
+                      {/* <Spinner color='light' /> */}
                   </Button.Ripple>
                 </FormGroup>
               </Col>
@@ -168,6 +170,9 @@ import {  Card, CardHeader, Form, Row, Col, Label, InputGroup, FormGroup, InputG
                             
                       <Button color="primary" onClick={() => toggleModalPrimary(value.id)}>
                         Submit
+                        {/* spinner */}
+                      {/* <Spinner color='light' /> */}
+                        
                       </Button>
                     </ModalFooter>
                   </Modal>

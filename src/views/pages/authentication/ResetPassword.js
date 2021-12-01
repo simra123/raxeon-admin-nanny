@@ -2,7 +2,7 @@ import { useSkin } from '@hooks/useSkin'
 import { Link } from 'react-router-dom'
 import { ChevronLeft } from 'react-feather'
 import InputPassword from '@components/input-password-toggle'
-import { Row, Col, CardTitle, CardText, Form, FormGroup, Label, Button } from 'reactstrap'
+import { Row, Col, CardTitle, CardText, Form, FormGroup, Label, Button, Spinner } from 'reactstrap'
 import '@styles/base/pages/page-auth.scss'
 import Logo from '../../../../src/assets/images/logo/logo-m.png'
 
@@ -34,7 +34,7 @@ const ResetPasswordV2 = () => {
             <Form className='auth-reset-password-form mt-2' onSubmit={e => e.preventDefault()}>
               <FormGroup>
                 <Label className='form-label' for='new-password'>
-                  New Password
+                 New Password
                 </Label>
                 <InputPassword className='input-group-merge' id='new-password' autoFocus />
               </FormGroup>
@@ -47,6 +47,8 @@ const ResetPasswordV2 = () => {
               <Link to='/'>
               <Button.Ripple color='primary' block>
                 Set New Password
+                {/* spinner */}
+                {/* <Spinner color='light' /> */}
               </Button.Ripple>
               </Link>
             </Form>
