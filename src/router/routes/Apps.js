@@ -365,6 +365,22 @@ const AppRoutes = [
     meta: {
       navLink: '/frontend/app/employee/form'
     }
+  },
+  {
+    path: '/marketing/banner',
+    component: lazy(() => import('../../views/marketing-banner')),
+    exact: true,
+    meta: {
+      navLink: '/marketing/banner'
+    }
+  },
+  {
+    path: '/splash-screens',
+    component: lazy(() => import('../../views/splash-screens')),
+    exact: true,
+    meta: {
+      navLink: '/splash-screens'
+    }
   }
 ]
 

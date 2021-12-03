@@ -174,29 +174,18 @@ const ChatLog = props => {
                 <h6 className='mb-0'>{selectedUser.contact.fullName}</h6>
               </div>
               <div className='d-flex align-items-center'>
-                <PhoneCall size={18} className='cursor-pointer d-sm-block d-none mr-1' />
+                {/* <PhoneCall size={18} className='cursor-pointer d-sm-block d-none mr-1' />
                 <Video size={18} className='cursor-pointer d-sm-block d-none mr-1' />
-                <Search size={18} className='cursor-pointer d-sm-block d-none' />
+                <Search size={18} className='cursor-pointer d-sm-block d-none' /> */}
                 <UncontrolledDropdown>
                   <DropdownToggle className='btn-icon' color='transparent' size='sm'>
                     <MoreVertical size='18' />
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem href='/' onClick={e => e.preventDefault()}>
-                      View Contact
+                      Add Participant
                     </DropdownItem>
-                    <DropdownItem href='/' onClick={e => e.preventDefault()}>
-                      Mute Notifications
-                    </DropdownItem>
-                    <DropdownItem href='/' onClick={e => e.preventDefault()}>
-                      Block Contact
-                    </DropdownItem>
-                    <DropdownItem href='/' onClick={e => e.preventDefault()}>
-                      Clear Chat
-                    </DropdownItem>
-                    <DropdownItem href='/' onClick={e => e.preventDefault()}>
-                      Report
-                    </DropdownItem>
+                    
                   </DropdownMenu>
                 </UncontrolledDropdown>
               </div>
@@ -209,11 +198,7 @@ const ChatLog = props => {
 
           <Form className='chat-app-form' onSubmit={e => handleSendMsg(e)}>
             <InputGroup className='input-group-merge mr-1 form-send-message'>
-              <InputGroupAddon addonType='prepend'>
-                <InputGroupText>
-                  <Mic className='cursor-pointer' size={14} />
-                </InputGroupText>
-              </InputGroupAddon>
+             
               <Input
                 value={msg}
                 onChange={e => setMsg(e.target.value)}

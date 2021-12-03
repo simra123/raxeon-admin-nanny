@@ -3,6 +3,8 @@ import {BiCategory} from 'react-icons/bi'
 import {MdOutlineProductionQuantityLimits} from 'react-icons/md'
 import {CgAttribution, CgWebsite} from 'react-icons/cg'
 import {FaQuestionCircle} from 'react-icons/fa'
+import {AiOutlineFundProjectionScreen} from 'react-icons/ai'
+import {GiVerticalBanner} from 'react-icons/gi'
 
 export default [
   {
@@ -289,13 +291,6 @@ export default [
       navLink: '/apps/view'
     },
     
-
-    {
-      id: 'Products',
-      title: 'Products',
-      icon: <Octagon  size={12} />,
-      navLink: '/apps'
-    },
     {
       id: 'Orders',
       title: 'Orders',
@@ -336,14 +331,14 @@ export default [
     {
       id: 'Marketing Banner',
       title: 'Marketing Banner',
-      icon: <Octagon  size={12} />,
-      navLink: '/apps/usser/view'
+      icon: <GiVerticalBanner size={12} />,
+      navLink: '/marketing/banner'
     },
     {
       id: 'Splash Screens',
       title: 'Splash Screens',
-      icon: <Octagon  size={12} />,
-      navLink: '/appss/user/view'
+      icon: <AiOutlineFundProjectionScreen  size={12} />,
+      navLink: '/splash-screens'
     },
     {
       id: 'FAQ',
