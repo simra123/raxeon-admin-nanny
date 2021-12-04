@@ -4,7 +4,7 @@ import thumbnailGenerator from '@uppy/thumbnail-generator'
 import { DragDrop } from '@uppy/react'
 import '../../@core/scss/react/libs/file-uploader/file-uploader.scss'
 import 'uppy/dist/uppy.css'
-import { MoreVertical, Edit, Trash, User } from 'react-feather'
+import { MoreVertical, Edit, Trash} from 'react-feather'
 
 
 import {  Card, Spinner, Form, Row, Col, CardTitle, CardBody, Table,  Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap'
@@ -13,16 +13,21 @@ import {  Card, Spinner, Form, Row, Col, CardTitle, CardBody, Table,  Modal, Mod
     {  
       id:1,
       no : 1,
-      image : 'https://nanny-frontend.netlify.app/static/media/banner-two.d53beaaf.jpg'
+      image : 'https://nanny-frontend.netlify.app/static/media/banner-three.32d97b9b.jpg'
     },
     {  
       id:2,
       no : 2,
-      image : 'https://images.pexels.com/photos/6974315/pexels-photo-6974315.jpeg?cs=srgb&dl=pexels-cottonbro-6974315.jpg&fm=jpg'
-    }
+      image : 'https://nanny-frontend.netlify.app/static/media/banner-one.e2e519db.jpg'
+    },
+    {  
+        id:3,
+        no : 3,
+        image : 'https://nanny-frontend.netlify.app/static/media/banner-two.ec5014e0.jpg'
+      }
     
 ]
-  const Banner = () => {
+  const DesktopBanner = () => {
     const [modal, setModal] = useState(null)
     const [modal2, setModal2] = useState(null)
     const [modal3, setModal3] = useState(null)
@@ -66,7 +71,7 @@ import {  Card, Spinner, Form, Row, Col, CardTitle, CardBody, Table,  Modal, Mod
         <>
         <Card>
         <CardBody>
-        <CardTitle>All Banners </CardTitle>
+        <CardTitle>All Desktop Banners </CardTitle>
         <div className="float-right mb-2">
           <Button color="primary" onClick={() => toggleAddNew(0)}>
             Add new Banner
@@ -119,7 +124,7 @@ import {  Card, Spinner, Form, Row, Col, CardTitle, CardBody, Table,  Modal, Mod
                 {value.no}
               </td>
       
-              <td> <img src={value.image}  width="200" height="100" alt=""/> </td>
+              <td> <img src={value.image}  width="300" height="100" alt=""/> </td>
                 <td>
                   <UncontrolledDropdown>
                   <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>
@@ -203,5 +208,5 @@ import {  Card, Spinner, Form, Row, Col, CardTitle, CardBody, Table,  Modal, Mod
   </>
     )
   }
-  export default Banner
+  export default DesktopBanner
   

@@ -269,7 +269,20 @@ export default [
     id: 'Banners',
     title: 'Banners',
     icon: <CgWebsite  size={12} />,
-    navLink: '/banners'
+    children: [
+      {
+        id: 'desktop',
+        title: 'For Desktop',
+        icon: <Circle size={12} />,
+        navLink: '/banners/desktop'
+      },
+      {
+        id: 'mobile',
+        title: 'For Mobile',
+        icon: <Circle size={12} />,
+        navLink: '/banners/mobile'
+      }
+    ]
   },
  
     {

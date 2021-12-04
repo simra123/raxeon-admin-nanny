@@ -259,10 +259,17 @@ const AppRoutes = [
     }
   },
   {
-    path: '/banners',
-    component: lazy(() => import('../../views/banners')),
+    path: '/banners/desktop',
+    component: lazy(() => import('../../views/banners/Desktop')),
     meta: {
-      navLink: '/banners'
+      navLink: '/banners/desktop'
+    }
+  },
+  {
+    path: '/banners/mobile',
+    component: lazy(() => import('../../views/banners/Mobile')),
+    meta: {
+      navLink: '/banners/mobile'
     }
   },
   {
