@@ -30,9 +30,9 @@ const ThemeNavbar = props => {
 
   return (
     <Fragment>
-      <div className='bookmark-wrapper d-flex align-items-center'>
+      {/* <div className='bookmark-wrapper d-flex align-items-center'>
         <NavbarBookmarks setMenuVisibility={setMenuVisibility} />
-      </div>
+      </div> */}
       <ul className='nav navbar-nav align-items-center ml-auto'>
         <IntlDropdown />
         <NavItem className='d-none d-lg-block'>
@@ -40,9 +40,9 @@ const ThemeNavbar = props => {
             <ThemeToggler />
           </NavLink>
         </NavItem>
-        <NavbarSearch />
+        {/* <NavbarSearch /> */}
         <CartDropdown />
-        <NotificationDropdown />
+        {/* <NotificationDropdown /> */}
         <UserDropdown />
       </ul>
     </Fragment>
