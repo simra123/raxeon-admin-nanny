@@ -1,9 +1,11 @@
 // ** React Imports
 import { useState, useEffect, useRef } from 'react'
 import ReactDOM from 'react-dom'
-
+import '../../../@core/scss/base/custom-rtl.scss'
 // ** Custom Components
 import Avatar from '@components/avatar'
+import {BiLink, BiVideo} from 'react-icons/bi'
+import {IoDocumentTextOutline} from 'react-icons/io5'
 
 // ** Store & Actions
 import { useDispatch } from 'react-redux'
@@ -24,7 +26,11 @@ import {
   InputGroupAddon,
   Input,
   InputGroupText,
-  Button
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter
 } from 'reactstrap'
 
 const ChatLog = props => {
@@ -32,6 +38,9 @@ const ChatLog = props => {
   const { handleUser, handleUserSidebarRight, handleSidebar, store, userSidebarLeft } = props
   const { userProfile, selectedUser } = store
 
+
+  //show attach options 
+  const [attachOpen, setAttachOpen] = useState(false)
   // ** Refs & Dispatch
   const chatArea = useRef(null)
   const dispatch = useDispatch()
@@ -93,6 +102,7 @@ const ChatLog = props => {
 
   // ** Renders user chat
   const renderChats = () => {
+    
     return formattedChatData().map((item, index) => {
       return (
         <div
@@ -145,6 +155,12 @@ const ChatLog = props => {
   // ** ChatWrapper tag based on chat's length
   const ChatWrapper = Object.keys(selectedUser).length && selectedUser.chat ? PerfectScrollbar : 'div'
 
+  //open modal
+  const [modal, setModal] = useState(null)
+
+  const toggleModalPrimary = () => {
+   setModal(prev => !prev)
+  }
   return (
     <div className='chat-app-window'>
       <div className={classnames('start-chat-area', { 'd-none': Object.keys(selectedUser).length })}>
@@ -182,12 +198,43 @@ const ChatLog = props => {
                     <MoreVertical size='18' />
                   </DropdownToggle>
                   <DropdownMenu right>
-                    <DropdownItem href='/' onClick={e => e.preventDefault()}>
+                    <DropdownItem href='/'  onClick={(e) => { 
+                        e.preventDefault()  
+                        toggleModalPrimary('secondary') 
+                        }}>
                       Add Participant
                     </DropdownItem>
                     
                   </DropdownMenu>
                 </UncontrolledDropdown>
+
+                {/* add participant modal */}
+                  <Modal
+                    isOpen={modal}
+                    toggle={() => toggleModalPrimary('secondary')}
+                    className='modal-dialog-centered'
+                    modalClassName="modal-primary"
+                    key={'secondary'}>
+                    <ModalHeader toggle={() => toggleModalPrimary('secondary')}>Add Participant</ModalHeader>
+                    <ModalBody>
+                    {/* search participant */}
+                    <InputGroup className='mb-2'>
+                      <InputGroupAddon addonType='prepend'>
+                        <InputGroupText>
+                          <Search size={14} />
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input placeholder='search participant' />
+                    </InputGroup>
+                 
+                    </ModalBody>
+                    <ModalFooter>
+                            
+                      <Button color="primary" onClick={() => toggleModalPrimary('secondary')}>
+                        Add
+                      </Button>
+                    </ModalFooter>
+                  </Modal>
               </div>
             </header>
           </div>
@@ -195,23 +242,27 @@ const ChatLog = props => {
           <ChatWrapper ref={chatArea} className='user-chats' options={{ wheelPropagation: false }}>
             {selectedUser.chat ? <div className='chats'>{renderChats()}</div> : null}
           </ChatWrapper>
-
+         { attachOpen ? <div className="animate__animated animate__fadeIn animate_faster d-flex  chat-icons">
+           <span className="each-icon"> <Image  size={20}/> </span>
+           <span className="each-icon"> <BiVideo  size={20}/> </span>
+           <span className="each-icon"> <IoDocumentTextOutline size={20}/> </span>
+          </div> : null}
           <Form className='chat-app-form' onSubmit={e => handleSendMsg(e)}>
             <InputGroup className='input-group-merge mr-1 form-send-message'>
-             
+            <InputGroupAddon addonType='append'>
+                <InputGroupText onClick={() => setAttachOpen(prev => !prev)}>
+                  <div className="icon ">
+                    <BiLink size={22}/>
+                  </div>
+                </InputGroupText>
+              </InputGroupAddon>
+              
               <Input
                 value={msg}
                 onChange={e => setMsg(e.target.value)}
                 placeholder='Type your message or use speech to text'
               />
-              <InputGroupAddon addonType='append'>
-                <InputGroupText>
-                  <Label className='attachment-icon mb-0' for='attach-doc'>
-                    <Image className='cursor-pointer text-secondary' size={14} />
-                    <input type='file' id='attach-doc' hidden />
-                  </Label>
-                </InputGroupText>
-              </InputGroupAddon>
+             
             </InputGroup>
             <Button className='send' color='primary'>
               <Send size={14} className='d-lg-none' />

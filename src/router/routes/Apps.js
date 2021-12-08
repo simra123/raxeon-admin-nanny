@@ -182,6 +182,13 @@ const AppRoutes = [
     }
   },
   {
+    path: '/services/reviews',
+    component: lazy(() => import('../../views/services/Reviews')),
+    meta: {
+      navLink: '/services/reviews'
+    }
+  },
+  {
     path: '/customer/list',
     component: lazy(() => import('../../views/customer/List')),
     meta: {
@@ -207,6 +214,13 @@ const AppRoutes = [
     component: lazy(() => import('../../views/employee/Form')),
     meta: {
       navLink: '/employee/form'
+    }
+  },
+  {
+    path: '/employee/reviews',
+    component: lazy(() => import('../../views/employee/Reviews')),
+    meta: {
+      navLink: '/employee/reviews'
     }
   },
   {
@@ -387,6 +401,14 @@ const AppRoutes = [
     exact: true,
     meta: {
       navLink: '/splash-screens'
+    }
+  },
+  {
+    path: '/splash/mobile',
+    component: lazy(() => import('../../views/splash-screens/Mobile')),
+    exact: true,
+    meta: {
+      navLink: '/splash/mobile'
     }
   }
 ]

@@ -79,9 +79,11 @@ const CustomerTable = () => {
                         <MoreVertical size={15} />
                     </DropdownToggle>
                     <DropdownMenu right>
-                        <DropdownItem href='/employee/form' onClick={e => e.preventDefault()}>
+                      <Link to="/customer/form">
+                        <DropdownItem href='/' >
                         <Edit className='mr-50' size={15} />  <span className='align-middle'>Edit</span>
                         </DropdownItem>
+                      </Link>
                         <DropdownItem href='/' onClick={(e) => { 
                           e.preventDefault()  
                           toggleModal(value.id) 

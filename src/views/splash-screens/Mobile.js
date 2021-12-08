@@ -27,7 +27,7 @@ import {  Card, Spinner, Form, Row, Col, CardTitle, CardBody, Table,  Modal, Mod
       }
     
 ]
-  const MobileBanner = () => {
+  const MobileSplash = () => {
     const [modal, setModal] = useState(null)
     const [modal2, setModal2] = useState(null)
     const [modal3, setModal3] = useState(null)
@@ -71,7 +71,7 @@ import {  Card, Spinner, Form, Row, Col, CardTitle, CardBody, Table,  Modal, Mod
         <>
         <Card>
         <CardBody>
-        <CardTitle> Mobile Banners </CardTitle>
+        <CardTitle>Mobile Splash Screens </CardTitle>
         <div className="float-right mb-2">
           <Button color="primary" onClick={() => toggleAddNew(0)}>
             Add new Banner
@@ -208,5 +208,5 @@ import {  Card, Spinner, Form, Row, Col, CardTitle, CardBody, Table,  Modal, Mod
   </>
     )
   }
-  export default MobileBanner
+  export default MobileSplash
   

@@ -45,7 +45,14 @@ export default [
         title: 'All Services',
         icon: <Circle size={12} />,
         navLink: '/services/list'
+      },
+      {
+        id: 'reviews',
+        title: 'Service Reviews',
+        icon: <Circle  size={12} />,
+        navLink: '/services/reviews'
       }
+      
     ]
   },
   // {
@@ -120,6 +127,12 @@ export default [
         title: 'Employee List',
         icon: <Circle size={12} />,
         navLink: '/employee/list'
+      },
+      {
+        id: 'reviews-employee',
+        title: 'Employee Reviews',
+        icon: <Circle size={12} />,
+        navLink: '/employee/reviews'
       }
       // {
       //   id: 'edit',
@@ -269,20 +282,7 @@ export default [
     id: 'Banners',
     title: 'Banners',
     icon: <CgWebsite  size={12} />,
-    children: [
-      {
-        id: 'desktop',
-        title: 'For Desktop',
-        icon: <Circle size={12} />,
-        navLink: '/banners/desktop'
-      },
-      {
-        id: 'mobile',
-        title: 'For Mobile',
-        icon: <Circle size={12} />,
-        navLink: '/banners/mobile'
-      }
-    ]
+    navLink: '/banners/desktop'
   },
  
     {
@@ -296,12 +296,6 @@ export default [
       title: 'Chat',
       icon: <MessageSquare size={20} />,
       navLink: '/apps/chat'
-    },
-    {
-      id: 'reviews',
-      title: 'Service Reviews',
-      icon: <Archive  size={12} />,
-      navLink: '/apps/view'
     },
     
     {
@@ -358,6 +352,28 @@ export default [
       title: 'FAQ',
       icon: <FaQuestionCircle  size={12} />,
       navLink: '/faq/From'
+    },
+    {
+      header: 'Mobile'
+    },
+    {
+      id: 'mobile',
+      title: 'Mobile Screens',
+      icon: <Smartphone size={20} />,
+      children: [
+        {
+          id: 'mobile',
+          title: 'Banners',
+          icon: <Circle size={12} />,
+          navLink: '/banners/mobile'
+        },
+        {
+          id: 'm-screens',
+          title: 'Splash Screens',
+          icon: <Circle size={12} />,
+          navLink: '/splash/mobile'
+        }
+      ]
     }
   
 ]

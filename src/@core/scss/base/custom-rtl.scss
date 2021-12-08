@@ -13,6 +13,22 @@
 @import 'bootstrap-extended/include'; // Bootstrap includes
 @import 'components/include'; // Components includes
 
+
+//chat icons 
+.chat-icons {
+  position: absolute;
+  z-index: 5;
+  bottom: 15%;
+  left: 35%;
+}
+.chat-icons .each-icon {
+  background-color: #7468f0 !important;
+  margin-left: 10px;
+  color: white;
+  border-radius: 50%;
+  padding: 8px;
+
+}
 // Align icons position
 .main-menu {
   .navigation li > a > svg,
