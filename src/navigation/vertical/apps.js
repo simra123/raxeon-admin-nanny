@@ -1,9 +1,8 @@
 import { Mail, MessageSquare, Octagon, BookOpen, Archive, Award, CheckSquare, Calendar, FileText, Circle, Codesandbox, Smartphone, Settings, User } from 'react-feather'
-import {BiCategory} from 'react-icons/bi'
+import {BiCategory, BiBadgeCheck} from 'react-icons/bi'
 import {MdOutlineProductionQuantityLimits} from 'react-icons/md'
 import {CgAttribution, CgWebsite} from 'react-icons/cg'
 import {FaQuestionCircle} from 'react-icons/fa'
-import {AiOutlineFundProjectionScreen} from 'react-icons/ai'
 import {GiVerticalBanner} from 'react-icons/gi'
 
 export default [
@@ -282,14 +281,27 @@ export default [
     id: 'Banners',
     title: 'Banners',
     icon: <CgWebsite  size={12} />,
-    navLink: '/banners/desktop'
+    children: [
+      {
+        id: 'desktop',
+        title: 'For Desktop',
+        icon: <Circle size={12} />,
+        navLink: '/banners/desktop'
+      },
+      {
+        id: 'mobile',
+        title: 'For Mobile',
+        icon: <Circle size={12} />,
+        navLink: '/banners/mobile'
+      }
+    ]
   },
  
     {
       id: 'bookings',
       title: 'Bookings',
       icon:<BookOpen  size={20} />,
-      navLink: '/apps/user/list'
+      navLink: '/bookings'
     },
     {
       id: 'chat',
@@ -301,16 +313,15 @@ export default [
     {
       id: 'Orders',
       title: 'Orders',
-      icon: <Octagon  size={12} />,
-      navLink: '/user/view'
+      icon: <BiBadgeCheck size={12} />,
+      navLink: '/orders'
     },
     {
-      id: 'Product Reviews',
-      title: 'Product Reviews',
-      icon: <Octagon  size={12} />,
-      navLink: '/apps/view'
+      id: 'Marketing Banner',
+      title: 'Marketing Banner',
+      icon: <GiVerticalBanner size={12} />,
+      navLink: '/marketing/banner'
     },
-   
     {
       header: 'Settings'
     },
@@ -320,11 +331,16 @@ export default [
       icon: <Settings size={20} />,
       children: [
         {
-          id: 'customer',
+          id: 'general',
           title: 'General Settings',
           icon: <Circle size={12} />,
-          permissions: ['admin', 'editor'],
-          navLink: '/misc/comicng-soon'
+          navLink: '/settings/general'
+        },
+        {
+          id: 'smtp',
+          title: 'SMTP Configuration',
+          icon: <Circle size={12} />,
+          navLink: '/settings/smtp'
         },
         {
           id: 'languages',
@@ -335,24 +351,13 @@ export default [
         }
       ]
     },
-    {
-      id: 'Marketing Banner',
-      title: 'Marketing Banner',
-      icon: <GiVerticalBanner size={12} />,
-      navLink: '/marketing/banner'
-    },
-    {
-      id: 'Splash Screens',
-      title: 'Splash Screens',
-      icon: <AiOutlineFundProjectionScreen  size={12} />,
-      navLink: '/splash-screens'
-    },
-    {
-      id: 'FAQ',
-      title: 'FAQ',
-      icon: <FaQuestionCircle  size={12} />,
-      navLink: '/faq/From'
-    },
+   
+    // {
+    //   id: 'FAQ',
+    //   title: 'FAQ',
+    //   icon: <FaQuestionCircle  size={12} />,
+    //   navLink: '/faq/From'
+    // },
     {
       header: 'Mobile'
     },

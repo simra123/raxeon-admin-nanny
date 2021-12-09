@@ -410,6 +410,38 @@ const AppRoutes = [
     meta: {
       navLink: '/splash/mobile'
     }
+  },
+  {
+    path: '/bookings',
+    component: lazy(() => import('../../views/bookings')),
+    exact: true,
+    meta: {
+      navLink: '/bookings'
+    }
+  },
+  {
+    path: '/orders',
+    component: lazy(() => import('../../views/orders')),
+    exact: true,
+    meta: {
+      navLink: '/orders'
+    }
+  },
+  {
+    path: '/settings/general',
+    component: lazy(() => import('../../views/settings/General')),
+    exact: true,
+    meta: {
+      navLink: '/settings/general'
+    }
+  },
+  {
+    path: '/settings/smtp',
+    component: lazy(() => import('../../views/settings/Smtp')),
+    exact: true,
+    meta: {
+      navLink: '/settings/smtp'
+    }
   }
 ]
 
