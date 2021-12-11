@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { EditorState } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg'
 import '../../@core/scss/react/libs/editor/editor.scss'
+import {AiFillQuestionCircle} from 'react-icons/ai'
+
 
 import {
   Card,
@@ -42,7 +44,7 @@ import {
                 <InputGroup className='input-group-merge' tag={FormGroup}>
                 <InputGroupAddon addonType='prepend'>
                     <InputGroupText>
-                    <User size={15} />
+                    <AiFillQuestionCircle size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
                 <Input type='text' name='name' id='ques' placeholder='Enter your Question' />

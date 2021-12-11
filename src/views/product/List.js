@@ -1,7 +1,5 @@
 import { useState } from 'react'
-import Uppy from '@uppy/core'
-import thumbnailGenerator from '@uppy/thumbnail-generator'
-import { DragDrop } from '@uppy/react'
+import {Link} from 'react-router-dom'
 import '../../@core/scss/react/libs/file-uploader/file-uploader.scss'
 import 'uppy/dist/uppy.css'
 import { MoreVertical, Edit, Trash, User } from 'react-feather'
@@ -86,9 +84,11 @@ import {  Card, Spinner, CardTitle, CardBody, Table,  Modal, ModalHeader, ModalB
                       <MoreVertical size={15} />
                   </DropdownToggle>
                   <DropdownMenu right>
-                      <DropdownItem href='/product/form' >
-                      <Edit className='mr-50' size={15} />  <span className='align-middle'>Edit</span>
-                      </DropdownItem>
+                      <Link to="/product/form">
+                        <DropdownItem href='/' >
+                        <Edit className='mr-50' size={15} />  <span className='align-middle'>Edit</span>
+                        </DropdownItem>
+                      </Link>
 
                       <DropdownItem href='/' onClick={(e) => { 
                         e.preventDefault()  

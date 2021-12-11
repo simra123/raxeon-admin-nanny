@@ -25,7 +25,9 @@ import {
   } from 'reactstrap' 
   import { User, Mail, Smartphone, Lock } from 'react-feather'
   import {BsGenderAmbiguous} from 'react-icons/bs'
-  import {FaAddressBook} from 'react-icons/fa'
+  import {FaPencilAlt, FaCity} from 'react-icons/fa'
+  import {AiOutlinePhone} from 'react-icons/ai'
+  import {HiOutlineLocationMarker} from 'react-icons/hi'
 
   
   const EmployeeForm = () => {
@@ -60,7 +62,7 @@ import {
                 <InputGroup className='input-group-merge' tag={FormGroup}>
                 <InputGroupAddon addonType='prepend'>
                     <InputGroupText>
-                    <User size={15} />
+                    <FaPencilAlt size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
                 <Input type='text'  id='name' placeholder='Enter your Name' />
@@ -84,7 +86,7 @@ import {
                 <InputGroup className='input-group-merge' tag={FormGroup}>
                 <InputGroupAddon addonType='prepend'>
                     <InputGroupText>
-                    <Smartphone size={15} />
+                    <AiOutlinePhone size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
                 <Input type='number'  id='phone' placeholder='Enter your phone number' />
@@ -132,7 +134,7 @@ import {
                 <InputGroup className='input-group-merge' tag={FormGroup}>
                 <InputGroupAddon addonType='prepend'>
                     <InputGroupText>
-                    <FaAddressBook size={15} />
+                    <HiOutlineLocationMarker size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
                 <Input type='text'  id='address' placeholder='Enter your address' />
@@ -144,7 +146,7 @@ import {
                 <InputGroup className='input-group-merge' tag={FormGroup}>
                 <InputGroupAddon addonType='prepend'>
                     <InputGroupText>
-                    <User size={15} />
+                    <FaCity size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
                 <Input type='text'  id='city' placeholder='Enter your City' />

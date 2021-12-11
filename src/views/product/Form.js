@@ -242,11 +242,6 @@ const attValue = [
                 {/*product form */}
                 <Label for='sku'>SKU</Label>
                 <InputGroup className='input-group-merge' tag={FormGroup}>
-                <InputGroupAddon addonType='prepend'>
-                    <InputGroupText>
-                    <Smartphone size={15} />
-                    </InputGroupText>
-                </InputGroupAddon>
                 <Input type='text'  id='sku' placeholder='Enter your SKU' />
                 </InputGroup>
               </Col>

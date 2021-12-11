@@ -11,27 +11,27 @@ import {  Card, CardTitle, CardBody, Table,  Modal, ModalHeader, ModalBody, Moda
     {   id:0,
         no : 1,
         ques : "How long This Site live?",
-        ans:  "Lorem ipsum dolor sit amet, "
+        ans:  "Lorem ipsum dolor sit amet... "
     },
     {   id:1,
         no : 2,
         ques : "Can I install anything i want on there?",
-        ans:  "Lorem ipsum dolor sit amet, "
+        ans:  "Lorem ipsum dolor sit amet... "
     },
     {   id:2,
         no : 3,
         ques : "Can i change the domain you me?",
-        ans:  "Lorem ipsum dolor sit amet, "
+        ans:  "Lorem ipsum dolor sit amet... "
     },
     {   id:3,
         no : 4,
         ques : "How can I migrate to another site?",
-        ans:  "Lorem ipsum dolor sit amet, "
+        ans:  "Lorem ipsum dolor sit amet... "
     },
     {   id:4,
         no : 5,
         ques : "How many sites i can create at once?",
-        ans:  "Lorem ipsum dolor sit amet, "
+        ans:  "Lorem ipsum dolor sit amet... "
     }
   
   
@@ -79,12 +79,10 @@ import {  Card, CardTitle, CardBody, Table,  Modal, ModalHeader, ModalBody, Moda
                       <MoreVertical size={15} />
                   </DropdownToggle>
                   <DropdownMenu right>
-                      <Link to="/faq/form">
-                      <DropdownItem href='/'  onClick={(e) => { 
-                        e.preventDefault()  
-                        }}>
-                      <Edit className='mr-50' size={15} />  <span className='align-middle'>Edit</span>
-                      </DropdownItem>
+                     <Link to="/faq/form">
+                        <DropdownItem href='/' >
+                        <Edit className='mr-50' size={15} />  <span className='align-middle'>Edit</span>
+                        </DropdownItem>
                       </Link>
 
                       <DropdownItem href='/' onClick={(e) => { 

@@ -1,15 +1,17 @@
 import { Link } from 'react-router-dom'
+import {useState} from 'react'
 import { useSkin } from '@hooks/useSkin'
 import { ChevronLeft } from 'react-feather'
 import { Row, Col, CardTitle, CardText, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import '@styles/base/pages/page-auth.scss'
 import Logo from '../../../../src/assets/images/logo/logo-m.png'
-
+// import OtpInput from "react-otp-input" 
 
 const ForgotPasswordV2 = () => {
   const [skin, setSkin] = useSkin()
+  const [otp, setOtp] = useState("") 
 
-  const illustration = skin === 'dark' ? 'forgot-password-v2-dark.svg' : 'forgot-password-v2.svg',
+  const illustration = skin  === 'dark' ? 'forgot-password-v2-dark.svg' : 'forgot-password-v2.svg',
     source = require(`@src/assets/images/pages/${illustration}`).default
 
   return (
@@ -36,8 +38,77 @@ const ForgotPasswordV2 = () => {
                 <Label className='form-label' for='login-email'>
                   Otp 
                 </Label>
-                <Input type='email' id='login-email' placeholder='Enter your Code' autoFocus />
+                <Row>
+                  <Col xs="3">
+                      <input
+                      className="otp-input"
+                      type="text"
+                      id="first"
+                      maxlength="1"
+                      onChange={(e) => {
+                          if (e.target.value  === "") {
+                              document.querySelector('#first').focus() 
+                              setOtp(otp.substring(0, otp.length - 1)) 
+                          } else if (e.target.value) {
+                              document.querySelector("#second").focus() 
+                              setOtp(otp + e.target.value) 
+                          }
+                      }}
+                  />
+                  </Col>
+                  <Col xs="3">
+                  <input
+                    className="otp-input"
+                    type="text"
+                    id="second"
+                    maxlength="1"
+                    onChange={(e) => {
+                        if (e.target.value  === "") {
+                            document.querySelector('#first').focus() 
+                            setOtp(otp.substring(0, otp.length - 1)) 
+                        } else if (e.target.value) {
+                            document.querySelector("#third").focus() 
+                            setOtp(otp + e.target.value) 
+                        }
+                        }}
+                    />
+                  </Col>
+                  <Col xs="3">
+                  <input
+                      className="otp-input"
+                      type="text"
+                      id="third"
+                      maxlength="1"
+                      onChange={(e) => {
+                          if (e.target.value  === "") {
+                              document.querySelector('#second').focus() 
+                              setOtp(otp.substring(0, otp.length - 1)) 
+                          } else if (e.target.value) {
+                              document.querySelector("#fourth").focus() 
+                              setOtp(otp + e.target.value) 
+                          }
+                      }}
+                  />
+                  </Col>
+                  <Col xs="3">
+                        <input
+                        className="otp-input"
+                        type="text"
+                        id="fourth"
+                        maxlength="1"
+                        onChange={(e) => {
+                            if (e.target.value  === "") {
+                                document.querySelector('#third').focus() 
+                                setOtp(otp.substring(0, otp.length - 1)) 
+                            } else if (e.target.value) {
+                              setOtp(otp + e.target.value)
+                            }
+                        }}
+                    />
+                  </Col>
+                </Row>
               </FormGroup>
+              
               <Link to="/reset-password">
               <Button color='primary' block>
                 Change Password

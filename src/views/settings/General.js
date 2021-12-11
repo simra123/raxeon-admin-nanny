@@ -17,8 +17,8 @@ import {
   CustomInput,
   Spinner
   } from 'reactstrap'
-  import { User  } from 'react-feather'
-  import {AiOutlineMail, AiOutlinePhone} from 'react-icons/ai'
+  import {GrAndroid} from 'react-icons/gr'
+  import {AiOutlineMail, AiOutlinePhone, AiOutlineApple} from 'react-icons/ai'
   import {HiOutlineLocationMarker} from 'react-icons/hi'
   import {FaPencilAlt, FaFacebook, FaTwitter, FaLinkedinIn, FaGooglePlus} from 'react-icons/fa'
 
@@ -60,6 +60,30 @@ import {
                     <CustomInput type='file' id='footer' name='customFile' />
                     </FormGroup>
                 </Col>
+                <Col sm='12' md="6">
+                {/* category form */}
+                <Label for='android'>Android App Url</Label>
+                <InputGroup className='input-group-merge' tag={FormGroup}>
+                <InputGroupAddon addonType='prepend'>
+                    <InputGroupText>
+                    <GrAndroid size={18} />
+                    </InputGroupText>
+                </InputGroupAddon>
+                <Input type='text' id='android' placeholder='Enter Your Android App Url' />
+                </InputGroup>
+              </Col>
+              <Col sm='12' md="6">
+                {/* category form */}
+                <Label for='ios'>Ios App Url</Label>
+                <InputGroup className='input-group-merge' tag={FormGroup}>
+                <InputGroupAddon addonType='prepend'>
+                    <InputGroupText>
+                    <AiOutlineApple size={18} />
+                    </InputGroupText>
+                </InputGroupAddon>
+                <Input type='text' id='ios' placeholder='Enter Your Ios App Url' />
+                </InputGroup>
+              </Col>
                 <Col sm='12' md="12" className="my-2">
                  <h4>Social Media Links</h4>
                </Col>

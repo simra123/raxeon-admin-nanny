@@ -25,8 +25,8 @@ import {
   Spinner
   } from 'reactstrap'
   import { User, Mail, Smartphone, Lock } from 'react-feather'
+  import {FaPencilAlt} from 'react-icons/fa'
 
-  
   const ServiceForm = () => {
     //  file Uploader
     const [img, setImg] = useState(null)
@@ -59,7 +59,7 @@ import {
                 <InputGroup className='input-group-merge' tag={FormGroup}>
                 <InputGroupAddon addonType='prepend'>
                     <InputGroupText>
-                    <User size={15} />
+                    <FaPencilAlt size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
                 <Input type='text' name='name' id='nameVerticalIcons' placeholder='Enter your service Name' />

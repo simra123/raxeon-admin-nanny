@@ -363,20 +363,20 @@ export default [
     },
     {
       id: 'mobile',
-      title: 'Mobile Screens',
+      title: 'Mobile Application',
       icon: <Smartphone size={20} />,
       children: [
         {
           id: 'mobile',
           title: 'Banners',
           icon: <Circle size={12} />,
-          navLink: '/banners/mobile'
+          navLink: '/mobile-app/banners'
         },
         {
           id: 'm-screens',
           title: 'Splash Screens',
           icon: <Circle size={12} />,
-          navLink: '/splash/mobile'
+          navLink: '/mobile-app/splash'
         }
       ]
     }

@@ -24,7 +24,7 @@ const MapEvents = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle tag='h4'>Event Handling</CardTitle>
+        <CardTitle tag='h4'>Track Address</CardTitle>
       </CardHeader>
       <CardBody>
         <p>Click on map to get to your current location.</p>

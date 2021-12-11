@@ -396,19 +396,19 @@ const AppRoutes = [
     }
   },
   {
-    path: '/splash-screens',
-    component: lazy(() => import('../../views/splash-screens')),
+    path: '/mobile-app/splash',
+    component: lazy(() => import('../../views/mobile-app/Splash')),
     exact: true,
     meta: {
-      navLink: '/splash-screens'
+      navLink: '/mobile-app/splash'
     }
   },
   {
-    path: '/splash/mobile',
-    component: lazy(() => import('../../views/splash-screens/Mobile')),
+    path: '/mobile-app/banners',
+    component: lazy(() => import('../../views/mobile-app/Banners')),
     exact: true,
     meta: {
-      navLink: '/splash/mobile'
+      navLink: '/mobile-app/banners'
     }
   },
   {
@@ -420,11 +420,35 @@ const AppRoutes = [
     }
   },
   {
+    path: '/bookings/map',
+    component: lazy(() => import('../../views/bookings/traking-map/Map')),
+    exact: true,
+    meta: {
+      navLink: '/bookings/maps'
+    }
+  },
+  {
+    path: '/bookings/preview/:id',
+    component: lazy(() => import('../../views/bookings/preview')),
+    exact: true,
+    meta: {
+      navLink: '/bookings/preview'
+    }
+  },
+  {
     path: '/orders',
     component: lazy(() => import('../../views/orders')),
     exact: true,
     meta: {
       navLink: '/orders'
+    }
+  },
+  {
+    path: '/orders/preview/:id',
+    component: lazy(() => import('../../views/orders/preview')),
+    exact: true,
+    meta: {
+      navLink: '/orders/preview'
     }
   },
   {
@@ -442,6 +466,10 @@ const AppRoutes = [
     meta: {
       navLink: '/settings/smtp'
     }
+  },
+  {
+    path: '/account-settings',
+    component: lazy(() => import('../../views/pages/account-settings'))
   }
 ]
 

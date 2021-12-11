@@ -30,35 +30,18 @@ const GeneralTabs = ({ data }) => {
             Upload
             <Input type='file' onChange={onChange} hidden accept='image/*' />
           </Button.Ripple>
-          <Button.Ripple color='secondary' size='sm' outline>
+          {/* <Button.Ripple color='secondary' size='sm' outline>
             Reset
-          </Button.Ripple>
+          </Button.Ripple> */}
           <p>Allowed JPG, GIF or PNG. Max size of 800kB</p>
         </Media>
       </Media>
       <Form className='mt-2' onSubmit={handleSubmit(onSubmit)}>
         <Row>
-          <Col sm='6'>
+          
+          <Col sm='12'>
             <FormGroup>
-              <Label for='username'>Username</Label>
-              <Controller
-                defaultValue={data.username}
-                control={control}
-                as={Input}
-                id='username'
-                name='username'
-                placeholder='Username'
-                innerRef={register({ required: true })}
-                onChange={e => setValue('username', e.target.value)}
-                className={classnames({
-                  'is-invalid': errors.username
-                })}
-              />
-            </FormGroup>
-          </Col>
-          <Col sm='6'>
-            <FormGroup>
-              <Label for='name'>Name</Label>
+              <Label for='name'>Admin Name</Label>
               <Controller
                 defaultValue={data.fullName}
                 control={control}
@@ -74,9 +57,9 @@ const GeneralTabs = ({ data }) => {
               />
             </FormGroup>
           </Col>
-          <Col sm='6'>
+          <Col sm='12'>
             <FormGroup>
-              <Label for='email'>E-mail</Label>
+              <Label for='email'>Email</Label>
               <Controller
                 defaultValue={data.email}
                 control={control}
@@ -93,7 +76,7 @@ const GeneralTabs = ({ data }) => {
               />
             </FormGroup>
           </Col>
-          <Col sm='6'>
+          {/* <Col sm='6'>
             <FormGroup>
               <Label for='company'>Company</Label>
               <Controller
@@ -120,7 +103,7 @@ const GeneralTabs = ({ data }) => {
                 </a>
               </div>
             </Alert>
-          </Col>
+          </Col> */}
           <Col className='mt-2' sm='12'>
             <Button.Ripple type='submit' className='mr-1' color='primary'>
               Save changes

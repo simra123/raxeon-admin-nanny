@@ -82,7 +82,7 @@ import {  Card, Spinner, Form, Row, Col, CardTitle, CardBody, Table,  Modal, Mod
             className='modal-dialog-centered'
             modalClassName="modal-primary"
             key={0}>
-            <ModalHeader toggle={() => toggleAddNew(0)}>Edit</ModalHeader>
+            <ModalHeader toggle={() => toggleAddNew(0)}>Upload</ModalHeader>
             <ModalBody>
                 <Form>
                     <Row>

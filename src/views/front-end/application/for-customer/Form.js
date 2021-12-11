@@ -55,18 +55,7 @@ const CustomerForm = () => {
                     <DragDrop uppy={uppy} />
                     {img !== null ? <img className='rounded mt-2' src={img} alt='avatar' /> : null}
                 </Col>
-                <Col sm="12" >
-                  {/* customer form */}
-                  <Label for='icon-heading'>Button Link</Label>
-                  <InputGroup className='input-group-merge' tag={FormGroup}>
-                  <InputGroupAddon addonType='prepend'>
-                      <InputGroupText>
-                      <AiOutlineLink size={15} />
-                      </InputGroupText>
-                  </InputGroupAddon>
-                  <Input type='text' id='icon-heading' placeholder='Enter your App link' />
-                  </InputGroup>
-                </Col> 
+               
                 <Col sm="12" md="6">
                   {/* customer form */}
                   <Label for='icon-heading'>Heading</Label>

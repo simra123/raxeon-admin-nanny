@@ -24,10 +24,10 @@ const PasswordTabContent = () => {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Row>
-        <Col sm='6'>
+        <Col sm='12'>
           <FormGroup>
             <InputPasswordToggle
-              label='Old Password'
+              label='Current Password'
               htmlFor='old-password'
               name='old-password'
               innerRef={register({ required: true })}
@@ -55,7 +55,7 @@ const PasswordTabContent = () => {
         <Col sm='6'>
           <FormGroup>
             <InputPasswordToggle
-              label='Retype New Password'
+              label='Confirm Password'
               htmlFor='retype-new-password'
               name='retype-new-password'
               innerRef={register({ required: true })}

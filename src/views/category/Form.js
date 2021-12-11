@@ -26,7 +26,7 @@ import {
   Spinner
   } from 'reactstrap'
   import { User, Mail, Smartphone, Lock } from 'react-feather'
-
+  import {FaPencilAlt, FaTextHeight} from 'react-icons/fa' 
   
   const CategoryForm = () => {
     //  file Uploader
@@ -60,7 +60,7 @@ import {
                 <InputGroup className='input-group-merge' tag={FormGroup}>
                 <InputGroupAddon addonType='prepend'>
                     <InputGroupText>
-                    <User size={15} />
+                    <FaPencilAlt size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
                 <Input type='text' name='name' id='name' placeholder='Enter Your Category Name' />
@@ -72,7 +72,7 @@ import {
                 <InputGroup className='input-group-merge' tag={FormGroup}>
                 <InputGroupAddon addonType='prepend'>
                     <InputGroupText>
-                    <User size={15} />
+                    <FaTextHeight size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
                 <Input type='text' name='name' id='descrip' placeholder='Enter Your Category description' />

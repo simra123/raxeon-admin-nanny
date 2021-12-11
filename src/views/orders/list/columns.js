@@ -8,8 +8,8 @@ import { Link } from 'react-router-dom'
 import Avatar from '@components/avatar'
 
 // ** Store & Actions
-import { deleteInvoice } from '../store/actions'
-import { store } from '@store/storeConfig/store'
+// import { deleteInvoice } from '../store/actions'
+// import { store } from '@store/storeConfig/store'
 
 // ** Third Party Components
 import {

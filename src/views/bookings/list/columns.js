@@ -8,8 +8,8 @@ import { Link } from 'react-router-dom'
 import Avatar from '@components/avatar'
 
 // ** Store & Actions
-import { deleteInvoice } from '../store/actions'
-import { store } from '@store/storeConfig/store'
+// import { deleteInvoice } from '../app/store/actions'
+// import { store } from '@store/storeConfig/store'
 
 // ** Third Party Components
 import {
@@ -148,7 +148,7 @@ export const columns = [
         <UncontrolledTooltip placement='top' target={`send-tooltip-${row.id}`}>
           Download
         </UncontrolledTooltip>
-        <Link to={`/apps/invoice/preview/${row.id}`} id={`pw-tooltip-${row.id}`}>
+        <Link to={`/bookings/preview/${row.id}`} id={`pw-tooltip-${row.id}`}>
           <Eye size={19} className='mx-1' />
         </Link>
         <UncontrolledTooltip placement='top' target={`pw-tooltip-${row.id}`}>

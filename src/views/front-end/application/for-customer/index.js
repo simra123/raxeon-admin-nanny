@@ -8,9 +8,7 @@ import {  Card, CardTitle, CardBody, Table, UncontrolledDropdown, DropdownMenu, 
   const appCustomer = [
     {
       id:1,
-      img :'https://nanny-frontend.netlify.app/static/media/app-thumb.b697cac1.png',
-      heading : 'easy searching',
-      link : '/playstore'
+      img :'https://nanny-frontend.netlify.app/static/media/app-thumb.b697cac1.png'
     }
 
 ]
@@ -26,8 +24,6 @@ import {  Card, CardTitle, CardBody, Table, UncontrolledDropdown, DropdownMenu, 
           <thead>
             <tr>
               <th>Image</th>
-              <th>Heading</th>
-              <th>Button Link</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -39,9 +35,6 @@ import {  Card, CardTitle, CardBody, Table, UncontrolledDropdown, DropdownMenu, 
               <td>
                <img src={value.img} height="100" width="100" />
               </td>
-
-                <td> {value.heading} </td>
-                <td> {value.link} </td>
                 <td>
                   <UncontrolledDropdown>
                   <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>

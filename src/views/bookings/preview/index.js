@@ -8,8 +8,8 @@ import { Row, Col, Alert } from 'reactstrap'
 // ** Invoice Preview Components
 import PreviewCard from './PreviewCard'
 import PreviewActions from './PreviewActions'
-import SendInvoiceSidebar from '../shared-sidebar/SidebarSendInvoice'
-import AddPaymentSidebar from '../shared-sidebar/SidebarAddPayment'
+// import SendInvoiceSidebar from '../shared-sidebar/SidebarSendInvoice'
+// import AddPaymentSidebar from '../shared-sidebar/SidebarAddPayment'
 
 // ** Styles
 import '@styles/base/pages/app-invoice.scss'
@@ -44,8 +44,8 @@ const InvoicePreview = () => {
           <PreviewActions id={id} setSendSidebarOpen={setSendSidebarOpen} setAddPaymentOpen={setAddPaymentOpen} />
         </Col> */}
       </Row>
-      <SendInvoiceSidebar toggleSidebar={toggleSendSidebar} open={sendSidebarOpen} />
-      <AddPaymentSidebar toggleSidebar={toggleAddSidebar} open={addPaymentOpen} />
+      {/* <SendInvoiceSidebar toggleSidebar={toggleSendSidebar} open={sendSidebarOpen} />
+      <AddPaymentSidebar toggleSidebar={toggleAddSidebar} open={addPaymentOpen} /> */}
     </div>
   ) : (
     <Alert color='danger'>

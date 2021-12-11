@@ -1,6 +1,22 @@
 // ** Third Party Components
-import { Card, CardBody, CardText, Row, Col, Table } from 'reactstrap'
+import { Card, CardBody, CardText, Row, Col, Table, Label, Button } from 'reactstrap'
 import Logo from '@src/assets/images/logo/logo2.png'
+import Avatar from '@src/assets/images/portrait/small/avatar-s-11.jpg'
+import Avatar2 from '@src/assets/images/portrait/small/avatar-s-8.jpg'
+import {Link} from 'react-router-dom'
+import {FaMapMarkerAlt} from 'react-icons/fa'
+import Bar from '../progress-bar'
+import Select from 'react-select'
+
+const status =   [
+  { label : "pending ", value : "0%"},
+  { label : "accepted ", value : "10%"},
+  { label : "rejected ", value : "20%"},
+  { label : "assigned ", value : "30%"},
+  { label : "canceled ", value : "40%"},
+  { label : "complete ", value : "50%"}
+
+ ]
 
 const PreviewCard = ({ data }) => {
   return data !== null ? (
@@ -31,18 +47,32 @@ const PreviewCard = ({ data }) => {
           </Row>
           <Row  className="mb-2">
             <Col md="8">
-          <h6 className='mb-2'>Invoice From:</h6>
-            <h6 className='mb-25'>Care Inc</h6>
-            <CardText className='mb-25'>Office 149, 450 South Brand Brooklyn</CardText>
-            <CardText className='mb-25'>San Diego County, CA 91905, USA</CardText>
-            <CardText className='mb-0'>+1 (123) 456 7691, +44 (876) 543 2198</CardText>
+            <h6 className='mb-2'>Customer Info:</h6>
+            <div className='d-inline-flex mb-50'>
+              <img className='mr-50 rounded-circle' src={Avatar} width='35' height='35' />
+              <h6 className=' mt-50'>John Smliga</h6>
+            </div>
+            <CardText className='mb-25'>+44 (876) 543 2198</CardText>
+            <CardText className='mb-25'>john@gmail.com</CardText>
+            <Link to="/bookings/map">
+            <CardText className='mb-25'>San Diego County</CardText>
+            </Link>
             </Col>
             <Col md="4">
-            <h6 className='mb-2'>Invoice To:</h6>
-            <h6 className='mb-25'>{data.invoice.client.name}</h6>
-            <CardText className='mb-25'>{data.invoice.client.company}</CardText>
-            <CardText className='mb-25'>{data.invoice.client.address}</CardText>
-            <CardText className='mb-25'>{data.invoice.client.contact}</CardText>
+            <h6 className='mb-2'>Employee Info:</h6>
+            <div className='d-inline-flex mb-50'>
+              <img className='mr-50 rounded-circle' src={Avatar2} width='35' height='35' />
+              <h6 className=' mt-50'>David Allen </h6>
+            </div>
+            <CardText className='mb-25'>+44 (876) 543 2198</CardText>
+            <CardText className='mb-25'>David@gmail.com</CardText>
+            <Link to="/bookings/map">
+            <div className='d-inline-flex mb-50'>
+              <FaMapMarkerAlt className='mr-25' size={20}/>
+            <CardText className='mb-25'>Track Empployee</CardText>
+            </div>
+            </Link>
+            {/* <CardText className='mb-25'>{data.invoice.client.contact}</CardText> */}
             </Col>
             </Row>
 
@@ -99,11 +129,11 @@ const PreviewCard = ({ data }) => {
       <Table responsive>
         <thead>
           <tr>
-            <th className='py-1'>#</th>
-            <th className='py-1'>Item</th>
-            <th className='py-1'>Price</th>
-            <th className='py-1'>Qty</th>
-            <th className='py-1'>Total</th>
+            <th className='py-1'>Service Name</th>
+            <th className='py-1'>Service Time</th>
+            <th className='py-1'>Service Date</th>
+            <th className='py-1'>Customer Info</th>
+            <th className='py-1'>Employee Info</th>
           </tr>
         </thead>
         <tbody>
@@ -113,38 +143,52 @@ const PreviewCard = ({ data }) => {
               <p className='card-text text-nowrap'>
                 Developed a full stack native app using React Native, Bootstrap & Python
               </p> */}
-              1
+              lorem ipsum
             </td>
             <td className='py-1'>
-              <span className='font-weight-bold'>4</span>
+              <span className='font-weight-bold'>00:30</span>
             </td>
             <td className='py-1'>
-              <span className='font-weight-bold'>T-shirt</span>
+              <span className='font-weight-bold'>30-feb-1894</span>
             </td>
             <td className='py-1'>
-              <span className='font-weight-bold'>5</span>
+            <div className='d-inline-flex mb-50'>
+              <img className='mr-50 rounded-circle' src={Avatar2} width='35' height='35' />
+              <h6 className=' mt-50'>David Allen </h6>
+            </div>
             </td>
             <td className='py-1'>
-              <span className='font-weight-bold'>$450</span>
+              <div className='d-inline-flex mb-50'>
+                <img className='mr-50 rounded-circle' src={Avatar} width='35' height='35' />
+                <h6 className=' mt-50'>John Smliga</h6>
+              </div>
             </td>
           </tr>
           <tr className='border-bottom'>
-            <td className='py-1'>
-              {/* <p className='card-text font-weight-bold mb-25'>Ui Kit Design</p>
-              <p className='card-text text-nowrap'>Designed a UI kit for native app using Sketch, Figma & Adobe XD</p> */}
-              2
+          <td className='py-1'>
+              {/* <p className='card-text font-weight-bold mb-25'>Native App Development</p>
+              <p className='card-text text-nowrap'>
+                Developed a full stack native app using React Native, Bootstrap & Python
+              </p> */}
+              lorem ipsum
             </td>
             <td className='py-1'>
-              <span className='font-weight-bold'>Socks</span>
+              <span className='font-weight-bold'>00:30</span>
             </td>
             <td className='py-1'>
-              <span className='font-weight-bold'>$20</span>
+              <span className='font-weight-bold'>30-feb-1894</span>
             </td>
             <td className='py-1'>
-              <span className='font-weight-bold'>4</span>
+            <div className='d-inline-flex mb-50'>
+              <img className='mr-50 rounded-circle' src={Avatar2} width='35' height='35' />
+              <h6 className=' mt-50'>David Allen </h6>
+            </div>
             </td>
             <td className='py-1'>
-              <span className='font-weight-bold'>$128</span>
+              <div className='d-inline-flex mb-50'>
+                <img className='mr-50 rounded-circle' src={Avatar} width='35' height='35' />
+                <h6 className=' mt-50'>John Smliga</h6>
+              </div>
             </td>
           </tr>
         </tbody>
@@ -152,49 +196,25 @@ const PreviewCard = ({ data }) => {
       {/* /Invoice Description */}
 
       {/* Total & Sales Person */}
-      <CardBody className='invoice-padding pb-0'>
-        <Row className='invoice-sales-total-wrapper'>
-          {/* <Col className='mt-md-0 mt-3' md='6' order={{ md: 1, lg: 2 }}>
-            <CardText className='mb-0'>
-              <span className='font-weight-bold'>Salesperson:</span> <span className='ml-75'>Alfie Solomons</span>
-            </CardText>
-          </Col> */}
-          <Col className='d-flex justify-content-end' md='12' order={{ md: 2, lg: 1 }}>
-            <div className='invoice-total-wrapper'>
-              <div className='invoice-total-item'>
-                <p className='invoice-total-title'>Subtotal:</p>
-                <p className='invoice-total-amount'>$1800</p>
-              </div>
-              <div className='invoice-total-item'>
-                <p className='invoice-total-title'>Discount:</p>
-                <p className='invoice-total-amount'>$28</p>
-              </div>
-              <div className='invoice-total-item'>
-                <p className='invoice-total-title'>Tax:</p>
-                <p className='invoice-total-amount'>21%</p>
-              </div>
-              <hr className='my-50' />
-              <div className='invoice-total-item'>
-                <p className='invoice-total-title'>Total:</p>
-                <p className='invoice-total-amount'>$1690</p>
-              </div>
-            </div>
-          </Col>
-        </Row>
-      </CardBody>
+      
       {/* /Total & Sales Person */}
 
-      <hr className='invoice-spacing' />
 
       {/* Invoice Note */}
-      <CardBody className='invoice-padding pt-0'>
+      <CardBody className='my-5 px-5'>
+        <Bar/>
         <Row>
-          <Col sm='12'>
-            <span className='font-weight-bold'>Note: </span>
-            <span>
-              It was a pleasure working with you and your team. We hope you will keep us in mind for future freelance
-              projects. Thank You!
-            </span>
+          <Col md='3' className='mt-5'>
+            <Label>set Status</Label>
+            <Select
+            className='react-select'
+            classNamePrefix='select'
+            defaultValue={status[0]}
+            options={status}
+            />
+            <Button.Ripple className='mt-2' color='primary' type='submit' onClick={e => e.preventDefault()}>
+             Update
+            </Button.Ripple>
           </Col>
         </Row>
       </CardBody>

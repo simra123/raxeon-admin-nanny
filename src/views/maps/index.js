@@ -22,13 +22,13 @@ import '@styles/react/libs/maps/map-leaflet.scss'
 const Maps = () => {
   return (
     <Fragment>
-      <Breadcrumbs
+      {/* <Breadcrumbs
         breadCrumbTitle='React Leaflet Maps'
         breadCrumbParent='Charts & Maps'
         breadCrumbActive='Leaflet Maps'
-      />
+      /> */}
       <Row>
-        <Col sm='12'>
+        {/* <Col sm='12'>
           <p>
             React components for{' '}
             <a href='https://github.com/PaulLeCam/react-leaflet' target='_blank' rel='noopener noreferrer'>
@@ -41,11 +41,11 @@ const Maps = () => {
         </Col>
         <Col sm='12'>
           <MapBasic />
-        </Col>
+        </Col> */}
         <Col sm='12'>
           <MapEvents />
         </Col>
-        <Col sm='12'>
+        {/* <Col sm='12'>
           <MapTooltip />
         </Col>
         <Col sm='12'>
@@ -59,7 +59,7 @@ const Maps = () => {
         </Col>
         <Col sm='12'>
           <MapCustomIcon />
-        </Col>
+        </Col> */}
       </Row>
     </Fragment>
   )

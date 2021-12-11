@@ -40,12 +40,7 @@ import {
                 {/* service form */}
                 <Label for='nameVerticalIcons'>Page Title</Label>
                 <InputGroup className='input-group-merge' tag={FormGroup}>
-                <InputGroupAddon addonType='prepend'>
-                    <InputGroupText>
-                    <User size={15} />
-                    </InputGroupText>
-                </InputGroupAddon>
-                <Input type='text' name='name' id='nameVerticalIcons' placeholder='Enter your Page Title' />
+                <Input readOnly type='text' name='name' id='nameVerticalIcons' value="About Us" placeholder='Enter your Page Title' />
                 </InputGroup>
               </Col>
               

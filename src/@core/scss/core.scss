@@ -11,3 +11,24 @@
 
 // React Specific
 @import 'react/index';
+.btn-primary{
+    border-color: #025690 !important;
+    background-color: #025690 !important;
+}
+.btn-primary:focus{
+    border-color: #025690 !important;
+    background-color: #025690 !important;
+}
+.otp-input {
+    height: 40px !important;
+    width: 50px;
+    margin: 5px;
+    font-size: 16px;
+    font-weight: 400;
+    border: 1px solid rgba(128, 128, 128, 0.479) ;
+    border-radius: 6px;
+}
+.otp-input:focus{
+    border-color: #025690 !important;
+    outline: none !important;
+}
