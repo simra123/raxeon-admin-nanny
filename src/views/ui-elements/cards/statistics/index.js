@@ -12,7 +12,7 @@ import OrdersReceived from './OrdersReceived'
 import SiteTraffic from './SiteTraffic'
 import ActiveUsers from './ActiveUsers'
 import Newsletter from './Newsletter'
-import StatsVertical from '@components/widgets/stats/StatsVertical'
+import StatsVertical from '../../../components/dashboardStatics/StatsVertical'
 import StatsHorizontal from '@components/widgets/stats/StatsHorizontal'
 import {
   Eye,

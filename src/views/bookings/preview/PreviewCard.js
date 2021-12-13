@@ -212,6 +212,8 @@ const PreviewCard = ({ data }) => {
             defaultValue={status[0]}
             options={status}
             />
+            </Col>
+            <Col md='3' className='mt-0 mt-md-5'>
             <Button.Ripple className='mt-2' color='primary' type='submit' onClick={e => e.preventDefault()}>
              Update
             </Button.Ripple>

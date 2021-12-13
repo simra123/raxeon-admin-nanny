@@ -1,6 +1,5 @@
 import { Fragment } from 'react'
 import Avatar from '@components/avatar'
-import AvatarGroup from '@components/avatar-group'
 import pdf from '@src/assets/images/icons/file-icons/pdf.png'
 import ceo from '@src/assets/images/portrait/small/avatar-s-9.jpg'
 import interview from '@src/assets/images/portrait/small/avatar-s-20.jpg'

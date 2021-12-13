@@ -1,6 +1,5 @@
 import { useState } from 'react'
 
-import AvatarGroup from '@components/avatar-group'
 import avatar1 from '@src/assets/images/portrait/small/avatar-s-5.jpg'
 import {Link} from 'react-router-dom'
 import { MoreVertical, Edit, Trash } from 'react-feather'

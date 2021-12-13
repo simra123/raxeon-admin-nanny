@@ -1,6 +1,5 @@
 import Avatar from '@components/avatar'
 import Timeline from '@components/timeline'
-import AvatarGroup from '@components/avatar-group'
 import { List, MoreVertical } from 'react-feather'
 import jsonImg from '@src/assets/images/icons/json.png'
 import ceo from '@src/assets/images/portrait/small/avatar-s-9.jpg'

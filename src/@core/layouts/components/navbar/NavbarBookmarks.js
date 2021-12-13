@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 // ** Third Party Components
 import * as Icon from 'react-feather'
 import classnames from 'classnames'
-import Autocomplete from '@components/autocomplete'
 import {
   NavItem,
   NavLink,

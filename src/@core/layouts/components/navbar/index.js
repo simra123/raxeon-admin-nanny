@@ -35,13 +35,13 @@ const ThemeNavbar = props => {
       </div>
       <ul className='nav navbar-nav align-items-center ml-auto'>
         <IntlDropdown />
-        <NavItem className='d-none d-lg-block'>
+        {/* <NavItem className='d-none d-lg-block'>
           <NavLink className='nav-link-style'>
             <ThemeToggler />
           </NavLink>
-        </NavItem>
+        </NavItem> */}
         {/* <NavbarSearch /> */}
-        <CartDropdown />
+        {/* <CartDropdown /> */}
         {/* <NotificationDropdown /> */}
         <UserDropdown />
       </ul>

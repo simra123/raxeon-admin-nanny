@@ -12,7 +12,6 @@ import { useDispatch } from 'react-redux'
 import { handleSearchQuery } from '@store/actions/navbar'
 
 // ** Custom Components
-import Autocomplete from '@components/autocomplete'
 
 const NavbarSearch = () => {
   // ** Store Vars

@@ -24,10 +24,14 @@
 .chat-icons .each-icon {
   background-color: #7468f0 !important;
   margin-left: 10px;
-  color: white;
+  color: white !important;
   border-radius: 50%;
   padding: 8px;
+  cursor: pointer;
 
+}
+.chat-icons .each-icon label{
+  color: white;
 }
 // Align icons position
 .main-menu {

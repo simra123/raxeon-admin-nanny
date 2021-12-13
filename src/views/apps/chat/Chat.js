@@ -243,9 +243,24 @@ const ChatLog = props => {
             {selectedUser.chat ? <div className='chats'>{renderChats()}</div> : null}
           </ChatWrapper>
          { attachOpen ? <div className="animate__animated animate__fadeIn animate_faster d-flex  chat-icons">
-           <span className="each-icon"> <Image  size={20}/> </span>
-           <span className="each-icon"> <BiVideo  size={20}/> </span>
-           <span className="each-icon"> <IoDocumentTextOutline size={20}/> </span>
+           <span className="each-icon ">
+              <Label className='attachment-icon mb-0 ' for='attach-image'>
+                <Image className='' size={20} />
+                <input type='file' id='attach-image' hidden />
+              </Label>
+           </span>
+            <span className="each-icon">
+              <Label className='attachment-icon mb-0 ' for='attach-image'>
+              <BiVideo  size={20}/> 
+                <input type='file' id='attach-image' hidden />
+              </Label>
+            </span>
+            <span className="each-icon"> 
+              <Label className='attachment-icon mb-0 ' for='attach-image'>
+                <IoDocumentTextOutline size={20}/>
+                  <input type='file' id='attach-image' hidden />
+              </Label>
+            </span>
           </div> : null}
           <Form className='chat-app-form' onSubmit={e => handleSendMsg(e)}>
             <InputGroup className='input-group-merge mr-1 form-send-message'>

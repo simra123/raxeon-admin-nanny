@@ -5,17 +5,25 @@ import { ChevronLeft } from 'react-feather'
 import { Row, Col, CardTitle, CardText, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import '@styles/base/pages/page-auth.scss'
 import Logo from '../../../../src/assets/images/logo/logo-m.png'
-// import OtpInput from "react-otp-input" 
 
+//import toast types from components 
+import {SuccessToast, ErrorToast} from '../../components/toastify'
+//import toasts from react
+import { toast } from 'react-toastify'
 const ForgotPasswordV2 = () => {
-  const [skin, setSkin] = useSkin()
-  const [otp, setOtp] = useState("") 
 
+  //trigger the toast using toast.type function 
+  toast.error(<ErrorToast title="error!" text="die" />)
+  toast.success(<SuccessToast title="Success!" text="die" />)
+
+ 
+ const [skin, setSkin] = useSkin()
+  const [otp, setOtp] = useState("") 
   const illustration = skin  === 'dark' ? 'forgot-password-v2-dark.svg' : 'forgot-password-v2.svg',
     source = require(`@src/assets/images/pages/${illustration}`).default
-
   return (
     <div className='auth-wrapper auth-v2'>
+     
       <Row className='auth-inner m-0'>
         <Link className='brand-logo' to='/' onClick={e => e.preventDefault()}>
         <img src={Logo} width="100" height="120" alt=""/>
@@ -55,6 +63,7 @@ const ForgotPasswordV2 = () => {
                           }
                       }}
                   />
+                  
                   </Col>
                   <Col xs="3">
                   <input

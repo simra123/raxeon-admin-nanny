@@ -18,7 +18,7 @@ const Bar = () => {
           )}
         
         </Step>
-        <p className="progress-text d-none d-md-block">pending</p>
+        <p className="progress-text  d-md-block">pending</p>
 
         <Step transition="scale">
           {({ accomplished }) => (
@@ -28,7 +28,7 @@ const Bar = () => {
           )}
         
         </Step>
-        <p className="progress-text d-none d-md-block">accepted</p>
+        <p className="progress-text  d-md-block">accepted</p>
 
         <Step transition="scale">
           {({ accomplished }) => (
@@ -38,7 +38,7 @@ const Bar = () => {
           )}
         
         </Step>
-        <p className="progress-text d-none d-md-block">assigned</p>
+        <p className="progress-text  d-md-block">assigned</p>
 
         <Step transition="scale">
           {({ accomplished }) => (
@@ -48,7 +48,7 @@ const Bar = () => {
           )}
         
         </Step>
-        <p className="progress-text d-none d-md-block">completed</p>
+        <p className="progress-text  d-md-block">completed</p>
 
         <Step transition="scale">
           {({ accomplished }) => (
@@ -58,7 +58,7 @@ const Bar = () => {
           )}
         
         </Step>
-        <p className="progress-text d-none d-md-block">finished</p>
+        <p className="progress-text  d-md-block">finished</p>
 
         {/* <Step transition="scale">
           {({ accomplished }) => (
