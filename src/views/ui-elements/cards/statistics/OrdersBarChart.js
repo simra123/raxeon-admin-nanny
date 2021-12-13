@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import TinyChartStats from '@components/widgets/stats/TinyChartStats'
 
 const OrdersBarChart = ({ warning }) => {
   const [data, setData] = useState(null)
@@ -65,14 +64,15 @@ const OrdersBarChart = ({ warning }) => {
   }
 
   return data !== null ? (
-    <TinyChartStats
-      height={70}
-      type='bar'
-      options={options}
-      title={data.title}
-      stats={data.statistics}
-      series={data.series}
-    />
+    // <TinyChartStats
+    //   height={70}
+    //   type='bar'
+    //   options={options}
+    //   title={data.title}
+    //   stats={data.statistics}
+    //   series={data.series}
+    // />
+    <div></div>
   ) : null
 }
 

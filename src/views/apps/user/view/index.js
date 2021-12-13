@@ -13,7 +13,6 @@ import { Row, Col, Alert } from 'reactstrap'
 import PlanCard from './PlanCard'
 import UserInfoCard from './UserInfoCard'
 import UserTimeline from './UserTimeline'
-import InvoiceList from '../../invoice/list'
 import PermissionsTable from './PermissionsTable'
 
 // ** Styles
@@ -49,9 +48,7 @@ const UserView = props => {
         </Col>
       </Row>
       <Row>
-        <Col sm='12'>
-          <InvoiceList />
-        </Col>
+       
       </Row>
     </div>
   ) : (

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Package } from 'react-feather'
-import StatsWithAreaChart from '@components/widgets/stats/StatsWithAreaChart'
 
 const OrdersReceived = ({ kFormatter, warning }) => {
   const [data, setData] = useState(null)
@@ -15,7 +14,7 @@ const OrdersReceived = ({ kFormatter, warning }) => {
       sparkline: {
         enabled: true
       }
-    },
+    },  
     grid: {
       show: false
     },
@@ -60,15 +59,7 @@ const OrdersReceived = ({ kFormatter, warning }) => {
   }, [])
 
   return data !== null ? (
-    <StatsWithAreaChart
-      icon={<Package size={21} />}
-      color='warning'
-      stats={kFormatter(data.analyticsData.orders)}
-      statTitle='Orders Received'
-      options={options}
-      series={data.series}
-      type='area'
-    />
+   <div></div>
   ) : null
 }
 export default OrdersReceived

@@ -22,18 +22,22 @@ const FileUploaderMulti = () => {
 
   const renderPreview = () => {
     if (previewArr.length) {
-      return previewArr.map((src, index) => <img key={index} height="100" width="100" className='rounded mt-2 mr-1' src={src} alt='avatar' />)
+      return previewArr.map((src, index) => <img key={index} className='rounded mt-2 mr-1' src={src} alt='avatar' />)
     } else {
       return null
     }
   }
 
   return (
-     <>
+    <Card>
+      <CardHeader>
+        <CardTitle tag='h4'> Multiple Files Upload</CardTitle>
+      </CardHeader>
+      <CardBody>
         <DragDrop uppy={uppy} />
         {renderPreview()}
-
-      </>      
+      </CardBody>
+    </Card>
   )
 }
 

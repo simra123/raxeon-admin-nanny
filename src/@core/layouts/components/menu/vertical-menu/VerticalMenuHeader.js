@@ -2,9 +2,9 @@
 import { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 
+import Logo from '../../../../assets/images/logo/logo2.png'
 // ** Third Party Components
 import { Disc, X, Circle } from 'react-feather'
-import Logo from '../../../../../assets/images/logo/logo2.png'
 
 // ** Config
 import themeConfig from '@configs/themeConfig'
@@ -47,7 +47,7 @@ const VerticalMenuHeader = props => {
         <li className='nav-item mr-auto'>
           <NavLink to='/' className='navbar-brand'>
             <span className='brand-logo'>
-              <img src={Logo} alt='logo' width="300" />
+              <img src={Logo} alt='logo' />
             </span>
           </NavLink>
         </li>

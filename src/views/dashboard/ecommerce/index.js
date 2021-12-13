@@ -39,7 +39,7 @@ const EcommerceDashboard = () => {
 
   return (
     <div id='dashboard-ecommerce'>
-      <Row>
+       <Row>
         {/* Stats With Icons */}
         <Col xl='3' md='4' sm='6'>
           <StatsVertical icon={<BsFillBookmarkStarFill size={21} />} color='info' stats='36.9k' statTitle='Bookings' />

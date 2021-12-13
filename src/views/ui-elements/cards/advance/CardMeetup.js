@@ -1,5 +1,6 @@
 import Avatar from '@components/avatar'
 import { Calendar, MapPin } from 'react-feather'
+import AvatarGroup from '@components/avatar-group'
 import { Card, CardTitle, CardBody, CardText, Media } from 'reactstrap'
 import illustration from '@src/assets/images/illustration/email.svg'
 

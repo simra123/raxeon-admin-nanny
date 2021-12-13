@@ -41,8 +41,8 @@ const AccountSettings = () => {
                   </TabPane>
                   <TabPane tabId='2'>
                     <PasswordTabContent />
-                  </TabPane>
-                  <TabPane tabId='3'>
+                 </TabPane>
+                 {/*  <TabPane tabId='3'>
                     <InfoTabContent data={data.info} />
                   </TabPane>
                   <TabPane tabId='4'>
@@ -50,7 +50,7 @@ const AccountSettings = () => {
                   </TabPane>
                   <TabPane tabId='5'>
                     <NotificationsTabContent data={data.notification} />
-                  </TabPane>
+                  </TabPane> */}
                 </TabContent>
               </CardBody>
             </Card>

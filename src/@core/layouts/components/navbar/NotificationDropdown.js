@@ -2,6 +2,7 @@
 import { Fragment } from 'react'
 
 // ** Custom Components
+import Avatar from '@components/avatar'
 
 // ** Third Party Components
 import classnames from 'classnames'

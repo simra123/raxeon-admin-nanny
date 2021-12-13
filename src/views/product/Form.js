@@ -34,7 +34,7 @@ import {
   } from 'reactstrap' 
   import {  Smartphone } from 'react-feather'
   import {FaAddressBook, FaDollarSign} from 'react-icons/fa'
- 
+     
 //   hardcoded colors
   const colors = [
     { value: 'ocean', label: 'Ocean' },
