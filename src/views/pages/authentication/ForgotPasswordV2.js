@@ -3,7 +3,7 @@ import { useSkin } from '@hooks/useSkin'
 import { ChevronLeft } from 'react-feather'
 import { Row, Col, CardTitle, CardText, Form, Spinner, FormGroup, Label, Input, Button } from 'reactstrap'
 import '@styles/base/pages/page-auth.scss'
-import Logo from '../../../../src/assets/images/logo/logo-m.png'
+import Logo from '../../../../src/assets/images/logo/logo2.png'
 
 
 const ForgotPasswordV2 = () => {
@@ -16,7 +16,7 @@ const ForgotPasswordV2 = () => {
     <div className='auth-wrapper auth-v2'>
       <Row className='auth-inner m-0'>
         <Link className='brand-logo' to='/' onClick={e => e.preventDefault()}>
-        <img src={Logo} width="100" height="120" alt=""/>
+        <img src={Logo} width="100%" height="auto" alt=""/>
         </Link>
         <Col className='d-none d-lg-flex align-items-center p-5' lg='8' sm='12'>
           <div className='w-100 d-lg-flex align-items-center justify-content-center px-5'>

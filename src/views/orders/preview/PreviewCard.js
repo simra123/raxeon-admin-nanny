@@ -152,7 +152,7 @@ const PreviewCard = ({ data }) => {
       {/* /Invoice Description */}
 
       {/* Total & Sales Person */}
-      <CardBody className='invoice-padding pb-0'>
+      <CardBody className='invoice-padding pb-2'>
         <Row className='invoice-sales-total-wrapper'>
           {/* <Col className='mt-md-0 mt-3' md='6' order={{ md: 1, lg: 2 }}>
             <CardText className='mb-0'>
@@ -184,10 +184,10 @@ const PreviewCard = ({ data }) => {
       </CardBody>
       {/* /Total & Sales Person */}
 
-      <hr className='invoice-spacing' />
+      {/* <hr className='invoice-spacing' /> */}
 
       {/* Invoice Note */}
-      <CardBody className='invoice-padding pt-0'>
+      {/* <CardBody className='invoice-padding pt-0'>
         <Row>
           <Col sm='12'>
             <span className='font-weight-bold'>Note: </span>
@@ -197,7 +197,7 @@ const PreviewCard = ({ data }) => {
             </span>
           </Col>
         </Row>
-      </CardBody>
+      </CardBody> */}
       {/* /Invoice Note */}
     </Card>
   ) : null

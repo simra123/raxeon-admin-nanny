@@ -2,7 +2,7 @@
 import { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 
-import Logo from '../../../../assets/images/logo/logo2.png'
+import Logo from '@src/assets/images/logo/logo2.png'
 // ** Third Party Components
 import { Disc, X, Circle } from 'react-feather'
 

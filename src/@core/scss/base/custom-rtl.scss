@@ -27,11 +27,13 @@
   color: white !important;
   border-radius: 50%;
   padding: 8px;
-  cursor: pointer;
 
 }
 .chat-icons .each-icon label{
   color: white;
+}
+.chat-icons .each-icon svg{
+  cursor: pointer;
 }
 // Align icons position
 .main-menu {
