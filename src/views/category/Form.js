@@ -27,25 +27,36 @@ import {
   } from 'reactstrap'
   import { User, Mail, Smartphone, Lock } from 'react-feather'
   import {FaPencilAlt, FaTextHeight} from 'react-icons/fa' 
-  
+import   Action from '../../middleware/API'
   const CategoryForm = () => {
     //  file Uploader
     const [img, setImg] = useState(null)
     //text editor
-     const [value, setValue] = useState(EditorState.createEmpty())
-
-
+    const [value, setValue] = useState(EditorState.createEmpty())
+    
+    
     const uppy = new Uppy({
       meta: { type: 'avatar' },
       restrictions: { maxNumberOfFiles: 1 },
       autoProceed: true
     })
-  
+    
     uppy.use(thumbnailGenerator)
-  
+    
     uppy.on('thumbnail:generated', (file, preview) => {
       setImg(preview)
     })
+    const [body, setBody] = useState({
+      heading:"",
+      text:'',
+      file:[uppy]
+    })
+    const  postCategory = () => {
+  const response = Action.post("/category", body, { })
+  console.log(response)
+      
+}
+
     return (
       <Card>
         <CardHeader>
@@ -63,7 +74,13 @@ import {
                     <FaPencilAlt size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
-                <Input type='text' name='name' id='name' placeholder='Enter Your Category Name' />
+                <Input type='text' name='name' id='name'
+                onChange={(e) => {
+                  
+                  setBody({ ...body, heading:e.target.value})
+                  
+                }}
+                placeholder='Enter Category Name' />
                 </InputGroup>
               </Col>
               <Col sm='12' md="6">
@@ -75,7 +92,12 @@ import {
                     <FaTextHeight size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
-                <Input type='text' name='name' id='descrip' placeholder='Enter Your Category description' />
+                <Input type='text' name='name' id='descrip' placeholder='Enter Your Category description'
+                onChange={(e) => {
+                  
+                  setBody({ ...body, text:e.target.value})
+                  
+                }} />
                 </InputGroup>
               </Col>
 
@@ -92,13 +114,13 @@ import {
                 {/* basic image upload */}
             
                <h6> Category Image </h6>
-                <DragDrop uppy={uppy} />
+                <DragDrop uppy={uppy} onDrop={(e) => console.log(e.target)} />
                 {img !== null ? <img className='rounded mt-2' src={img} alt='avatar' /> : null}
              </Col>
               
               <Col sm='12' className="mt-4">
                 <FormGroup className='d-flex mb-0'>
-                  <Button.Ripple className='mr-1' color='primary' type='submit' onClick={e => e.preventDefault()}>
+                  <Button.Ripple className='mr-1' color='primary' type='submit' onClick={() => postCategory()}>
                     Submit
                     {/* spinner */}
                     {/* <Spinner color='light' /> */}  

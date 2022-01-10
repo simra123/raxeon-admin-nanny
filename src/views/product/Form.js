@@ -1,10 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Uppy from '@uppy/core'
 import thumbnailGenerator from '@uppy/thumbnail-generator'
 import { DragDrop } from '@uppy/react'
 import { EditorState } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg'
-
 import '../../@core/scss/react/libs/editor/editor.scss'
 import '../../@core/scss/react/libs/file-uploader/file-uploader.scss'
 import 'uppy/dist/uppy.css'
@@ -13,8 +12,6 @@ import { selectThemeColors } from '@utils'
 import Select from 'react-select'
 import {MdOutlineProductionQuantityLimits} from 'react-icons/md'
 import {AiOutlineNumber} from 'react-icons/ai'
-
-
 import {
   Card,
   CardHeader,
@@ -34,7 +31,8 @@ import {
   } from 'reactstrap' 
   import {  Smartphone } from 'react-feather'
   import {FaAddressBook, FaDollarSign} from 'react-icons/fa'
-     
+import Action from '../../middleware/API' 
+import baseURL from '../../middleware/BaseURL'    
 //   hardcoded colors
   const colors = [
     { value: 'ocean', label: 'Ocean' },
@@ -44,11 +42,7 @@ import {
     { value: 'orange', label: 'Orange' }
 ]
 //   hardcoded categories
-const categories = [
-    { value: 't-shirts', label: 'T Shirts' },
-    { value: 'caps', label: 'Caps' },
-    { value: 'sweat-shirts', label: 'Sweat Shirts' }
-]
+
 
 //   hardcoded att names
 const attNames = [
@@ -60,48 +54,88 @@ const attValue = [
     { value: 'small', label: 'small' },
     { value: 'large', label: 'large' }
 ]
-
-
-  const ProductForm = () => {
-    //  file Uploader
+// const categories = [
+//   { value: 't-shirts', label: 'T Shirts' },
+//   { value: 'caps', label: 'Caps' },
+//   { value: 'sweat-shirts', label: 'Sweat Shirts' }
+// ]
+const ProductForm = () => {
+  
+  //  file Uploader
     const [img, setImg] = useState(null)
     //text editor
      const [value, setValue] = useState(EditorState.createEmpty())
+     
 
-
-    const uppy = new Uppy({
+     const uppy = new Uppy({
       meta: { type: 'avatar' },
       restrictions: { maxNumberOfFiles: 1 },
       autoProceed: true
     })
-  
+    
     uppy.use(thumbnailGenerator)
   
     uppy.on('thumbnail:generated', (file, preview) => {
       setImg(preview)
     })
-
+    
     // multiple file uploader 
-     const [previewArr, setPreviewArr] = useState([])
-
+    const [previewArr, setPreviewArr] = useState([])
+    
     const uppyMultiple = new Uppy({
-        meta: { type: 'avatar' },
-        autoProceed: true
-      })
+      meta: { type: 'avatar' },
+      autoProceed: true
+    })
     
       uppyMultiple.use(thumbnailGenerator)
-    
+      
       uppyMultiple.on('thumbnail:generated', (file, preview) => {
         const arr = previewArr
         arr.push(preview)
         setPreviewArr([...arr])
       })
-    
+      
       const renderPreview = () => {
         if (previewArr.length) {
           return previewArr.map((src, index) => <img key={index} className='rounded mt-2 mr-1' src={src} alt='avatar' />)
         } else {
           return null
+        }
+      }
+      
+      const [category, setcategory] = useState([])
+      async function fetchcategorydata() {
+        const response = await Action.get("/category", {})
+        if (response.data.success === true) {
+          response.data.data.map((item, index) => {
+            response.data.data[index].value = item.text
+            response.data.data[index].label = item.text
+          })
+          setcategory(response.data.data)
+          
+        } else {
+          setcategory([])
+        }
+      }
+      console.log(category)
+    
+      useEffect(async () => {
+        fetchcategorydata()
+      }, [])
+      const [body, setbody] = useState({
+        name:"",
+        minQuantity:0,
+        category:'',
+        file:[],
+        colors:'',
+        price:0,
+        quantity:0,
+        comment:''
+      })
+      const submit = () => {
+        const response = Action.post('/category', body, {})
+        if (response.data.success === true) {
+          console.log(resppponse.data.data)
         }
       }
     return (
@@ -117,11 +151,14 @@ const attValue = [
                 <Label for='pro-name'>Product Name</Label>
                 <InputGroup className='input-group-merge' tag={FormGroup}>
                 <InputGroupAddon addonType='prepend'>
-                    <InputGroupText>
+                    <InputGroupText >
                     <MdOutlineProductionQuantityLimits size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
-                <Input type='text'  id='pro-name' placeholder='Enter your product Name' />
+                <Input type='text'  id='pro-name' placeholder='Enter your product Name' onChange={(e) => { 
+                      setbody({ ...body, name:e.target.value })
+                      
+                    } }/>
                 </InputGroup>
             </Col>
             <Col sm='12' md="6">
@@ -133,7 +170,11 @@ const attValue = [
                     <AiOutlineNumber size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
-                <Input type='number'  id='quantity' placeholder='Enter your quantity' />
+                <Input type='number'  id='quantity' placeholder='Enter your quantity' 
+                onChange={(e) => { 
+                  setbody({ ...body, minQuantity:e.target.value })
+                  
+                } }/>
                 </InputGroup>
             </Col>
 
@@ -143,8 +184,9 @@ const attValue = [
                 theme={selectThemeColors}
                 className='react-select'
                 classNamePrefix='select'
-                defaultValue={categories[0]}
-                options={categories}
+                defaultValue= {category}
+                onChange={(e) => { setbody({...body, category:e._id }) } }
+                options={category}
                 isClearable={false}
                 />
             </Col>

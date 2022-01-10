@@ -4,33 +4,13 @@ import avatar1 from '@src/assets/images/portrait/small/avatar-s-5.jpg'
 import {Link} from 'react-router-dom'
 import { MoreVertical, Edit, Trash } from 'react-feather'
 import {  Card, CardTitle, CardBody, Table,  Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap'
-
+import Action from '../../middleware/API'
 // table data
-const ALlEmployee = [
-    {  id:0,
-        icon : avatar1,
-        name : 'categories',
-        descp:'lorem ipsum bonjour '
-    },
-    {
-      id:1,
-        icon : avatar1,
-        name : 'categories',
-        descp:'lorem ipsum bonjour '
-    },
-    {
-       id:2,
-        icon : avatar1,
-        name : 'categories',
-        descp:'lorem ipsum bonjour '
-    }
-  
-]
-
 
 const CategoryTable = () => {
   const [modal, setModal] = useState(null)
-
+const [ALlEmployee, setALlEmployee] = useState([])
+Action.get('/category')
   const toggleModal = id => {
     if (modal !== id) {
       setModal(id)

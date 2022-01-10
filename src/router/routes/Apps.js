@@ -40,7 +40,7 @@ const AppRoutes = [
     path: '/apps/chat',
     appLayout: true,
     className: 'chat-application',
-    component: lazy(() => import('../../views/apps/chat'))
+    component: lazy(() => import('../../views/apps/chat/'))
   },
   // {
   //   path: '/apps/todo',
