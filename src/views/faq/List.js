@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../../@core/scss/react/libs/editor/editor.scss'
 import '../../@core/scss/react/libs/file-uploader/file-uploader.scss'
 import 'uppy/dist/uppy.css'
@@ -6,37 +6,54 @@ import { MoreVertical, Edit, Trash, User } from 'react-feather'
 import {Link} from 'react-router-dom'
  
 import {  Card, CardTitle, CardBody, Table,  Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap'
+import Action from '../../middleware/API'
+import baseURL from '../../middleware/BaseURL'
 
-  const faq  = [
-    {   id:0,
-        no : 1,
-        ques : "How long This Site live?",
-        ans:  "Lorem ipsum dolor sit amet... "
-    },
-    {   id:1,
-        no : 2,
-        ques : "Can I install anything i want on there?",
-        ans:  "Lorem ipsum dolor sit amet... "
-    },
-    {   id:2,
-        no : 3,
-        ques : "Can i change the domain you me?",
-        ans:  "Lorem ipsum dolor sit amet... "
-    },
-    {   id:3,
-        no : 4,
-        ques : "How can I migrate to another site?",
-        ans:  "Lorem ipsum dolor sit amet... "
-    },
-    {   id:4,
-        no : 5,
-        ques : "How many sites i can create at once?",
-        ans:  "Lorem ipsum dolor sit amet... "
-    }
+//   const faq  = [
+//     {   id:0,
+//         no : 1,
+//         ques : "How long This Site live?",
+//         ans:  "Lorem ipsum dolor sit amet... "
+//     },
+//     {   id:1,
+//         no : 2,
+//         ques : "Can I install anything i want on there?",
+//         ans:  "Lorem ipsum dolor sit amet... "
+//     },
+//     {   id:2,
+//         no : 3,
+//         ques : "Can i change the domain you me?",
+//         ans:  "Lorem ipsum dolor sit amet... "
+//     },
+//     {   id:3,
+//         no : 4,
+//         ques : "How can I migrate to another site?",
+//         ans:  "Lorem ipsum dolor sit amet... "
+//     },
+//     {   id:4,
+//         no : 5,
+//         ques : "How many sites i can create at once?",
+//         ans:  "Lorem ipsum dolor sit amet... "
+//     }
+// ]
+
   
-  
-]
   const FAQList = () => {
+    //GET API 
+    const [faq, setFaq] = useState([])
+    async function fetchFaqData() {
+      const response = await Action.get('/faq', {})
+      if (response.data.success === true) {
+        setFaq(response.data.data)
+        console.log(faq)
+      } else {
+        setFaq([])
+      }
+    }
+    useEffect((async) => {
+      fetchFaqData()
+    }, [])
+
     const [modal, setModal] = useState(null)
 
     const toggleModalDanger = id => {
@@ -68,11 +85,11 @@ import {  Card, CardTitle, CardBody, Table,  Modal, ModalHeader, ModalBody, Moda
               return (
               <tr key={index}>
               <td>
-                {value.no}
+                {value._id}
               </td>
       
-              <td>{value.ques}</td>
-              <td>{value.ans}</td>
+              <td>{value.question}</td>
+              <td>{value.answer}</td>
                 <td>
                   <UncontrolledDropdown>
                   <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>

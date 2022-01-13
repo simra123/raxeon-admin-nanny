@@ -135,7 +135,7 @@ const ProductForm = () => {
       const submit = () => {
         const response = Action.post('/category', body, {})
         if (response.data.success === true) {
-          console.log(resppponse.data.data)
+          console.log(response.data.data)
         }
       }
     return (
@@ -157,7 +157,7 @@ const ProductForm = () => {
                 </InputGroupAddon>
                 <Input type='text'  id='pro-name' placeholder='Enter your product Name' onChange={(e) => { 
                       setbody({ ...body, name:e.target.value })
-                      
+                      console.log(e.target.value) 
                     } }/>
                 </InputGroup>
             </Col>
@@ -185,7 +185,7 @@ const ProductForm = () => {
                 className='react-select'
                 classNamePrefix='select'
                 defaultValue= {category}
-                onChange={(e) => { setbody({...body, category:e._id }) } }
+                onChange={(e) => { setbody({...body, category: e._id }) } }
                 options={category}
                 isClearable={false}
                 />
