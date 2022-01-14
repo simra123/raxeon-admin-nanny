@@ -1,25 +1,46 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import {  Card, CardTitle, CardBody, Table,  Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap'
 import avatar1 from '@src/assets/images/portrait/small/avatar-s-5.jpg'
 import {Link} from 'react-router-dom'
 import { MoreVertical, Edit, Trash } from 'react-feather'
+import Action from '../../middleware/API'
+import baseURL from '../../middleware/BaseURL'
 
-// table data
-const ALlServices = [
-    {
-        id: 0,
-        title: 'Peter Charles',
-        Image : avatar1
-    },
-    {   id: 1,
-        title: 'Peter Charles',
-        Image : avatar1
-    }
-]
+
+// // table data
+// const ALlServices = [
+//     {
+//         id: 0,
+//         title: 'Peter Charles',
+//         Image : avatar1
+//     },
+//     {   id: 1,
+//         title: 'Peter Charles',
+//         Image : avatar1
+//     }
+// ]
 
 
 const ServiceTable = () => {
+  //GET DATA
+  const [aLlServices, setAllServices] = useState([])
+
+  async function fetchServiceData() {
+    const response = await Action.get('/Service', {})
+    if (response.data.success === true) {
+      setAllServices(response.data.data)      
+      console.log(response.data.data)
+    }
+  }
+
+  useEffect(async() => {
+    fetchServiceData()
+    aLlServices.map((value) => {
+      console.log(value.heading)
+    })
+  })
+
   const [modal, setModal] = useState(null)
 
   const toggleModal = id => {
@@ -44,13 +65,13 @@ const ServiceTable = () => {
       </thead>
       <tbody>
         {
-            ALlServices.map((value, index) => {
+            aLlServices.map((value, index) => {
                 return (
                 <tr key={index}>
         
-                <td>{value.title}</td>
+                <td>{value.heading}</td>
                 <td>
-                <img src={value.Image} class="rounded-circle" height="40" width="40" alt=""/>
+                <img src={value.image} class="rounded-circle" height="40" width="40" alt=""/>
                 </td>
                 
                 <td>

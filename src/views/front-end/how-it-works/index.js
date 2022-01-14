@@ -45,6 +45,7 @@ const WorkList = () => {
     const response = await Action.get('/Work', {})
     if (response.data.success === true) {
       setSection(response.data.data)
+      console.log(section)
       
     } else {
       setSection([])

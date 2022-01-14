@@ -35,7 +35,7 @@ const AboutList = () => {
       fetchAboutData()
       about.map((value) => {
         setData(value.sections)
-        console.log(data)
+        // console.log(data)
       })
     }, [])
   
