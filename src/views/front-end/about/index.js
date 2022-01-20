@@ -25,7 +25,6 @@ const AboutList = () => {
       const response = await Action.get('/about', {})
       if (response.data.success === true)  {
         setAbout(response.data.data)
-        // console.log(response.data.data)
       } else {
         setAbout([])
       }
@@ -35,7 +34,7 @@ const AboutList = () => {
       fetchAboutData()
       about.map((value) => {
         setData(value.sections)
-        // console.log(data)
+        console.log(data)
       })
     }, [])
   

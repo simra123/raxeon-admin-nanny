@@ -44,12 +44,13 @@ const Header = () => {
   //UPDATE DATA 
   //TO COMPLETED
     function updateHeader() {
-    const response =  Action.put("/topheader", body, {})
+    const response =  Action.post("/topheader", body, {})
     // if (response.data.success === true) {
     //   console.log(response)
     // }  else {
     //   console.log(err)
     // }
+
   }
 return (
   <>
