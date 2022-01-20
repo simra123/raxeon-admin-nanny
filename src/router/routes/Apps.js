@@ -181,7 +181,7 @@ const AppRoutes = [
       navLink: '/services/form'
     }
   },
-  { 
+  {
     path: '/services/reviews',
     component: lazy(() => import('../../views/services/Reviews')),
     meta: {
@@ -231,10 +231,17 @@ const AppRoutes = [
     }
   },
   {
-    path: '/category/form',
+    path: '/category/form/add',
     component: lazy(() => import('../../views/category/Form')),
     meta: {
-      navLink: '/category/form'
+      navLink: '/category/form/add'
+    }
+  },
+  {
+    path: '/category/form/edit',
+    component: lazy(() => import('../../views/category/updateForm')),
+    meta: {
+      navLink: '/category/form/edit'
     }
   },
   {
@@ -258,13 +265,13 @@ const AppRoutes = [
       navLink: '/attribute/name'
     }
   },
-  { 
+  {
     path: '/product/colors',
     component: lazy(() => import('../../views/product/Colors')),
     meta: {
       navLink: '/product/colors'
     }
-  }, 
+  },
   {
     path: '/attribute/value',
     component: lazy(() => import('../../views/attribute/Value')),

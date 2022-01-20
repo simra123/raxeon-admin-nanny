@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
-import avatar1 from '@src/assets/images/portrait/small/avatar-s-5.jpg'
 import { Link } from 'react-router-dom'
 import { MoreVertical, Edit, Trash } from 'react-feather'
-import { Card, CardTitle, CardBody, Table, Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap'
+import { Card, CardTitle, CardBody, Table, Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button, Spinner } from 'reactstrap'
 import Action from '../../middleware/API'
 import baseURL from '../../middleware/BaseURL'
+//import toast types from components 
+import { SuccessToast, ErrorToast } from '../components/toastify'
+//import toasts from react
+import { toast } from 'react-toastify'
 // table data
 
 const CategoryTable = () => {
@@ -32,6 +35,18 @@ const CategoryTable = () => {
       setModal(null)
     }
   }
+  //delete api
+  const deleteCategory = async (id) => {
+    try {
+      await Action.delete(`category?id=${ id }`)
+      toast.error(<SuccessToast title="Success!" text="item deleted successfully!" />)
+
+    } catch (error) {
+      console.log(error)
+      // toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
+
+    }
+  }
   return (
     <Card>
       <CardBody>
@@ -47,60 +62,57 @@ const CategoryTable = () => {
             </tr>
           </thead>
           <tbody>
-            {
-              allCategories.map((value, index) => {
-                return (
-                  <tr key={ index }>
-                    <td>
-                      <img src={ value.image } class="rounded-circle" height="40" width="40" alt="" />
-                    </td>
+            { allCategories.length > 0 ? allCategories.map((value, index) => {
+              return (
+                <tr key={ index }>
+                  <td>
+                    <img src={ baseURL + value.image } class="rounded-circle" height="40" width="40" alt="" />
+                  </td>
 
-                    <td>{ value.heading }</td>
+                  <td>{ value.heading }</td>
 
-                    <td>{ value.text }</td>
+                  <td>{ value.text }</td>
 
-                    <td>
-                      <UncontrolledDropdown>
-                        <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>
-                          <MoreVertical size={ 15 } />
-                        </DropdownToggle>
-                        <DropdownMenu right>
-                          <Link to="/category/form">
-                            <DropdownItem href='/' >
-                              <Edit className='mr-50' size={ 15 } />  <span className='align-middle'>Edit</span>
-                            </DropdownItem>
-                          </Link>
-                          <DropdownItem href='/' onClick={ (e) => {
-                            e.preventDefault()
-                            toggleModal(value._id)
-                          } }>
-                            <Trash className='mr-50' size={ 15 } /> <span className='align-middle'>Delete</span>
+                  <td>
+                    <UncontrolledDropdown>
+                      <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>
+                        <MoreVertical size={ 15 } />
+                      </DropdownToggle>
+                      <DropdownMenu right>
+                        <Link to={ `/category/form/edit?_id=${ value._id }` }>
+                          <DropdownItem href='/' >
+                            <Edit className='mr-50' size={ 15 } />  <span className='align-middle'>Edit</span>
                           </DropdownItem>
-                        </DropdownMenu>
-                      </UncontrolledDropdown>
-                      <Modal
-                        isOpen={ modal === value._id }
-                        toggle={ () => toggleModal(value.id) }
-                        className='modal-dialog-centered'
-                        modalClassName="modal-danger"
-                        key={ value._id }>
-                        <ModalHeader toggle={ () => toggleModal(value.id) }>Delete</ModalHeader>
-                        <ModalBody>
-                          Are you sure you want to delete this?
-                        </ModalBody>
-                        <ModalFooter>
-                          <Button color="danger" onClick={ () => toggleModal(value.id) }>
-                            delete
-                          </Button>
-                        </ModalFooter>
-                      </Modal>
-                    </td>
-                  </tr>
-                )
-              })
+                        </Link>
+                        <DropdownItem href='/' onClick={ (e) => {
+                          e.preventDefault()
+                          toggleModal(value._id)
+                        } }>
+                          <Trash className='mr-50' size={ 15 } /> <span className='align-middle'>Delete</span>
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
+                    <Modal
+                      isOpen={ modal === value._id }
+                      toggle={ () => toggleModal(value.id) }
+                      className='modal-dialog-centered'
+                      modalClassName="modal-danger"
+                      key={ value._id }>
+                      <ModalHeader toggle={ toggleModal(value.id) }>Delete</ModalHeader>
+                      <ModalBody>
+                        Are you sure you want to delete this?
+                      </ModalBody>
+                      <ModalFooter>
+                        <Button color="danger" onClick={ deleteCategory(value._id) }>
+                          delete
+                        </Button>
+                      </ModalFooter>
+                    </Modal>
+                  </td>
+                </tr>
+              )
+            }) : <Spinner color='primary' />
             }
-
-
           </tbody>
         </Table>
       </CardBody>
