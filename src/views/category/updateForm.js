@@ -29,6 +29,7 @@ import {
 } from 'reactstrap'
 import { FaPencilAlt, FaTextHeight } from 'react-icons/fa'
 import Action from '../../middleware/API'
+import axios from 'axios'
 const CategoryForm = () => {
   //  file Uploader
   const [img, setImg] = useState(null)
@@ -74,7 +75,7 @@ const CategoryForm = () => {
   uppy.use(thumbnailGenerator)
 
   uppy.on('thumbnail:generated', (file, preview) => {
-    setImg(file.data.name)
+    setImg(file)
   })
   const onChangeEvent = (e) => {
     const { name, value } = e.target
@@ -87,27 +88,25 @@ const CategoryForm = () => {
   }
   //combinin all data
   const data = {
-    category,
-    img
+    heading: category.heading,
+    text: category.text,
+    file: img
   }
   //put api
   const updateCategory = async (e) => {
     e.preventDefault()
-    try {
-      await Action.put(`/category/${ _id }`, {
-        heading: "hhhh",
-        text: "blahh"
-      })
+    const res = await axios.put(`http://localhost:4000/category/${ _id }`, data)
+    console.log(res)
+    if (res.data.success) {
       toast.success(<SuccessToast title="Success" text="Category updated Successfully!" />)
       setSuccess(true)
       setTimeout(() => {
         history.push('/category/list')
       }, 1000)
-
-    } catch (error) {
-      console.log(error)
+    } else {
+      console.log(res.data.message)
       setSuccess(false)
-      toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
+      toast.error(<ErrorToast title="error" text={ res.data.message } />)
     }
 
   }

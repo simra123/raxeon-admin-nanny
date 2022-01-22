@@ -8,10 +8,11 @@ import baseURL from '../../middleware/BaseURL'
 import { SuccessToast, ErrorToast } from '../components/toastify'
 //import toasts from react
 import { toast } from 'react-toastify'
+import axios from 'axios'
 // table data
 
 const CategoryTable = () => {
-  const [modal, setModal] = useState(null)
+  const [modal, setModal] = useState(false)
   const [allCategories, setAllCategories] = useState([])
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const CategoryTable = () => {
       }
     }
     getCategories()
-  }, [])
+  }, [allCategories])
   const toggleModal = id => {
     if (modal !== id) {
       setModal(id)
@@ -39,11 +40,13 @@ const CategoryTable = () => {
   const deleteCategory = async (id) => {
     try {
       await Action.delete(`category?id=${ id }`)
-      toast.error(<SuccessToast title="Success!" text="item deleted successfully!" />)
+      toast.success(<SuccessToast title="Success!" text="item deleted successfully!" />)
+      setModal(null)
+
 
     } catch (error) {
       console.log(error)
-      // toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
+      toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
 
     }
   }
@@ -98,12 +101,12 @@ const CategoryTable = () => {
                       className='modal-dialog-centered'
                       modalClassName="modal-danger"
                       key={ value._id }>
-                      <ModalHeader toggle={ toggleModal(value.id) }>Delete</ModalHeader>
+                      <ModalHeader toggle={ () => toggleModal(value.id) }>Delete</ModalHeader>
                       <ModalBody>
-                        Are you sure you want to delete this?
+                        Are you sure you want to  this?
                       </ModalBody>
                       <ModalFooter>
-                        <Button color="danger" onClick={ deleteCategory(value._id) }>
+                        <Button color="danger" onClick={ () => deleteCategory(value._id) }>
                           delete
                         </Button>
                       </ModalFooter>

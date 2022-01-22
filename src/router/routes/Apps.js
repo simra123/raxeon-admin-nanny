@@ -347,6 +347,14 @@ const AppRoutes = [
     }
   },
   {
+    path: '/faq/edit',
+    component: lazy(() => import('../../views/faq/UpdateForm')),
+    exact: true,
+    meta: {
+      navLink: '/faq/edit'
+    }
+  },
+  {
     path: '/frontend/work',
     component: lazy(() => import('../../views/front-end/how-it-works')),
     exact: true,

@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Uppy from '@uppy/core'
-
 import thumbnailGenerator from '@uppy/thumbnail-generator'
 import { DragDrop } from '@uppy/react'
 import { useHistory } from 'react-router-dom'
@@ -55,7 +54,7 @@ const CategoryForm = () => {
     uppy.use(thumbnailGenerator)
 
     uppy.on('thumbnail:generated', (file, preview) => {
-        setImg(file.data.name)
+        setImg(file)
     })
 
 
@@ -70,8 +69,9 @@ const CategoryForm = () => {
     }
     //combinin all data
     const data = {
-        category,
-        img
+        heading: category.heading,
+        text: category.text,
+        file: img
     }
     //post api
     const postCategory = async (e) => {
