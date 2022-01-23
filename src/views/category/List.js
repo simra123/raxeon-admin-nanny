@@ -43,11 +43,9 @@ const CategoryTable = () => {
       toast.success(<SuccessToast title="Success!" text="item deleted successfully!" />)
       setModal(null)
 
-
     } catch (error) {
       console.log(error)
       toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
-
     }
   }
   return (

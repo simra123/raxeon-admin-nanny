@@ -32,15 +32,16 @@ import {
 
 
 const FAQForm = () => {
-
+    //question
     const [quest, setQuest] = useState('')
+    //answer value
     const [value, setValue] = useState(EditorState.createEmpty())
 
-
-    //get id
+    //get id from url
     const _id = new URLSearchParams(useLocation().search).get('_id')
 
     useEffect(() => {
+        //get single faq
         const getSingleFAQ = async () => {
             try {
                 const { data } = await Action.get(`/faq?_id=${ _id }`)
@@ -54,7 +55,6 @@ const FAQForm = () => {
         getSingleFAQ()
     }, [])
 
-    //text editor
     //conveting the text from editor into plain html
     const answerToHtml = stateToHTML(value.getCurrentContent())
     console.log(answerToHtml)
@@ -64,14 +64,14 @@ const FAQForm = () => {
     //redirect url 
     const history = useHistory()
     //post api
-    const postFAQ = async (e) => {
+    const updateFAQ = async (e) => {
         e.preventDefault()
-        const res = await Action.post(`/faq`, {
+        const res = await Action.put(`/faq/${ _id }`, {
             question: quest,
             answer: answerToHtml
         })
         if (res.data.success) {
-            toast.success(<SuccessToast title="Success" text="FAQ added Successfully!" />)
+            toast.success(<SuccessToast title="Success" text="FAQ updated Successfully!" />)
             setSuccess(true)
             setTimeout(() => {
                 history.push('/faq/list')
@@ -113,7 +113,7 @@ const FAQForm = () => {
 
                         <Col sm='12' className="mt-4">
                             <FormGroup className='d-flex mb-0'>
-                                <Button.Ripple className='mr-1' color='primary' type='submit' onClick={ (e) => postFAQ(e) }>
+                                <Button.Ripple className='mr-1' color='primary' type='submit' onClick={ (e) => updateFAQ(e) }>
                                     Submit
                                     {/* */ }
                                 </Button.Ripple>

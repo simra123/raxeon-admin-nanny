@@ -2,28 +2,31 @@ import { useEffect, useState } from 'react'
 import '../../@core/scss/react/libs/editor/editor.scss'
 import '../../@core/scss/react/libs/file-uploader/file-uploader.scss'
 import 'uppy/dist/uppy.css'
-import { MoreVertical, Edit, Trash, User } from 'react-feather'
+import { MoreVertical, Edit, Trash } from 'react-feather'
 import { Link } from 'react-router-dom'
-
+//import toast types from components 
+import { SuccessToast, ErrorToast } from '../components/toastify'
+//import toasts from react
+import { toast } from 'react-toastify'
 import { Card, CardTitle, CardBody, Table, Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap'
 import Action from '../../middleware/API'
-import baseURL from '../../middleware/BaseURL'
 
 const FAQList = () => {
   //GET API 
   const [faq, setFaq] = useState([])
-  async function fetchFaqData() {
-    const response = await Action.get('/faq', {})
-    if (response.data.success === true) {
-      setFaq(response.data.data)
-      console.log(faq)
-    } else {
-      setFaq([])
-    }
-  }
+
   useEffect((async) => {
+    async function fetchFaqData() {
+      const response = await Action.get('/faq', {})
+      if (response.data.success === true) {
+        setFaq(response.data.data)
+        console.log(faq)
+      } else {
+        setFaq([])
+      }
+    }
     fetchFaqData()
-  }, [])
+  }, [faq])
 
   const [modal, setModal] = useState(null)
 
@@ -34,7 +37,18 @@ const FAQList = () => {
       setModal(null)
     }
   }
-
+  //delete api
+  const deleteFAQ = async (id) => {
+    try {
+      await Action.delete(`faq?id=${ id }`)
+      console.log(id)
+      toast.success(<SuccessToast title="Success" text="FAQ Deleted Successfully!" />)
+      setModal(null)
+    } catch (error) {
+      toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
+      console.log(error)
+    }
+  }
   return (
     <>
       <Card>
@@ -75,7 +89,7 @@ const FAQList = () => {
 
                             <DropdownItem href='/' onClick={ (e) => {
                               e.preventDefault()
-                              toggleModalDanger(value.id)
+                              toggleModalDanger(value._id)
                             } }>
                               <Trash className='mr-50' size={ 15 } /> <span className='align-middle'>Delete</span>
                             </DropdownItem>
@@ -84,18 +98,18 @@ const FAQList = () => {
 
                         {/* delete modal */ }
                         <Modal
-                          isOpen={ modal === value.id }
-                          toggle={ () => toggleModalDanger(value.id) }
+                          isOpen={ modal === value._id }
+                          toggle={ () => toggleModalDanger(value._id) }
                           className='modal-dialog-centered'
                           modalClassName="modal-danger"
-                          key={ value.id }>
-                          <ModalHeader toggle={ () => toggleModalDanger(value.id) }>Delete</ModalHeader>
+                          key={ value._id }>
+                          <ModalHeader toggle={ () => toggleModalDanger(value._id) }>Delete</ModalHeader>
                           <ModalBody>
                             Are you sure you want to delete this?
                           </ModalBody>
                           <ModalFooter>
-                            <Button color="danger" onClick={ () => toggleModalDanger(value.id) }>
-                              delete
+                            <Button color="danger" onClick={ () => deleteFAQ(value._id) }>
+                              delete?
                             </Button>
                           </ModalFooter>
                         </Modal>
@@ -104,8 +118,6 @@ const FAQList = () => {
                   )
                 })
               }
-
-
             </tbody>
           </Table>
         </CardBody>
