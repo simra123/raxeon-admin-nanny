@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { EditorState, ContentState } from 'draft-js'
+import { EditorState } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg'
 import { stateFromHTML } from 'draft-js-import-html'
 import { useHistory, useLocation } from 'react-router-dom'

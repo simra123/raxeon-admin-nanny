@@ -20,14 +20,12 @@ const FAQList = () => {
       const response = await Action.get('/faq', {})
       if (response.data.success === true) {
         setFaq(response.data.data)
-        console.log(faq)
       } else {
         setFaq([])
       }
     }
     fetchFaqData()
   }, [faq])
-
   const [modal, setModal] = useState(null)
 
   const toggleModalDanger = id => {
@@ -37,11 +35,11 @@ const FAQList = () => {
       setModal(null)
     }
   }
+
   //delete api
   const deleteFAQ = async (id) => {
     try {
       await Action.delete(`faq?id=${ id }`)
-      console.log(id)
       toast.success(<SuccessToast title="Success" text="FAQ Deleted Successfully!" />)
       setModal(null)
     } catch (error) {
@@ -70,7 +68,7 @@ const FAQList = () => {
                   return (
                     <tr key={ index }>
                       <td>
-                        { value._id }
+                        { index + 1 }
                       </td>
 
                       <td>{ value.question }</td>

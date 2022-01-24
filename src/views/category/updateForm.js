@@ -75,7 +75,7 @@ const CategoryForm = () => {
   uppy.use(thumbnailGenerator)
 
   uppy.on('thumbnail:generated', (file, preview) => {
-    setImg(file)
+    setImg(file.data)
   })
   const onChangeEvent = (e) => {
     const { name, value } = e.target
