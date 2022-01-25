@@ -31,26 +31,24 @@ const Header = () => {
 
   useEffect(async () => {
     fetchTopHeaderData()
+    console.log(topHeader)
   }, [])
 
-  const [body, setBody] = useState({
-    Text: "",
-    Image: [],
-    Button_text: "",
-    Link: ""
-  })
-
-
   //UPDATE DATA 
-  //TO COMPLETED
-  function updateHeader() {
-    const response = Action.post("/topheader", body, {})
-    // if (response.data.success === true) {
-    //   console.log(response)
-    // }  else {
-    //   console.log(err)
-    // }
-
+  const [body, setBody] = useState({
+    text: "",
+    file: [],
+    button_text: "",
+    link: ""
+  })
+  async function updateHeader() {
+    const response = await Action.put(`/topheader/${topHeader[0]._id}`, body, {})
+    console.log(response)
+    if (response.data.success === true) {
+      console.log(response.data)
+    } else {
+      console.log(err)
+    }
   }
   return (
     <>
@@ -71,50 +69,50 @@ const Header = () => {
               {
                 topHeader.map((value, index) => {
                   return (
-                    <tr key={ index }>
+                    <tr key={index}>
                       <td>
-                        { value.text }
+                        {value.text}
                       </td>
 
-                      <td> <img src={ baseURL.image } height="40" width="40" /></td>
-                      <td>{ value.button_text }</td>
+                      <td> <img src={baseURL + value.image} height="40" width="40" /></td>
+                      <td>{value.button_text}</td>
                       <td>
                         <UncontrolledDropdown>
                           <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>
-                            <MoreVertical size={ 15 } />
+                            <MoreVertical size={15} />
                           </DropdownToggle>
                           <DropdownMenu right>
-                            <DropdownItem href='/' onClick={ (e) => {
+                            <DropdownItem href='/' onClick={(e) => {
                               e.preventDefault()
                               toggleModalPrimary(value.id)
-                            } }>
-                              <Edit className='mr-50' size={ 15 } />  <span className='align-middle'>Edit</span>
+                            }}>
+                              <Edit className='mr-50' size={15} /> <span className='align-middle'>Edit</span>
                             </DropdownItem>
-
 
                           </DropdownMenu>
                         </UncontrolledDropdown>
                         <Modal
-                          isOpen={ modal2 === value.id }
-                          toggle={ () => toggleModalPrimary(value.id) }
+                          isOpen={modal2 === value.id}
+                          toggle={() => toggleModalPrimary(value.id)}
                           className='modal-dialog-centered'
                           modalClassName="modal-primary"
-                          key={ value.id }>
-                          <ModalHeader toggle={ () => toggleModalPrimary(value.id) }>Edit</ModalHeader>
+                          key={value.id}>
+                          <ModalHeader toggle={() => toggleModalPrimary(value.id)}>Edit</ModalHeader>
                           <ModalBody>
                             <Form>
                               <Row>
                                 <Col sm='12' >
-                                  {/* color form */ }
+                                  {/* color form */}
                                   <Label for='text'>Header Text</Label>
-                                  <InputGroup className='input-group-merge' tag={ FormGroup }>
+                                  <InputGroup className='input-group-merge' tag={FormGroup}>
                                     <InputGroupAddon addonType='prepend'>
                                       <InputGroupText>
-                                        <FaTextWidth size={ 15 } />
+                                        <FaTextWidth size={15} />
                                       </InputGroupText>
                                     </InputGroupAddon>
-                                    <Input type='text' id='text' onChange={ (e) => {
-                                      setBody({ ...body, Text: e.target.value })
+                                    <Input type='text' id='text' onChange={(e) => {
+                                      setBody({ ...body, text: e.target.value })
+                                      console.log(e.target.value)
                                     }
                                     }
                                       placeholder='Enter your text' />
@@ -123,36 +121,40 @@ const Header = () => {
                                 <Col sm='12'>
                                   <FormGroup>
                                     <Label for='icon'>Header Image</Label>
-                                    <CustomInput type='file' id='icon' name='customFile' />
+                                    <CustomInput type='file' id='icon' onChange={(e) => {
+                                      setBody({ ...body, file: e.target.value })
+                                    }
+                                    }
+                                      name='customFile' />
                                   </FormGroup>
                                 </Col>
                                 <Col sm='12' >
-                                  {/* color form */ }
+                                  {/* color form */}
                                   <Label for='btn'>Button Text</Label>
-                                  <InputGroup className='input-group-merge' tag={ FormGroup }>
+                                  <InputGroup className='input-group-merge' tag={FormGroup}>
                                     <InputGroupAddon addonType='prepend'>
                                       <InputGroupText>
-                                        <BsFillMenuButtonFill size={ 15 } />
+                                        <BsFillMenuButtonFill size={15} />
                                       </InputGroupText>
                                     </InputGroupAddon>
-                                    <Input type='text' id='btn' onChange={ (e) => {
-                                      setBody({ ...body, Button_text: e.target.value })
+                                    <Input type='text' id='btn' onChange={(e) => {
+                                      setBody({ ...body, button_text: e.target.value })
                                     }
                                     }
                                       placeholder='Enter your button text' />
                                   </InputGroup>
                                 </Col>
                                 <Col sm='12' >
-                                  {/* color form */ }
+                                  {/* color form */}
                                   <Label for='url'>Button Url</Label>
-                                  <InputGroup className='input-group-merge' tag={ FormGroup }>
+                                  <InputGroup className='input-group-merge' tag={FormGroup}>
                                     <InputGroupAddon addonType='prepend'>
                                       <InputGroupText>
-                                        <BsFillMenuButtonFill size={ 15 } />
+                                        <BsFillMenuButtonFill size={15} />
                                       </InputGroupText>
                                     </InputGroupAddon>
-                                    <Input type='text' id='url' onChange={ (e) => {
-                                      setBody({ ...body, Link: e.target.value })
+                                    <Input type='text' id='url' onChange={(e) => {
+                                      setBody({ ...body, link: e.target.value })
                                     }
                                     }
                                       placeholder='Enter your button link' />
@@ -164,21 +166,19 @@ const Header = () => {
                           </ModalBody>
                           <ModalFooter>
 
-                            <Button color="primary" onClick={ () => updateHeader() }>
+                            <Button color="primary" onClick={() => updateHeader()}>
                               Submit
-                              {/* spinner */ }
-                              {/* <Spinner color='light' /> */ }
+                              {/* spinner */}
+                              {/* <Spinner color='light' /> */}
                             </Button>
                           </ModalFooter>
                         </Modal>
-
 
                       </td>
                     </tr>
                   )
                 })
               }
-
 
             </tbody>
           </Table>

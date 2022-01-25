@@ -7,31 +7,31 @@ import baseURL from '../../../middleware/BaseURL'
 
 import { Card, CustomInput, Spinner, Form, Row, Col, Label, InputGroup, FormGroup, InputGroupAddon, InputGroupText, Input, CardTitle, CardBody, Table, Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap'
 
-//   const sections = [
-//     {
-//         id:0,
-//         icon : 'https://nanny-frontend.netlify.app/static/media/step1.bd10ab3f.png',
-//         heading : 'Join the Network',
-//         text : "Lorem ipsum dolor sit amet"
-//     },
-//     {
-//         id:1,
-//         icon : 'https://nanny-frontend.netlify.app/static/media/step2.7fb5a3ea.png',
-//         heading : 'Join the Network',
-//         text : "Lorem ipsum dolor sit amet"
-//     },
-//     {
-//         id:2,
-//         icon : 'https://nanny-frontend.netlify.app/static/media/step3.2de5c9d4.png',
-//         heading : 'Join the Network',
-//         text : "Lorem ipsum dolor sit amet"
-//     },
-//     {
-//         id:3,
-//         icon : 'https://nanny-frontend.netlify.app/static/media/step4.b999f632.png',
-//         heading : 'Join the Network',
-//         text : "Lorem ipsum dolor sit amet"
-//     }
+// const sections = [
+// {
+// id:0,
+// icon : 'https://nanny-frontend.netlify.app/static/media/step1.bd10ab3f.png',
+// heading : 'Join the Network',
+// text : "Lorem ipsum dolor sit amet"
+// },
+// {
+// id:1,
+// icon : 'https://nanny-frontend.netlify.app/static/media/step2.7fb5a3ea.png',
+// heading : 'Join the Network',
+// text : "Lorem ipsum dolor sit amet"
+// },
+// {
+// id:2,
+// icon : 'https://nanny-frontend.netlify.app/static/media/step3.2de5c9d4.png',
+// heading : 'Join the Network',
+// text : "Lorem ipsum dolor sit amet"
+// },
+// {
+// id:3,
+// icon : 'https://nanny-frontend.netlify.app/static/media/step4.b999f632.png',
+// heading : 'Join the Network',
+// text : "Lorem ipsum dolor sit amet"
+// }
 
 // ]
 
@@ -46,7 +46,6 @@ const WorkList = () => {
     if (response.data.success === true) {
       setSection(response.data.data)
       console.log(section)
-      
     } else {
       setSection([])
     }
@@ -104,7 +103,7 @@ const WorkList = () => {
                               e.preventDefault()
                               toggleModalPrimary(value.id)
                             }}>
-                              <Edit className='mr-50' size={15} />  <span className='align-middle'>Edit</span>
+                              <Edit className='mr-50' size={15} /> <span className='align-middle'>Edit</span>
                             </DropdownItem>
 
                           </DropdownMenu>
@@ -140,7 +139,6 @@ const WorkList = () => {
                                     <Input type='text' id='icon-heading' placeholder='Enter your Heading' />
                                   </InputGroup>
                                 </Col>
-
 
                                 <Col sm="12">
                                   {/* how it works form */}
