@@ -37,9 +37,11 @@ const ServiceForm = () => {
   //  file Uploader
   const [img, setImg] = useState(null)
   //text editor
-  const [value, setValue] = useState(EditorState.createEmpty())
-
+  const [para, setPara] = useState(EditorState.createEmpty())
+  //service name
   const [sName, setSName] = useState('')
+  //image preview
+  const [preview, setPreview] = useState('')
 
   const uppy = new Uppy({
     meta: { type: 'avatar' },
@@ -51,37 +53,40 @@ const ServiceForm = () => {
 
   uppy.on('thumbnail:generated', (file, preview) => {
     setImg(file.data)
+    setPreview(preview)
   })
-  console.log(img)
   //conveting the text from editor into plain html
-  const answerToHtml = stateToHTML(value.getCurrentContent())
-  console.log(answerToHtml)
+  const paraToHtml = stateToHTML(para.getCurrentContent())
   //loading success 
   const [success, setSuccess] = useState(false)
-  const data = {
-    heading: ' getting ',
-    paragraph: 'A home help service m',
-    btnLink: 'http://google.com',
-    file: 'banner-one.jpg'
-  }
+
   //redirect url 
   const history = useHistory()
+
+  //api data 
+  const data = new FormData()
+  data.append('paragraph', paraToHtml)
+  data.append('heading', sName)
+  data.append('file', img)
+
+  console.log(img)
+
   //post api
   const postService = async (e) => {
     e.preventDefault()
     const res = await Action.post(`/Service`, data, {})
     console.log(res)
 
-    // if (res.data.success) {
-    //   toast.success(<SuccessToast title="Success" text="FAQ added Successfully!" />)
-    //   setSuccess(true)
-    //   setTimeout(() => {
-    //     history.push('/faq/list')
-    //   }, 1000)
-    // } else {
-    //   setSuccess(false)
-    //   toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
-    // }
+    if (res.data.success) {
+      toast.success(<SuccessToast title="Success" text="Service added Successfully!" />)
+      setSuccess(true)
+      setTimeout(() => {
+        history.push('/services/list')
+      }, 1000)
+    } else {
+      setSuccess(false)
+      toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
+    }
 
 
   }
@@ -111,26 +116,22 @@ const ServiceForm = () => {
 
               <h6> Service Image </h6>
               <DragDrop uppy={ uppy } />
-              { img !== null ? <img className='rounded mt-2' src={ img } alt='avatar' /> : null }
+              { img !== null ? <img className='rounded mt-2' src={ preview } alt='avatar' /> : null }
 
 
             </Col>
             <Col sm='12' className="mt-2">
               {/* text editor */ }
               <h6>service Text</h6>
-              <Editor editorState={ value } onEditorStateChange={ data => setValue(data) } />
+              <Editor editorState={ para } onEditorStateChange={ data => setPara(data) } />
             </Col>
 
             <Col sm='12' className="mt-4">
               <FormGroup className='d-flex mb-0'>
-                <Button.Ripple className='mr-1' color='primary' type='submit' onClick={ async (e) => {
-                  e.preventDefault()
-                  const res = await Action.post(`/Service`, data, {})
-                  console.log(res)
-                } }>
+                <Button.Ripple className='mr-1' color='primary' type='submit' onClick={ (e) => postService(e) }>
                   Submit
                 </Button.Ripple>
-                <Spinner color='primary' />
+                { success ? <Spinner color='primary' /> : null }
 
               </FormGroup>
             </Col>

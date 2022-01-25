@@ -13,7 +13,7 @@ import { toast } from 'react-toastify'
 
 const ServiceTable = () => {
   //GET DATA
-  const [aLlServices, setAllServices] = useState([])
+  const [allServices, setAllServices] = useState([])
 
   async function fetchServiceData() {
     const response = await Action.get('/Service', {})
@@ -24,10 +24,9 @@ const ServiceTable = () => {
 
   useEffect(async () => {
     fetchServiceData()
-    aLlServices.map((value) => {
-      console.log(value.heading)
+    allServices.map((value) => {
     })
-  }, [])
+  }, [allServices])
 
   const [modal, setModal] = useState(null)
 
@@ -43,7 +42,7 @@ const ServiceTable = () => {
     const res = await Action.delete(`/service?id=${ id }`)
 
     if (res.data.success) {
-      toast.success(<SuccessToast title="Success" text="Service added Successfully!" />)
+      toast.success(<SuccessToast title="Success" text="Service Deleted Successfully!" />)
       setModal(null)
     } else {
       toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
@@ -65,13 +64,13 @@ const ServiceTable = () => {
           </thead>
           <tbody>
             {
-              aLlServices.map((value, index) => {
+              allServices.map((value, index) => {
                 return (
                   <tr key={ index }>
                     <td>{ index + 1 }</td>
                     <td>{ value.heading }</td>
                     <td>
-                      <img src={ baseURL + value.image } class="rounded-circle" height="40" width="40" alt="" />
+                      <img src={ baseURL + value.image } class="rounded-circle" height="50" width="50" alt="" />
                     </td>
                     <td>
                       <UncontrolledDropdown>

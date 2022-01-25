@@ -11,6 +11,7 @@ import '../../@core/scss/react/libs/editor/editor.scss'
 import '../../@core/scss/react/libs/file-uploader/file-uploader.scss'
 import 'uppy/dist/uppy.css'
 import Action from '../../middleware/API'
+import baseURL from '../../middleware/BaseURL'
 //import toast types from components 
 import { SuccessToast, ErrorToast } from '../components/toastify'
 //import toasts from react
@@ -41,6 +42,9 @@ const ServiceForm = () => {
     console.log(id)
     //  file Uploader
     const [img, setImg] = useState(null)
+    //image preview
+    const [preview, setPreview] = useState('')
+
     //text editor
     const [value, setValue] = useState(EditorState.createEmpty())
 
@@ -53,6 +57,7 @@ const ServiceForm = () => {
                 setValue(EditorState.createWithContent(stateFromHTML(data.data.paragraph)))
                 setSName(data.data.heading)
                 setImg(data.data.image)
+                console.log(data)
             } catch (error) {
                 console.log(error)
             }
@@ -70,45 +75,41 @@ const ServiceForm = () => {
 
     uppy.on('thumbnail:generated', (file, preview) => {
         setImg(file.data)
+        setPreview(preview)
     })
     console.log(img)
     //conveting the text from editor into plain html
-    const answerToHtml = stateToHTML(value.getCurrentContent())
-    console.log(answerToHtml)
+    const paraToHtml = stateToHTML(value.getCurrentContent())
+    console.log(value)
     //loading success 
     const [success, setSuccess] = useState(false)
     const data = {
-        heading: ' getting ',
-        paragraph: 'A home help service m',
-        btnLink: 'http://google.com',
-        file: 'banner-one.jpg'
+        heading: sName,
+        paragraph: paraToHtml,
+        file: img
     }
     //redirect url 
     const history = useHistory()
     //post api
-    const postService = async (e) => {
+    const updateService = async (e) => {
         e.preventDefault()
-        const res = await Action.post(`/Service`, data, {})
-        console.log(res)
+        const res = await Action.put(`/Service/${ id }`, data, {})
 
-        // if (res.data.success) {
-        //   toast.success(<SuccessToast title="Success" text="FAQ added Successfully!" />)
-        //   setSuccess(true)
-        //   setTimeout(() => {
-        //     history.push('/faq/list')
-        //   }, 1000)
-        // } else {
-        //   setSuccess(false)
-        //   toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
-        // }
-
-
+        if (res.data.success) {
+            toast.success(<SuccessToast title="Success" text="Service updated Successfully!" />)
+            setSuccess(true)
+            setTimeout(() => {
+                history.push('/services/list')
+            }, 1000)
+        } else {
+            setSuccess(false)
+            toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
+        }
     }
-
     return (
         <Card>
             <CardHeader>
-                <CardTitle tag='h4'>Add New Service</CardTitle>
+                <CardTitle tag='h4'>Edit The Service</CardTitle>
             </CardHeader>
             <CardBody>
                 <Form>
@@ -130,7 +131,7 @@ const ServiceForm = () => {
 
                             <h6> Service Image </h6>
                             <DragDrop uppy={ uppy } />
-                            { img !== null ? <img className='rounded mt-2' src={ img } alt='avatar' /> : null }
+                            { img !== null ? <img className='rounded mt-2' height={ 200 } src={ preview ? preview : baseURL + img } alt='avatar' /> : null }
 
 
                         </Col>
@@ -142,10 +143,10 @@ const ServiceForm = () => {
 
                         <Col sm='12' className="mt-4">
                             <FormGroup className='d-flex mb-0'>
-                                <Button.Ripple className='mr-1' color='primary' type='submit' onClick={ (e) => postService(e) }>
+                                <Button.Ripple className='mr-1' color='primary' type='submit' onClick={ (e) => updateService(e) }>
                                     Submit
                                 </Button.Ripple>
-                                {/* <Spinner color='primary' /> */ }
+                                { success ? <Spinner color='primary' /> : null }
 
                             </FormGroup>
                         </Col>

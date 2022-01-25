@@ -33,6 +33,8 @@ import Action from '../../middleware/API'
 const CategoryForm = () => {
     //  file Uploader
     const [img, setImg] = useState(null)
+    //image preview
+    const [preview, setPreview] = useState('')
     //for spin
     const [success, setSuccess] = useState(false)
 
@@ -54,8 +56,11 @@ const CategoryForm = () => {
     uppy.use(thumbnailGenerator)
 
     uppy.on('thumbnail:generated', (file, preview) => {
-        setImg(file)
+        setImg(file.data)
+        setPreview(preview)
     })
+    console.log(img)
+    console.log(preview)
 
 
     const onChangeEvent = (e) => {
@@ -68,23 +73,24 @@ const CategoryForm = () => {
         })
     }
     //combinin all data
-    const data = {
-        heading: category.heading,
-        text: category.text,
-        file: img
-    }
+    const data = new FormData()
+    data.append('heading', category.heading)
+    data.append('text', category.text)
+    data.append('file', img)
+
     //post api
     const postCategory = async (e) => {
         e.preventDefault()
-        try {
-            await Action.post("/category", data)
+        const res = await Action.post("/category", data)
+
+        if (res.data.success) {
             toast.success(<SuccessToast title="Success" text="Category added Successfully!" />)
             setSuccess(true)
             setTimeout(() => {
                 history.push('/category/list')
             }, 1000)
 
-        } catch (error) {
+        } else {
             console.log(error)
             setSuccess(false)
             toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
@@ -134,7 +140,7 @@ const CategoryForm = () => {
 
                             <h6> Category Image </h6>
                             <DragDrop uppy={ uppy } onChange={ (e) => console.log('kjdheuidh') } />
-                            { img !== null ? <img className='rounded mt-2' src={ img } alt='avatar' /> : null }
+                            { img !== null ? <img className='rounded mt-2' src={ preview } alt='avatar' /> : null }
                         </Col>
 
                         <Col sm='12' className="mt-4">

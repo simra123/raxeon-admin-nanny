@@ -113,7 +113,7 @@ const CategoryForm = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle tag='h4'>Update New Category</CardTitle>
+        <CardTitle tag='h4'>Edit the Category</CardTitle>
       </CardHeader>
       <CardBody>
         <Form>
