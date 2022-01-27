@@ -20,6 +20,7 @@ const DesktopBanner = () => {
   const [modal2, setModal2] = useState(null)
   const [modal3, setModal3] = useState(null)
   const [banners, setBanners] = useState([])
+  const [preview, setPreview] = useState([])
 
 
   useEffect(() => {
@@ -67,6 +68,18 @@ const DesktopBanner = () => {
   uppy.on('thumbnail:generated', (file, preview) => {
     setUploadImg(file.data)
   })
+  const uppyEdit = new Uppy({
+    meta: { type: 'avatar' },
+    restrictions: { maxNumberOfFiles: 1 },
+    autoProceed: true
+  })
+
+  uppyEdit.use(thumbnailGenerator)
+
+  uppyEdit.on('thumbnail:generated', (file, preview) => {
+    setEditImg(file.data)
+    setPreview(preview)
+  })
   //post data 
   const uploadData = new FormData()
   uploadData.append('file', uploadImg)
@@ -88,6 +101,13 @@ const DesktopBanner = () => {
     } else {
       toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
     }
+  }
+  const editFile = new FormData()
+  editFile.append('file', editImg)
+  //Update api 
+  const updateBanner = async (id) => {
+    const res = await Action.put(`/banner/${ id }`, editFile, {})
+    console.log(res)
   }
   return (
     <>
@@ -182,8 +202,8 @@ const DesktopBanner = () => {
                                   {/* basic image upload */ }
 
                                   <h6> edit Banner </h6>
-                                  <DragDrop uppy={ uppy } />
-                                  { editImg !== null ? <img className='rounded mt-2' src={ baseURL + value.Bgimage } alt='avatar' /> : null }
+                                  <DragDrop uppy={ uppyEdit } />
+                                  { editImg !== null ? <img className='rounded mt-2' src={ preview ? preview : editImg } alt='avatar' /> : null }
                                 </Col>
 
                               </Row>
@@ -191,7 +211,7 @@ const DesktopBanner = () => {
                           </ModalBody>
                           <ModalFooter>
 
-                            <Button color="primary" onClick={ () => toggleModalPrimary(value._id) }>
+                            <Button color="primary" onClick={ () => updateBanner(value._id) }>
                               Submit
                               {/* spinner */ }
                               {/* <Spinner color='light' /> */ }

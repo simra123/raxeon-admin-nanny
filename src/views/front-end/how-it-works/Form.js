@@ -18,24 +18,10 @@ import {
   Spinner
 } from 'reactstrap'
 import { FaTextWidth } from 'react-icons/fa'
-import Action from '../../../middleware/API'
-import baseURL from '../../../middleware/BaseURL'
-import { useState } from 'react'
+
 
 const WorksForm = () => {
 
-  const [data, setData] = useState({
-    heading:'',
-    icon:[],
-    text:[]
-  })
-
-  const [textValue, setTextValue] = useState([
-    {
-      text: ''
-    }
-  ]
-  )
   return (
     <Card>
       <CardHeader>
@@ -47,10 +33,10 @@ const WorksForm = () => {
             <Col md="4" sm='12'>
               <FormGroup>
                 <Label for='icon'>Upload Icon</Label>
-                <CustomInput type='file' id='icon' name='customFile' 
-                onChange={(e) => {
-                  console.log(e.target.value)
-                }}
+                <CustomInput type='file' id='icon' name='customFile'
+                  onChange={(e) => {
+                    console.log(e.target.value)
+                  }}
                 />
               </FormGroup>
 
@@ -65,7 +51,7 @@ const WorksForm = () => {
                     <FaTextWidth size={15} />
                   </InputGroupText>
                 </InputGroupAddon>
-                <Input type='text' id='icon-heading' placeholder='Enter your Heading'/>
+                <Input type='text' id='icon-heading' placeholder='Enter your Heading' />
               </InputGroup>
             </Col>
 
@@ -83,7 +69,6 @@ const WorksForm = () => {
               </InputGroup>
             </Col>
 
-
             <Col md="4" sm='12'>
               <FormGroup>
                 <Label for='icon'>Upload Icon</Label>
@@ -99,6 +84,7 @@ const WorksForm = () => {
                 <InputGroupAddon addonType='prepend'>
                   <InputGroupText>
                     <FaTextWidth size={15} />
+
                   </InputGroupText>
                 </InputGroupAddon>
                 <Input type='text' id='icon-heading' placeholder='Enter your Heading' />
@@ -149,6 +135,7 @@ const WorksForm = () => {
                 <InputGroupAddon addonType='prepend'>
                   <InputGroupText>
                     <FaTextWidth size={15} />
+
                   </InputGroupText>
                 </InputGroupAddon>
                 <Input type='text' id='icon-text' placeholder='Enter your Text' />
@@ -195,6 +182,7 @@ const WorksForm = () => {
                   Submit
                   {/* spinner */}
                   {/* <Spinner color='light' /> */}
+
                 </Button.Ripple>
 
               </FormGroup>

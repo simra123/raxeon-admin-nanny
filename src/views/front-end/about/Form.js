@@ -2,6 +2,11 @@ import { useState, useEffect } from 'react'
 import { EditorState } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg'
 import '../../../@core/scss/react/libs/editor/editor.scss'
+import Action from '../../../middleware/API'
+import { stateFromHTML } from 'draft-js-import-html'
+import { stateToHTML } from 'draft-js-export-html'
+import { useHistory } from 'react-router-dom'
+import baseURL from '../../../middleware/BaseURL'
 
 import {
   Card,
@@ -106,6 +111,7 @@ const AboutForm = () => {
 
   //text editor
   const [value, setValue] = useState(EditorState.about)
+
 
   return (
     <Card>
@@ -274,7 +280,6 @@ updatedtext(index, e, d)
 
             </FormGroup>
           </Col>
-
         </Form>
       </CardBody>
     </Card>
