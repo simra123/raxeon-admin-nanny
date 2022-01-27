@@ -8,13 +8,6 @@ import { Link } from 'react-router-dom'
 import { Card, CardTitle, Table, CardBody, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap'
 import Action from '../../../middleware/API'
 import baseURL from '../../../middleware/BaseURL'
-// const about = [
-// {
-// id:1,
-// text : 'we this is perhaps the single biggest obstacle that all of us must overcome successful....'
-// }
-
-// ]
 
 const AboutList = () => {
   //GET DATA
@@ -32,10 +25,6 @@ const AboutList = () => {
 
   useEffect(async () => {
     fetchAboutData()
-    // about.map((value) => {
-    // setData(value.sections)
-    // console.log(data)
-    // })
   }, [])
 
   return (
