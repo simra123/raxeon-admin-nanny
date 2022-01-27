@@ -105,7 +105,7 @@ const AboutForm = () => {
   }
 
   //text editor
-  // const [value, setValue] = useState(EditorState.createEmpty())
+  const [value, setValue] = useState(EditorState.about)
 
   return (
     <Card>
@@ -117,10 +117,9 @@ const AboutForm = () => {
           {/* text editor */}
           <h6>About Content </h6>
           <Editor
-            EditorState={initialVal.text}
+            // editorState={value} onEditorStateChange={data => setValue(data)}
             onChange={(e) => {
               setBody({ ...about, text: e.blocks[0].text })
-              console.log(body.text)
             }}
           />
         </Col>
@@ -256,7 +255,7 @@ updatedtext(index, e, d)
                   <AiOutlineLink size={15} />
                 </InputGroupText>
               </InputGroupAddon>
-              <Input type='text' name='name' id='url' placeholder='Enter your Video Url'
+              <Input type='text' name='name' id='url' placeholder={about.video}
                 onChange={(e) => {
                   setBody({ ...about, video: e.target.value })
                   console.log(e.target.value)

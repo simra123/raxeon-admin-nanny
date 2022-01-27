@@ -84,15 +84,18 @@ const WorkList = () => {
             </thead>
             <tbody>
               {
-                data.map((value, index) => {
+                section.map((value, index) => {
                   return (
                     <tr key={index}>
                       <td>
                         <img src={value.icon} alt="" height="50" width="50" />
                       </td>
-
-                      <td> {value.heading} </td>
                       <td> {value.text} </td>
+                      {data.map((value, index) => {
+                        return (
+                          <td> {value.text} </td>
+                          )
+                      })} 
                       <td>
                         <UncontrolledDropdown>
                           <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>
@@ -136,7 +139,9 @@ const WorkList = () => {
                                         <FaTextWidth size={15} />
                                       </InputGroupText>
                                     </InputGroupAddon>
-                                    <Input type='text' id='icon-heading' placeholder='Enter your Heading' />
+                                    <Input type='text' id='icon-heading' placeholder='Enter your Heading'
+                                    
+                                    />
                                   </InputGroup>
                                 </Col>
 
