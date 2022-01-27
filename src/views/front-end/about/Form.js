@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { EditorState } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg'
 import '../../../@core/scss/react/libs/editor/editor.scss'
-import Action from '../../../middleware/API'
 import { stateFromHTML } from 'draft-js-import-html'
 import { stateToHTML } from 'draft-js-export-html'
 import { useHistory } from 'react-router-dom'
@@ -26,11 +25,9 @@ import {
   CustomInput,
   Spinner
 } from 'reactstrap'
-import { User } from 'react-feather'
 import { FaTextWidth } from 'react-icons/fa'
 import { AiOutlineLink } from 'react-icons/ai'
 import Action from '../../../middleware/API'
-import baseURL from '../../../middleware/BaseURL'
 
 const AboutForm = () => {
   //GET DATA
