@@ -57,6 +57,8 @@ const ServiceForm = () => {
   })
   //conveting the text from editor into plain html
   const paraToHtml = stateToHTML(para.getCurrentContent())
+  console.log(paraToHtml)
+
   //loading success 
   const [success, setSuccess] = useState(false)
 
@@ -69,13 +71,10 @@ const ServiceForm = () => {
   data.append('heading', sName)
   data.append('file', img)
 
-  console.log(img)
-
   //post api
   const postService = async (e) => {
     e.preventDefault()
-    const res = await Action.post(`/Service`, data, {})
-    console.log(res)
+    const res = await Action.post(`/service`, data, {})
 
     if (res.data.success) {
       toast.success(<SuccessToast title="Success" text="Service added Successfully!" />)
@@ -87,8 +86,6 @@ const ServiceForm = () => {
       setSuccess(false)
       toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
     }
-
-
   }
 
   return (

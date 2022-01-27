@@ -80,14 +80,12 @@ const ServiceForm = () => {
     console.log(img)
     //conveting the text from editor into plain html
     const paraToHtml = stateToHTML(value.getCurrentContent())
-    console.log(value)
     //loading success 
     const [success, setSuccess] = useState(false)
-    const data = {
-        heading: sName,
-        paragraph: paraToHtml,
-        file: img
-    }
+    const data = new FormData()
+    data.append('paragraph', paraToHtml)
+    data.append('heading', sName)
+    data.append('file', img)
     //redirect url 
     const history = useHistory()
     //post api

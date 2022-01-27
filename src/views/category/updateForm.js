@@ -87,15 +87,14 @@ const CategoryForm = () => {
     })
   }
   //combinin all data
-  const data = {
-    heading: category.heading,
-    text: category.text,
-    file: img
-  }
+  const data = new FormData()
+  data.append('heading', category.heading)
+  data.append('text', category.text)
+  data.append('file', img)
   //put api
   const updateCategory = async (e) => {
     e.preventDefault()
-    const res = await axios.put(`http://localhost:4000/category/${ _id }`, data)
+    const res = await Action.put(`/category/${ _id }`, data, {})
     console.log(res)
     if (res.data.success) {
       toast.success(<SuccessToast title="Success" text="Category updated Successfully!" />)
