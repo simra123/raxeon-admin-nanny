@@ -29,7 +29,6 @@ import {
 } from 'reactstrap'
 import { FaPencilAlt, FaTextHeight } from 'react-icons/fa'
 import Action from '../../middleware/API'
-import axios from 'axios'
 const CategoryForm = () => {
   //  file Uploader
   const [img, setImg] = useState(null)

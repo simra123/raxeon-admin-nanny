@@ -20,7 +20,9 @@ const DesktopBanner = () => {
   const [modal2, setModal2] = useState(null)
   const [modal3, setModal3] = useState(null)
   const [banners, setBanners] = useState([])
+  //previews
   const [preview, setPreview] = useState([])
+  const [preview2, setPreview2] = useState([])
 
 
   useEffect(() => {
@@ -62,11 +64,12 @@ const DesktopBanner = () => {
     restrictions: { maxNumberOfFiles: 1 },
     autoProceed: true
   })
-
+  //file upload to add new banner
   uppy.use(thumbnailGenerator)
 
   uppy.on('thumbnail:generated', (file, preview) => {
     setUploadImg(file.data)
+    setPreview2(preview)
   })
   const uppyEdit = new Uppy({
     meta: { type: 'avatar' },
@@ -74,6 +77,7 @@ const DesktopBanner = () => {
     autoProceed: true
   })
 
+  // file upload to updated banner
   uppyEdit.use(thumbnailGenerator)
 
   uppyEdit.on('thumbnail:generated', (file, preview) => {
@@ -89,6 +93,13 @@ const DesktopBanner = () => {
     e.preventDefault()
     const res = await Action.post(`/banner`, uploadData, {})
     console.log(res)
+    console.log(res)
+    if (res.data.success) {
+      toast.success(<SuccessToast title="Success" text="Banner Uploaded Successfully!" />)
+
+    } else {
+      toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
+    }
   }
 
   //delete banner 
@@ -102,12 +113,20 @@ const DesktopBanner = () => {
       toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
     }
   }
+
+  //Update api 
   const editFile = new FormData()
   editFile.append('file', editImg)
-  //Update api 
+
   const updateBanner = async (id) => {
     const res = await Action.put(`/banner/${ id }`, editFile, {})
     console.log(res)
+    if (res.data.success) {
+      toast.success(<SuccessToast title="Success" text="Banner Updated Successfully!" />)
+
+    } else {
+      toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
+    }
   }
   return (
     <>
@@ -133,7 +152,7 @@ const DesktopBanner = () => {
 
                       <h6> Upload Banners </h6>
                       <DragDrop uppy={ uppy } />
-                      { uploadImg !== null ? <img className='rounded mt-2' src={ uploadImg } alt='avatar' /> : null }
+                      { uploadImg !== null ? <img className='rounded mt-2' src={ preview2 } alt='avatar' /> : null }
                     </Col>
 
                   </Row>
@@ -166,7 +185,7 @@ const DesktopBanner = () => {
                         { index + 1 }
                       </td>
 
-                      <td> <img src={ baseURL + value.Bgimage } width="300" height="100" alt="" /> </td>
+                      <td> <img src={ baseURL + value.image } width="300" height="100" alt="" /> </td>
                       <td>
                         <UncontrolledDropdown>
                           <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>
@@ -188,6 +207,7 @@ const DesktopBanner = () => {
                             </DropdownItem>
                           </DropdownMenu>
                         </UncontrolledDropdown>
+                        {/* update banner modal */ }
                         <Modal
                           isOpen={ modal2 === value._id }
                           toggle={ () => toggleModalPrimary(value.id) }
@@ -203,7 +223,7 @@ const DesktopBanner = () => {
 
                                   <h6> edit Banner </h6>
                                   <DragDrop uppy={ uppyEdit } />
-                                  { editImg !== null ? <img className='rounded mt-2' src={ preview ? preview : editImg } alt='avatar' /> : null }
+                                  { editImg !== null ? <img className='rounded mt-2' src={ preview } alt='avatar' /> : null }
                                 </Col>
 
                               </Row>

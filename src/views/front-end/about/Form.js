@@ -95,7 +95,7 @@ const AboutForm = () => {
   //update Data
 
   async function updateAbout() {
-    const response = await Action.put(`/about/${about[0]._id}`, body, {})
+    const response = await Action.put(`/about/${ about[0]._id }`, body, {})
     console.log(response)
     if (response.data.success === true) {
       console.log(response.data)
@@ -117,46 +117,46 @@ const AboutForm = () => {
       </CardHeader>
       <CardBody>
         <Col sm='12' className="my-2 p-0">
-          {/* text editor */}
+          {/* text editor */ }
           <h6>About Content </h6>
           <Editor
             // editorState={value} onEditorStateChange={data => setValue(data)}
-            onChange={(e) => {
+            onChange={ (e) => {
               setBody({ ...about, text: e.blocks[0].text })
-            }}
+            } }
           />
         </Col>
         <Form>
-          {sData.map((d, index) => {
+          { sData.map((d, index) => {
             return (
               <Row>
                 <Col md="6" sm='12'>
                   <FormGroup>
                     <Label for='icon'>Upload Icon</Label>
                     <CustomInput type='file' id='icon' name='customFile'
-                      onChange={(e) => {
+                      onChange={ (e) => {
                         updatedicon(index, e, d)
-                      }}
+                      } }
                     />
                   </FormGroup>
 
                 </Col>
 
                 <Col md="6" sm="12">
-                  {/* about form */}
+                  {/* about form */ }
                   <Label for='icon-text'>Icon Text</Label>
-                  <InputGroup className='input-group-merge' tag={FormGroup}>
+                  <InputGroup className='input-group-merge' tag={ FormGroup }>
                     <InputGroupAddon addonType='prepend'>
                       <InputGroupText>
-                        <FaTextWidth size={15} />
+                        <FaTextWidth size={ 15 } />
                       </InputGroupText>
                     </InputGroupAddon>
                     <Input type='text' name='name' id='icon-text'
-                      onChange={(e) => {
+                      onChange={ (e) => {
                         updatedtext(index, e, d)
                         console.log(d)
                         console.log(e.target.value)
-                      }}
+                      } }
                     />
                   </InputGroup>
                 </Col>
@@ -249,30 +249,30 @@ updatedtext(index, e, d)
 
               </Row>
             )
-          })}
+          }) }
           <Col sm="12">
             <Label for='url'>Video Url</Label>
-            <InputGroup className='input-group-merge' tag={FormGroup}>
+            <InputGroup className='input-group-merge' tag={ FormGroup }>
               <InputGroupAddon addonType='prepend'>
                 <InputGroupText>
-                  <AiOutlineLink size={15} />
+                  <AiOutlineLink size={ 15 } />
                 </InputGroupText>
               </InputGroupAddon>
-              <Input type='text' name='name' id='url' placeholder={about.video}
-                onChange={(e) => {
+              <Input type='text' name='name' id='url' placeholder={ about.video }
+                onChange={ (e) => {
                   setBody({ ...about, video: e.target.value })
                   console.log(e.target.value)
-                }}
+                } }
               />
             </InputGroup>
           </Col>
 
           <Col sm="12" className="mt-2">
             <FormGroup className='d-flex mb-0'>
-              <Button.Ripple className='mr-1' color='primary' onClick={() => updateAbout()} >
+              <Button.Ripple className='mr-1' color='primary' onClick={ () => updateAbout() } >
                 Submit
-                {/* spinner */}
-                {/* <Spinner color='light' /> */}
+                {/* spinner */ }
+                {/* <Spinner color='light' /> */ }
               </Button.Ripple>
 
             </FormGroup>
