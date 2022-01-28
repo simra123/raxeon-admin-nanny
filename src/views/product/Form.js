@@ -76,8 +76,10 @@ const ProductForm = () => {
     uppy.use(thumbnailGenerator)
   
     uppy.on('thumbnail:generated', (file, preview) => {
+      console.log(preview)
       setImg(preview)
     })
+    
     
     // multiple file uploader 
     const [previewArr, setPreviewArr] = useState([])
@@ -88,7 +90,12 @@ const ProductForm = () => {
     })
     
       uppyMultiple.use(thumbnailGenerator)
-      
+    // uppy.use(XHRUpload, {
+    //   endpoint:'http://localhost:4000/product', 
+    //   fieldName:'file', 
+    //   formDate: true
+
+    // })    
       uppyMultiple.on('thumbnail:generated', (file, preview) => {
         const arr = previewArr
         arr.push(preview)
@@ -106,6 +113,7 @@ const ProductForm = () => {
       const [category, setcategory] = useState([])
       async function fetchcategorydata() {
         const response = await Action.get("/category", {})
+        console.log(response.data.data)
         if (response.data.success === true) {
           response.data.data.map((item, index) => {
             response.data.data[index].value = item.text
@@ -117,7 +125,7 @@ const ProductForm = () => {
           setcategory([])
         }
       }
-      console.log(category)
+      // console.log(category)
     
       useEffect(async () => {
         fetchcategorydata()
@@ -130,13 +138,18 @@ const ProductForm = () => {
         colors:'',
         price:0,
         quantity:0,
+        SKU:'',
         comment:''
       })
-      const submit = () => {
-        const response = Action.post('/category', body, {})
-        if (response.data.success === true) {
-          console.log(response.data.data)
-        }
+      // console.log(uppy)
+      const submit = async () => {
+        
+        console.log(body)
+        const response = await Action.post('/category', body, {})
+        console.log(response)
+        // if (response.data.success === true) {
+        //   console.log(response.data.data)
+        // }
       }
     return (
       <Card>
@@ -173,7 +186,7 @@ const ProductForm = () => {
                 <Input type='number'  id='quantity' placeholder='Enter your quantity' 
                 onChange={(e) => { 
                   setbody({ ...body, minQuantity:e.target.value })
-                  
+                  console.log(e.target.value)
                 } }/>
                 </InputGroup>
             </Col>
@@ -185,12 +198,15 @@ const ProductForm = () => {
                 className='react-select'
                 classNamePrefix='select'
                 defaultValue= {category}
-                onChange={(e) => { setbody({...body, category: e._id }) } }
+                onChange={(e) => { 
+                  setbody({...body, category: e._id }) 
+                  
+              } }
                 options={category}
                 isClearable={false}
                 />
             </Col>
-        </Row>   
+        </Row>    
         
             <h4 className="py-2">Product Images</h4>
         
@@ -228,6 +244,11 @@ const ProductForm = () => {
                 classNamePrefix='select'
                 defaultValue={colors[0]}
                 options={colors}
+                
+                onChange={(e) => {
+              setbody({...body, colors: e.value})
+                  
+                }}
                 isClearable={false}
                 />
             </Col>
@@ -265,7 +286,11 @@ const ProductForm = () => {
                     <FaDollarSign size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
-                <Input type='number'  id='Unitprice' placeholder='Enter your Unit price' />
+                <Input type='number'  id='UnitPrice' placeholder='Unit Price' 
+                onChange={(e) => { 
+                  setbody({ ...body, price:e.target.value })
+                  
+                } }/>
                 </InputGroup>
             </Col>
             <Col sm='12' md="6">
@@ -277,14 +302,21 @@ const ProductForm = () => {
                     <AiOutlineNumber size={15} />
                     </InputGroupText>
                 </InputGroupAddon>
-                <Input type='number'  id='quantity' placeholder='Enter your quantity' />
+                <Input type='number'  id='quantity' placeholder='Enter your quantity' 
+                onChange={(e) => { 
+                  setbody({ ...body, quantity:e.target.value })
+                  
+                } }/>
                 </InputGroup>
             </Col>
               <Col sm='12' md="6">
                 {/*product form */}
                 <Label for='sku'>SKU</Label>
                 <InputGroup className='input-group-merge' tag={FormGroup}>
-                <Input type='text'  id='sku' placeholder='Enter your SKU' />
+                <Input type='text'  id='sku' placeholder='Enter your SKU'
+                onChange={(e) => {
+                  setbody({...body, SKU:e.target.value})
+                }} />
                 </InputGroup>
               </Col>
               <Col sm='12' className="mt-2">
@@ -295,7 +327,10 @@ const ProductForm = () => {
 
               <Col sm='12' className="mt-4">
                 <FormGroup className='d-flex mb-0'>
-                  <Button.Ripple className='mr-1' color='primary' type='submit' onClick={e => e.preventDefault()}>
+                  <Button.Ripple className='mr-1' color='primary' type='submit' onClick={(e) => {
+                    e.preventDefault()
+                    submit()
+                    }}>
                     Submit
                     {/* spinner */}
                       {/* <Spinner color='light' /> */}
