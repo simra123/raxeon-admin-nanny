@@ -32,159 +32,160 @@ const Header = () => {
 
   useEffect(async () => {
     fetchTopHeaderData()
+    console.log(topHeader)
   }, [])
 
-  const [body, setBody] = useState({
-    Text: "",
-    Image: [],
-    Button_text: "",
-    Link: ""
-  })
-
-
   //UPDATE DATA 
-  //TO COMPLETED
-    function updateHeader() {
-    const response =  Action.put("/topheader", body, {})
-    // if (response.data.success === true) {
-    //   console.log(response)
-    // }  else {
-    //   console.log(err)
-    // }
+  const [body, setBody] = useState({
+    text: "",
+    file: [],
+    button_text: "",
+    link: ""
+  })
+  async function updateHeader() {
+    const response = await Action.put(`/topheader/${topHeader[0]._id}`, body, {})
+    console.log(response)
+    if (response.data.success === true) {
+      console.log(response.data)
+    } else {
+      console.log(err)
+    }
   }
-return (
-  <>
+  return (
+    <>
 
-    <Card>
-      <CardBody>
-        <CardTitle>Header</CardTitle>
-        <Table responsive>
-          <thead>
-            <tr>
-              <th>Text</th>
-              <th>Image</th>
-              <th>Button Text</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              topHeader.map((value, index) => {
-                return (
-                  <tr key={index}>
-                    <td>
-                      {value.text}
-                    </td>
+      <Card>
+        <CardBody>
+          <CardTitle>Header</CardTitle>
+          <Table responsive>
+            <thead>
+              <tr>
+                <th>Text</th>
+                <th>Image</th>
+                <th>Button Text</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                topHeader.map((value, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>
+                        {value.text}
+                      </td>
 
-                    <td> <img src={baseURL.image} height="40" width="40" /></td>
-                    <td>{value.button_text}</td>
-                    <td>
-                      <UncontrolledDropdown>
-                        <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>
-                          <MoreVertical size={15} />
-                        </DropdownToggle>
-                        <DropdownMenu right>
-                          <DropdownItem href='/' onClick={(e) => {
-                            e.preventDefault()
-                            toggleModalPrimary(value.id)
-                          }}>
-                            <Edit className='mr-50' size={15} />  <span className='align-middle'>Edit</span>
-                          </DropdownItem>
+                      <td> <img src={baseURL + value.image} height="40" width="40" /></td>
+                      <td>{value.button_text}</td>
+                      <td>
+                        <UncontrolledDropdown>
+                          <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>
+                            <MoreVertical size={15} />
+                          </DropdownToggle>
+                          <DropdownMenu right>
+                            <DropdownItem href='/' onClick={(e) => {
+                              e.preventDefault()
+                              toggleModalPrimary(value.id)
+                            }}>
+                              <Edit className='mr-50' size={15} /> <span className='align-middle'>Edit</span>
+                            </DropdownItem>
 
+                          </DropdownMenu>
+                        </UncontrolledDropdown>
+                        <Modal
+                          isOpen={modal2 === value.id}
+                          toggle={() => toggleModalPrimary(value.id)}
+                          className='modal-dialog-centered'
+                          modalClassName="modal-primary"
+                          key={value.id}>
+                          <ModalHeader toggle={() => toggleModalPrimary(value.id)}>Edit</ModalHeader>
+                          <ModalBody>
+                            <Form>
+                              <Row>
+                                <Col sm='12' >
+                                  {/* color form */}
+                                  <Label for='text'>Header Text</Label>
+                                  <InputGroup className='input-group-merge' tag={FormGroup}>
+                                    <InputGroupAddon addonType='prepend'>
+                                      <InputGroupText>
+                                        <FaTextWidth size={15} />
+                                      </InputGroupText>
+                                    </InputGroupAddon>
+                                    <Input type='text' id='text' onChange={(e) => {
+                                      setBody({ ...body, text: e.target.value })
+                                      console.log(e.target.value)
+                                    }
+                                    }
+                                      placeholder='Enter your text' />
+                                  </InputGroup>
+                                </Col>
+                                <Col sm='12'>
+                                  <FormGroup>
+                                    <Label for='icon'>Header Image</Label>
+                                    <CustomInput type='file' id='icon' onChange={(e) => {
+                                      setBody({ ...body, file: e.target.value })
+                                    }
+                                    }
+                                      name='customFile' />
+                                  </FormGroup>
+                                </Col>
+                                <Col sm='12' >
+                                  {/* color form */}
+                                  <Label for='btn'>Button Text</Label>
+                                  <InputGroup className='input-group-merge' tag={FormGroup}>
+                                    <InputGroupAddon addonType='prepend'>
+                                      <InputGroupText>
+                                        <BsFillMenuButtonFill size={15} />
+                                      </InputGroupText>
+                                    </InputGroupAddon>
+                                    <Input type='text' id='btn' onChange={(e) => {
+                                      setBody({ ...body, button_text: e.target.value })
+                                    }
+                                    }
+                                      placeholder='Enter your button text' />
+                                  </InputGroup>
+                                </Col>
+                                <Col sm='12' >
+                                  {/* color form */}
+                                  <Label for='url'>Button Url</Label>
+                                  <InputGroup className='input-group-merge' tag={FormGroup}>
+                                    <InputGroupAddon addonType='prepend'>
+                                      <InputGroupText>
+                                        <BsFillMenuButtonFill size={15} />
+                                      </InputGroupText>
+                                    </InputGroupAddon>
+                                    <Input type='text' id='url' onChange={(e) => {
+                                      setBody({ ...body, link: e.target.value })
+                                    }
+                                    }
+                                      placeholder='Enter your button link' />
+                                  </InputGroup>
+                                </Col>
 
-                        </DropdownMenu>
-                      </UncontrolledDropdown>
-                      <Modal
-                        isOpen={modal2 === value.id}
-                        toggle={() => toggleModalPrimary(value.id)}
-                        className='modal-dialog-centered'
-                        modalClassName="modal-primary"
-                        key={value.id}>
-                        <ModalHeader toggle={() => toggleModalPrimary(value.id)}>Edit</ModalHeader>
-                        <ModalBody>
-                          <Form>
-                            <Row>
-                              <Col sm='12' >
-                                {/* color form */}
-                                <Label for='text'>Header Text</Label>
-                                <InputGroup className='input-group-merge' tag={FormGroup}>
-                                  <InputGroupAddon addonType='prepend'>
-                                    <InputGroupText>
-                                      <FaTextWidth size={15} />
-                                    </InputGroupText>
-                                  </InputGroupAddon>
-                                  <Input type='text' id='text' onChange={(e) => {
-                                    setBody({ ...body, Text: e.target.value })
-                                  }
-                                  }
-                                    placeholder='Enter your text' />
-                                </InputGroup>
-                              </Col>
-                              <Col sm='12'>
-                                <FormGroup>
-                                  <Label for='icon'>Header Image</Label>
-                                  <CustomInput type='file' id='icon' name='customFile' />
-                                </FormGroup>
-                              </Col>
-                              <Col sm='12' >
-                                {/* color form */}
-                                <Label for='btn'>Button Text</Label>
-                                <InputGroup className='input-group-merge' tag={FormGroup}>
-                                  <InputGroupAddon addonType='prepend'>
-                                    <InputGroupText>
-                                      <BsFillMenuButtonFill size={15} />
-                                    </InputGroupText>
-                                  </InputGroupAddon>
-                                  <Input type='text' id='btn' onChange={(e) => {
-                                    setBody({ ...body, Button_text: e.target.value })
-                                  }
-                                  }
-                                    placeholder='Enter your button text' />
-                                </InputGroup>
-                              </Col>
-                              <Col sm='12' >
-                                {/* color form */}
-                                <Label for='url'>Button Url</Label>
-                                <InputGroup className='input-group-merge' tag={FormGroup}>
-                                  <InputGroupAddon addonType='prepend'>
-                                    <InputGroupText>
-                                      <BsFillMenuButtonFill size={15} />
-                                    </InputGroupText>
-                                  </InputGroupAddon>
-                                  <Input type='text' id='url' onChange={(e) => {
-                                    setBody({ ...body, Link: e.target.value })
-                                  }
-                                  }
-                                    placeholder='Enter your button link' />
-                                </InputGroup>
-                              </Col>
+                              </Row>
+                            </Form>
+                          </ModalBody>
+                          <ModalFooter>
 
-                            </Row>
-                          </Form>
-                        </ModalBody>
-                        <ModalFooter>
+                            <Button color="primary" onClick={() => updateHeader()}>
+                              Submit
+                              {/* spinner */}
+                              {/* <Spinner color='light' /> */}
+                            </Button>
+                          </ModalFooter>
+                        </Modal>
 
-                          <Button color="primary" onClick={() => updateHeader()}>
-                            Submit
-                            {/* spinner */}
-                            {/* <Spinner color='light' /> */}
-                          </Button>
-                        </ModalFooter>
-                      </Modal>
+                      </td>
+                    </tr>
+                  )
+                })
+              }
 
-
-                    </td>
-                  </tr>
-                )
-              })
-            }
-
-
-          </tbody>
-        </Table>
-      </CardBody>
-    </Card>
-  </>
-)
+            </tbody>
+          </Table>
+        </CardBody>
+      </Card>
+    </>
+  )
 }
 export default Header

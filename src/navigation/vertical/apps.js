@@ -341,13 +341,6 @@ export default [
         title: 'SMTP Configuration',
         icon: <Circle size={ 12 } />,
         navLink: '/settings/smtp'
-      },
-      {
-        id: 'languages',
-        title: 'Languages',
-        icon: <Circle size={ 12 } />,
-        permissions: ['admin', 'editor'],
-        navLink: '/misc/cooicng-soon'
       }
     ]
   },
