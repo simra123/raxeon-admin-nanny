@@ -3,6 +3,7 @@ import { Card, CardBody, CardText, Row, Col, Table } from 'reactstrap'
 import Logo from '@src/assets/images/logo/logo2.png'
 
 const PreviewCard = ({ data }) => {
+  { console.log(data) }
   return data !== null ? (
     <Card className='invoice-preview-card'>
       <CardBody className='invoice-padding pb-0'>

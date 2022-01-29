@@ -27,6 +27,7 @@ const InvoicePreview = () => {
   const toggleSendSidebar = () => setSendSidebarOpen(!sendSidebarOpen)
   const toggleAddSidebar = () => setAddPaymentOpen(!addPaymentOpen)
 
+
   // ** Get invoice on mount based on id
   useEffect(() => {
     axios.get(`/api/invoice/invoices/${id}`).then(response => {
@@ -34,18 +35,14 @@ const InvoicePreview = () => {
     })
   }, [])
 
+
   return data !== null && data.invoice !== undefined ? (
     <div className='invoice-preview-wrapper'>
       <Row className='invoice-preview'>
         <Col xl={12} md={12} sm={12}>
           <PreviewCard data={data} />
         </Col>
-        {/* <Col xl={3} md={4} sm={12}>
-          <PreviewActions id={id} setSendSidebarOpen={setSendSidebarOpen} setAddPaymentOpen={setAddPaymentOpen} />
-        </Col> */}
       </Row>
-      {/* <SendInvoiceSidebar toggleSidebar={toggleSendSidebar} open={sendSidebarOpen} />
-      <AddPaymentSidebar toggleSidebar={toggleAddSidebar} open={addPaymentOpen} /> */}
     </div>
   ) : (
     <Alert color='danger'>

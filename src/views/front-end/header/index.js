@@ -6,6 +6,7 @@ import { FaTextWidth } from 'react-icons/fa'
 import { Card, CustomInput, Spinner, Form, Row, Col, Label, InputGroup, FormGroup, InputGroupAddon, InputGroupText, Input, CardTitle, CardBody, Table, Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap'
 import Action from '../../../middleware/API'
 import baseURL from '../../../middleware/BaseURL'
+import { toast } from 'react-toastify'
 
 const Header = () => {
   const [modal2, setModal2] = useState(null)
@@ -24,7 +25,7 @@ const Header = () => {
     const response = await Action.get("/topheader", {})
     if (response.data.success === true) {
       setTopHeader(response.data.data)
-      console.log(topHeader)
+      // console.log(topHeader)
     } else {
       setTopHeader([])
     }
