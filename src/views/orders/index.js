@@ -27,13 +27,31 @@ const orderTable = ({ handleFilter, value, handleStatusValue, statusValue, handl
       try {
         const { data } = await Action.get('/order')
         setAllOrders(data.data)
-        console.log(allOrders)
       } catch (error) {
         console.log(error)
       }
     }
     GetOrders()
   }, [])
+
+  // //Get product data
+  // const [allProduct, setAllProduct] = useState([])
+  
+  // useEffect(() => {
+  //   //using promise 
+  //   const GetProduct = async () => {
+  //     try {
+  //       const response = await Action.get('/product')
+  //       setAllProduct(response.data)
+  //       console.log(allProduct)
+  //       console.log(allOrders.product)
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  //   GetProduct()
+  // }, [])
+
 
   return (
     <Card>
