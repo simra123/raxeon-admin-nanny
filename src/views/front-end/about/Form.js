@@ -2,10 +2,14 @@ import { useState, useEffect } from 'react'
 import { EditorState } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg'
 import '../../../@core/scss/react/libs/editor/editor.scss'
+import Action from '../../../middleware/API'
 import { stateFromHTML } from 'draft-js-import-html'
 import { stateToHTML } from 'draft-js-export-html'
 import { useHistory } from 'react-router-dom'
-import baseURL from '../../../middleware/BaseURL'
+//import toast types from components 
+import { SuccessToast, ErrorToast } from '../../components/toastify'
+//import toasts from react
+import { toast } from 'react-toastify'
 
 import {
   Card,
@@ -27,256 +31,217 @@ import {
 } from 'reactstrap'
 import { FaTextWidth } from 'react-icons/fa'
 import { AiOutlineLink } from 'react-icons/ai'
-import Action from '../../../middleware/API'
+
 
 const AboutForm = () => {
-  //GET DATA
-  const [about, setAbout] = useState([])
-  async function fetchAboutData() {
-    const response = await Action.get('/about', {})
-    if (response.data.success === true) {
-      setAbout(response.data.data)
-      console.log(about)
-    } else {
-      setAbout([])
-    }
-  }
+  //iocns 
+  const [icon1, setIcon1] = useState(null)
+  const [icon2, setIcon2] = useState(null)
+  const [icon3, setIcon3] = useState(null)
+  const [icon4, setIcon4] = useState(null)
+  const [id, setId] = useState('')
+  const [text, setText] = useState({
+    text1: '',
+    text2: '',
+    text3: '',
+    text4: '',
+    video: ''
+  })
+  console.log(id)
+  //text editor
+  const [value, setValue] = useState(EditorState.createEmpty())
+  const [loading, setLoading] = useState(false)
 
-  useEffect(async () => {
+  //conveting the text from editor into plain html
+  const paraToHtml = stateToHTML(value.getCurrentContent())
+  //redirect url 
+  const history = useHistory()
+
+  //get about us
+  useEffect(() => {
+    const fetchAboutData = async () => {
+      try {
+        const { data } = await Action.get('/about', {})
+        console.log(data)
+        const res = data.data[0]
+        setId(res._id)
+
+        //setting the intial value before update
+        setValue(EditorState.createWithContent(stateFromHTML(res.text)))
+        setText({
+          text1: res.txt1,
+          text2: res.txt2,
+          text3: res.txt3,
+          text4: res.txt4,
+          video: res.video
+        })
+      } catch (error) {
+        console.log(error)
+      }
+
+    }
     fetchAboutData()
   }, [])
-
-  const [sData, setSData] = useState([
-    {
-      text: '',
-      image: []
-    },
-    {
-      text: '',
-      image: []
-    },
-    {
-      text: '',
-      image: []
-    },
-    {
-      text: '',
-      image: []
-    }
-  ]
-  )
-  const updatedtext = (index, e, val) => {
-    console.log(index)
-    console.log(e.target.value)
-    const newArr = [...sData]
-    val.text = e.target.value
-    newArr[index] = val
-    setSData(newArr)
-    console.log(sData)
+  const onChangeDetails = (e) => {
+    const { name, value } = e.target
+    setText(e => {
+      return {
+        ...e,
+        [name]: value
+      }
+    })
+  }
+  //update api 
+  const updatedData = {
+    txt1: text.text1,
+    txt2: text.text2,
+    txt3: text.text3,
+    txt4: text.text4,
+    video: text.video,
+    text: paraToHtml
   }
 
-  const updatedicon = (index, e, val) => {
-    console.log(index)
-    console.log(e.target.value)
-    const newArr = [...sData]
-    val.image = e.target.value
-    newArr[index] = val
-    setSData(newArr)
-    console.log(sData)
-  }
+  const updateAbout = async (e) => {
+    e.preventDefault()
+    const res = await Action.put(`/about/${ id }`, updatedData, {})
+    if (res.data.success) {
+      toast.success(<SuccessToast title="Success" text="Section updated Successfully!" />)
+      setLoading(true)
+      setTimeout(() => {
+        history.push('/frontend/about')
+      }, 1000)
 
-  const [body, setBody] = useState({
-    text: '',
-    sections: sData,
-    video: []
-
-  })
-
-  //update Data
-
-  async function updateAbout() {
-    const response = await Action.put(`/about/${ about[0]._id }`, body, {})
-    console.log(response)
-    if (response.data.success === true) {
-      console.log(response.data)
     } else {
-      console.log(err)
+      console.log(res)
+      setSuccess(false)
+      toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
     }
-    console.log(body.sections)
-    console.log(sData)
   }
-
-  //text editor
-  const [value, setValue] = useState(EditorState.about)
-
-
   return (
     <Card>
       <CardHeader>
         <CardTitle tag='h4'>About Form</CardTitle>
       </CardHeader>
       <CardBody>
+
         <Col sm='12' className="my-2 p-0">
           {/* text editor */ }
           <h6>About Content </h6>
-          <Editor
-            // editorState={value} onEditorStateChange={data => setValue(data)}
-            onChange={ (e) => {
-              setBody({ ...about, text: e.blocks[0].text })
-            } }
-          />
+          <Editor editorState={ value } onEditorStateChange={ data => setValue(data) } />
         </Col>
         <Form>
-          { sData.map((d, index) => {
-            return (
-              <Row>
-                <Col md="6" sm='12'>
-                  <FormGroup>
-                    <Label for='icon'>Upload Icon</Label>
-                    <CustomInput type='file' id='icon' name='customFile'
-                      onChange={ (e) => {
-                        updatedicon(index, e, d)
-                      } }
-                    />
-                  </FormGroup>
+          <Row>
 
-                </Col>
+            <Col md="6" sm='12'>
+              <FormGroup >
+                <Label for='icon'>Upload Icon</Label>
+                <CustomInput onChange={ (e) => setIcon1(e.target.files[0]) } name="icon1" type='file' id='icon' name='customFile' />
+              </FormGroup>
 
-                <Col md="6" sm="12">
-                  {/* about form */ }
-                  <Label for='icon-text'>Icon Text</Label>
-                  <InputGroup className='input-group-merge' tag={ FormGroup }>
-                    <InputGroupAddon addonType='prepend'>
-                      <InputGroupText>
-                        <FaTextWidth size={ 15 } />
-                      </InputGroupText>
-                    </InputGroupAddon>
-                    <Input type='text' name='name' id='icon-text'
-                      onChange={ (e) => {
-                        updatedtext(index, e, d)
-                        console.log(d)
-                        console.log(e.target.value)
-                      } }
-                    />
-                  </InputGroup>
-                </Col>
+            </Col>
 
-                {/* 
-<Col md="6" sm='12'>
-<FormGroup>
-<Label for='icon'>Upload Icon</Label>
-<CustomInput type='file' id='icon' name='customFile'
-onChange={(e) => {
-updatedicon(index, e, d)
-}}
-/>
-</FormGroup>
+            <Col md="6" sm="12">
+              {/* about form */ }
+              <Label for='icon-text'>Icon Text</Label>
+              <InputGroup className='input-group-merge' tag={ FormGroup }>
+                <InputGroupAddon addonType='prepend'>
+                  <InputGroupText>
+                    <FaTextWidth size={ 15 } />
+                  </InputGroupText>
+                </InputGroupAddon>
+                <Input type='text' name='text1' value={ text.text1 } id='icon-text' placeholder='Enter your icon text' onChange={ onChangeDetails } />
+              </InputGroup>
+            </Col>
 
-</Col>
+            <Col md="6" sm='12'>
+              <FormGroup>
+                <Label for='icon'>Upload Icon</Label>
+                <CustomInput onChange={ (e) => setIcon2(e.target.files[0]) } type='file' id='icon' name='customFile' />
+              </FormGroup>
 
-<Col md="6" sm="12">
-<Label for='icon-text'>Icon Text</Label>
-<InputGroup className='input-group-merge' tag={FormGroup}>
-<InputGroupAddon addonType='prepend'>
-<InputGroupText>
-<FaTextWidth size={15} />
-</InputGroupText>
-</InputGroupAddon>
-<Input type='text' name='name' id='icon-text' placeholder='Enter your icon text'
-onChange={(e) => {
-updatedtext(index, e, d)
-}}
-/>
-</InputGroup>
-</Col> */}
+            </Col>
 
-                {/* 
-<Col md="6" sm='12'>
-<FormGroup>
-<Label for='icon'>Upload Icon</Label>
-<CustomInput type='file' id='icon' name='customFile'
-onChange={(e) => {
-updatedicon(index, e, d)
-}}
-/>
-</FormGroup>
+            <Col md="6" sm="12">
+              {/* about form */ }
+              <Label for='icon-text'>Icon Text</Label>
+              <InputGroup className='input-group-merge' tag={ FormGroup }>
+                <InputGroupAddon addonType='prepend'>
+                  <InputGroupText>
+                    <FaTextWidth size={ 15 } />
+                  </InputGroupText>
+                </InputGroupAddon>
+                <Input type='text' name='text2' value={ text.text2 } id='icon-text' placeholder='Enter your icon text' onChange={ onChangeDetails } />
+              </InputGroup>
+            </Col>
 
-</Col>
 
-<Col md="6" sm="12">
-<Label for='icon-text'>Icon Text</Label>
-<InputGroup className='input-group-merge' tag={FormGroup}>
-<InputGroupAddon addonType='prepend'>
-<InputGroupText>
-<FaTextWidth size={15} />
-</InputGroupText>
-</InputGroupAddon>
-<Input type='text' name='name' id='icon-text' placeholder='Enter your icon text'
-onChange={(e) => {
-updatedtext(index, e, d)
-}}
-/>
-</InputGroup>
-</Col>
+            <Col md="6" sm='12'>
+              <FormGroup>
+                <Label for='icon'>Upload Icon</Label>
+                <CustomInput onChange={ (e) => setIcon3(e.target.files[0]) } type='file' id='icon' name='customFile' />
+              </FormGroup>
 
-<Col md="6" sm='12'>
-<FormGroup>
-<Label for='icon'>Upload Icon</Label>
-<CustomInput type='file' id='icon' name='customFile'
-onChange={(e) => {
-updatedicon(index, e, d)
-}}
-/>
-</FormGroup>
+            </Col>
 
-</Col>
+            <Col md="6" sm="12">
+              {/* about form */ }
+              <Label for='icon-text'>Icon Text</Label>
+              <InputGroup className='input-group-merge' tag={ FormGroup }>
+                <InputGroupAddon addonType='prepend'>
+                  <InputGroupText>
+                    <FaTextWidth size={ 15 } />
+                  </InputGroupText>
+                </InputGroupAddon>
+                <Input type='text' name='text3' value={ text.text3 } id='icon-text' placeholder='Enter your icon text' onChange={ onChangeDetails } />
+              </InputGroup>
+            </Col>
 
-<Col md="6" sm="12">
-<Label for='icon-text'>Icon Text</Label>
-<InputGroup className='input-group-merge' tag={FormGroup}>
-<InputGroupAddon addonType='prepend'>
-<InputGroupText>
-<FaTextWidth size={15} />
-</InputGroupText>
-</InputGroupAddon>
-<Input type='text' name='name' id='icon-text' placeholder='Enter your icon text'
-onChange={(e) => {
-updatedtext(index, e, d)
-}}
-/>
-</InputGroup>
-</Col> */}
+            <Col md="6" sm='12'>
+              <FormGroup>
+                <Label for='icon'>Upload Icon</Label>
+                <CustomInput onChange={ (e) => setIcon4(e.target.files[0]) } type='file' id='icon' name='customFile' />
+              </FormGroup>
 
-              </Row>
-            )
-          }) }
-          <Col sm="12">
-            <Label for='url'>Video Url</Label>
-            <InputGroup className='input-group-merge' tag={ FormGroup }>
-              <InputGroupAddon addonType='prepend'>
-                <InputGroupText>
-                  <AiOutlineLink size={ 15 } />
-                </InputGroupText>
-              </InputGroupAddon>
-              <Input type='text' name='name' id='url' placeholder={ about.video }
-                onChange={ (e) => {
-                  setBody({ ...about, video: e.target.value })
-                  console.log(e.target.value)
-                } }
-              />
-            </InputGroup>
-          </Col>
+            </Col>
 
-          <Col sm="12" className="mt-2">
-            <FormGroup className='d-flex mb-0'>
-              <Button.Ripple className='mr-1' color='primary' onClick={ () => updateAbout() } >
-                Submit
-                {/* spinner */ }
-                {/* <Spinner color='light' /> */ }
-              </Button.Ripple>
+            <Col md="6" sm="12">
+              {/* about form */ }
+              <Label for='icon-text'>Icon Text</Label>
+              <InputGroup className='input-group-merge' tag={ FormGroup }>
+                <InputGroupAddon addonType='prepend'>
+                  <InputGroupText>
+                    <FaTextWidth size={ 15 } />
+                  </InputGroupText>
+                </InputGroupAddon>
+                <Input type='text' name='text4' value={ text.text4 } id='icon-text' placeholder='Enter your icon text' onChange={ onChangeDetails } />
+              </InputGroup>
+            </Col>
 
-            </FormGroup>
-          </Col>
+            <Col sm="12">
+              {/* about form */ }
+              <Label for='url'>Video Url</Label>
+              <InputGroup className='input-group-merge' tag={ FormGroup }>
+                <InputGroupAddon addonType='prepend'>
+                  <InputGroupText>
+                    <AiOutlineLink size={ 15 } />
+                  </InputGroupText>
+                </InputGroupAddon>
+                <Input type='text' name='video' value={ text.video } onChange={ onChangeDetails } placeholder='Enter your Video Url' />
+
+              </InputGroup>
+            </Col>
+
+
+            <Col sm="12" className="mt-2">
+              <FormGroup className='d-flex mb-0'>
+                <Button.Ripple className='mr-1' color='primary' type='submit' onClick={ e => updateAbout(e) }>
+                  Submit
+                </Button.Ripple>
+                { loading ? <Spinner color='primary' /> : null }
+
+              </FormGroup>
+            </Col>
+          </Row>
         </Form>
       </CardBody>
     </Card>

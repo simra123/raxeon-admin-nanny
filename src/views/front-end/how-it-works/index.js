@@ -4,31 +4,37 @@ import { MoreVertical, Edit, Trash, User } from 'react-feather'
 import { FaTextWidth } from 'react-icons/fa'
 import Action from '../../../middleware/API'
 import baseURL from '../../../middleware/BaseURL'
-
+//import toast types from components 
+import { SuccessToast, ErrorToast } from '../../components/toastify'
+//import toasts from react
+import { toast } from 'react-toastify'
 import { Card, CustomInput, Spinner, Form, Row, Col, Label, InputGroup, FormGroup, InputGroupAddon, InputGroupText, Input, CardTitle, CardBody, Table, Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap'
 
 const WorkList = () => {
 
   //GET DATA
-  const [data, setData] = useState([])
-  const [section, setSection] = useState([])
+  const [work, setWork] = useState([])
+  //update data
+  const [putText, setPutText] = useState({
+    heading: '',
+    text: ''
+  })
+  const [icon, setIcon] = useState(null)
+  const [loading, setLoading] = useState(false)
 
-  async function fetchAboutData() {
-    const response = await Action.get('/Work', {})
-    if (response.data.success === true) {
-      setSection(response.data.data)
-      console.log(section)
-    } else {
-      setSection([])
-    }
-  }
-
+  //get api
   useEffect(async () => {
+
+    async function fetchAboutData() {
+      try {
+        const { data } = await Action.get('/work', {})
+        setWork(data.data)
+      } catch (error) {
+        console.log(error)
+      }
+
+    }
     fetchAboutData()
-    section.map((value) => {
-      setData(value.works)
-      console.log(data)
-    })
   }, [])
 
   const [modal, setModal] = useState(null)
@@ -39,7 +45,50 @@ const WorkList = () => {
       setModal(null)
     }
   }
+  //event onChange 
+  const evenOnChange = (e) => {
+    const { name, value } = e.target
+    setPutText((prev) => {
+      return ({
+        ...prev,
+        [name]: value
+      })
+    })
+  }
+  //get single data 
+  const getSingleData = async (id) => {
+    try {
+      const { data } = await Action.get(`/work/${ id }`)
+      console.log(data.data)
 
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
+
+  //upadte api
+  const newData = new FormData()
+  newData.append('heading', putText.heading)
+  newData.append('text', putText.text)
+  newData.append('file', icon)
+
+  const updateData = async (id) => {
+    const res = await Action.put(`/work/${ id }`, newData, {})
+    console.log(res)
+    if (res.data.success) {
+      setLoading(true)
+      toast.success(<SuccessToast title="Success" text="Section updated Successfully!" />)
+      setTimeout(() => {
+        setModal(null)
+      }, 2000)
+
+    } else {
+      setLoading(false)
+      toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
+    }
+
+  }
   return (
     <>
       <Card>
@@ -56,87 +105,82 @@ const WorkList = () => {
             </thead>
             <tbody>
               {
-                section.map((value, index) => {
+                work.map((value, index) => {
                   return (
-                    <tr key={index}>
+                    <tr key={ index }>
                       <td>
-                        <img src={value.icon} alt="" height="50" width="50" />
+                        <img src={ baseURL + value.icon } alt="" height="50" width="50" />
                       </td>
-                      <td> {value.text} </td>
-                      {data.map((value, index) => {
-                        return (
-                          <td> {value.text} </td>
-                        )
-                      })}
+                      <td> { value.heading } </td>
                       <td>
                         <UncontrolledDropdown>
                           <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>
-                            <MoreVertical size={15} />
+                            <MoreVertical size={ 15 } />
                           </DropdownToggle>
                           <DropdownMenu right>
-                            <DropdownItem href='/' onClick={(e) => {
+                            <DropdownItem href="/" onClick={ (e) => {
                               e.preventDefault()
-                              toggleModalPrimary(value.id)
-                            }}>
-                              <Edit className='mr-50' size={15} /> <span className='align-middle'>Edit</span>
+                              getSingleData(value._id)
+                              toggleModalPrimary(value._id)
+                            } }>
+                              <Edit className='mr-50' size={ 15 } /> <span className='align-middle'>Edit</span>
                             </DropdownItem>
 
                           </DropdownMenu>
                         </UncontrolledDropdown>
-                        {/* edit modal */}
+                        {/* edit modal */ }
                         <Modal
-                          isOpen={modal === value.id}
-                          toggle={() => toggleModalPrimary(value.id)}
+                          isOpen={ modal === value._id }
+                          toggle={ () => toggleModalPrimary(value._id) }
                           className='modal-dialog-centered'
                           modalClassName="modal-primary"
-                          key={value.id}>
-                          <ModalHeader toggle={() => toggleModalPrimary(value.id)}>Edit</ModalHeader>
+                          key={ value._id }>
+                          <ModalHeader toggle={ () => toggleModalPrimary(value._id) }>Edit</ModalHeader>
                           <ModalBody>
                             <Form>
                               <Row>
                                 <Col sm='12'>
                                   <FormGroup>
                                     <Label for='icon'>Upload Icon</Label>
-                                    <CustomInput type='file' id='icon' name='customFile' />
+                                    <CustomInput type='file' id='icon' onChange={ (e) => setIcon(e.target.files) } name='customFile' />
                                   </FormGroup>
 
                                 </Col>
 
                                 <Col sm="12">
-                                  {/* how it works form */}
+                                  {/* how it works form */ }
                                   <Label for='icon-heading'>Icon Heading</Label>
-                                  <InputGroup className='input-group-merge' tag={FormGroup}>
+                                  <InputGroup className='input-group-merge' tag={ FormGroup }>
                                     <InputGroupAddon addonType='prepend'>
                                       <InputGroupText>
-                                        <FaTextWidth size={15} />
+                                        <FaTextWidth size={ 15 } />
                                       </InputGroupText>
                                     </InputGroupAddon>
-                                    <Input type='text' id='icon-heading' placeholder='Enter your Heading'
+                                    <Input type='text' onChange={ evenOnChange } name="heading" value={ putText.heading } id='icon-heading' placeholder='Enter your Heading'
                                     />
                                   </InputGroup>
                                 </Col>
 
                                 <Col sm="12">
-                                  {/* how it works form */}
+                                  {/* how it works form */ }
                                   <Label for='icon-text'>Icon Text</Label>
-                                  <InputGroup className='input-group-merge' tag={FormGroup}>
+                                  <InputGroup className='input-group-merge' tag={ FormGroup }>
                                     <InputGroupAddon addonType='prepend'>
                                       <InputGroupText>
-                                        <FaTextWidth size={15} />
+                                        <FaTextWidth size={ 15 } />
                                       </InputGroupText>
                                     </InputGroupAddon>
-                                    <Input type='text' id='icon-text' placeholder='Enter your Text' />
+                                    <Input type='text' onChange={ evenOnChange } name="text" value={ putText.text } id='icon-text' placeholder='Enter your Text' />
                                   </InputGroup>
                                 </Col>
                               </Row>
                             </Form>
                           </ModalBody>
                           <ModalFooter>
-                            <Button color="primary" onClick={() => toggleModalPrimary(value.id)}>
+                            <Button color="primary" onClick={ () => updateData(value._id) }>
                               Submit
-                              {/* spinner */}
-                              {/* <Spinner color='light' /> */}
                             </Button>
+                            { loading ? <Spinner color='primary' /> : null }
                           </ModalFooter>
                         </Modal>
 
