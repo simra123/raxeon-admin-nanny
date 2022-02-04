@@ -35,7 +35,7 @@ const WorkList = () => {
 
     }
     fetchAboutData()
-  }, [])
+  }, [work])
 
   const [modal, setModal] = useState(null)
   const toggleModalPrimary = id => {
@@ -58,8 +58,13 @@ const WorkList = () => {
   //get single data 
   const getSingleData = async (id) => {
     try {
-      const { data } = await Action.get(`/work/${ id }`)
-      console.log(data.data)
+      const { data } = await Action.get(`/work?_id=${ id }`)
+      const res = data.data[0]
+      setPutText({
+        heading: res.heading,
+        text: res.text
+      })
+      console.log(res.icon)
 
     } catch (error) {
       console.log(error)
@@ -81,6 +86,7 @@ const WorkList = () => {
       toast.success(<SuccessToast title="Success" text="Section updated Successfully!" />)
       setTimeout(() => {
         setModal(null)
+        setLoading(null)
       }, 2000)
 
     } else {
@@ -142,7 +148,7 @@ const WorkList = () => {
                                 <Col sm='12'>
                                   <FormGroup>
                                     <Label for='icon'>Upload Icon</Label>
-                                    <CustomInput type='file' id='icon' onChange={ (e) => setIcon(e.target.files) } name='customFile' />
+                                    <CustomInput type='file' id='icon' onChange={ (e) => setIcon(e.target.files[0]) } name='customFile' />
                                   </FormGroup>
 
                                 </Col>
