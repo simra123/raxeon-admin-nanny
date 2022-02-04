@@ -20,6 +20,7 @@ import { toast } from 'react-toastify'
 
 const orderTable = ({ handleFilter, value, handleStatusValue, statusValue, handlePerPage, rowsPerPage }) => {
   const [allOrders, setAllOrders] = useState([])
+  const [allProducts, setAllProducts] = useState([])
   
   useEffect(() => {
     //using promise 
@@ -34,24 +35,18 @@ const orderTable = ({ handleFilter, value, handleStatusValue, statusValue, handl
     GetOrders()
   }, [])
 
-  // //Get product data
-  // const [allProduct, setAllProduct] = useState([])
-  
-  // useEffect(() => {
-  //   //using promise 
-  //   const GetProduct = async () => {
-  //     try {
-  //       const response = await Action.get('/product')
-  //       setAllProduct(response.data)
-  //       console.log(allProduct)
-  //       console.log(allOrders.product)
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   GetProduct()
-  // }, [])
-
+  useEffect(() => {
+    //using promise 
+    const GetProducts = async () => {
+      try {
+        const { data } = await Action.get('/product')
+        console.log(data.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    GetProducts()
+  }, [])
 
   return (
     <Card>
@@ -88,7 +83,8 @@ const orderTable = ({ handleFilter, value, handleStatusValue, statusValue, handl
             </thead>
             <tbody>
               {
-                allOrders.map((data, index) => {
+                allOrders.map((data, i) => {
+                  console.log(Action.get("/product?_id=${id}", {})[0])
                   return (
 
                     <tr className='p-3'>
@@ -104,8 +100,8 @@ const orderTable = ({ handleFilter, value, handleStatusValue, statusValue, handl
                           </div>
                         </div>
                       </td>
-                      <td>{data.product}</td>
-                      <td> {data.quantity} </td>
+                      <td></td>
+                      <td> {data.quantity}</td>
                       <td>$555</td>
                       <td>
                         <div className='column-action d-flex align-items-center'>
