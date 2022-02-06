@@ -21,8 +21,6 @@ import { toast } from 'react-toastify'
 const orderTable = ({ handleFilter, value, handleStatusValue, statusValue, handlePerPage, rowsPerPage }) => {
   const [allOrders, setAllOrders] = useState([])
   const [allProducts, setAllProducts] = useState([])
-  
-
 
   useEffect(() => {
     //using promise 
