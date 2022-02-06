@@ -90,12 +90,7 @@ export default [
     title: 'Customers',
     icon: <User size={ 20 } />,
     children: [
-      {
-        id: 'view-customer',
-        title: 'Add new Customer',
-        icon: <Circle size={ 12 } />,
-        navLink: '/customer/form'
-      },
+
       {
         id: 'list-customer',
         title: 'Customer List',
