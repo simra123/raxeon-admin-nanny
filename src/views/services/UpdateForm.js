@@ -53,11 +53,11 @@ const ServiceForm = () => {
     useEffect(() => {
         const getService = async () => {
             try {
-                const { data } = await Action.get(`/Service/byid/${ id }`)
-                setValue(EditorState.createWithContent(stateFromHTML(data.data.paragraph)))
-                setSName(data.data.heading)
-                setImg(data.data.image)
-                console.log(data)
+                const { data } = await Action.get(`/Service?_id=${ id }`)
+                const res = data.data[0]
+                setValue(EditorState.createWithContent(stateFromHTML(res.paragraph)))
+                setSName(res.heading)
+                setImg(res.image)
             } catch (error) {
                 console.log(error)
             }

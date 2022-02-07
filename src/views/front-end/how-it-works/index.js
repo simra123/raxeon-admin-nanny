@@ -64,6 +64,7 @@ const WorkList = () => {
         heading: res.heading,
         text: res.text
       })
+      setIcon(res.icon)
       console.log(res.icon)
 
     } catch (error) {
@@ -87,7 +88,7 @@ const WorkList = () => {
       setTimeout(() => {
         setModal(null)
         setLoading(null)
-      }, 2000)
+      }, 1000)
 
     } else {
       setLoading(false)
