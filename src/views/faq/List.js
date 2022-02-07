@@ -79,7 +79,7 @@ const FAQList = () => {
                             <MoreVertical size={ 15 } />
                           </DropdownToggle>
                           <DropdownMenu right>
-                            <Link to={ `/faq/edit?_id=${ value._id }` }>
+                            <Link to={ `/faq/edit/${ value._id }` }>
                               <DropdownItem href='/' >
                                 <Edit className='mr-50' size={ 15 } />  <span className='align-middle'>Edit</span>
                               </DropdownItem>

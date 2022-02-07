@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   Card,
   CardHeader,
@@ -29,7 +29,7 @@ import { toast } from 'react-toastify'
 const GeneralSettings = () => {
 
   const [generalData, setGeneralData] = useState({
-    mobile: '',
+    mobile: null,
     email: '',
     address: '',
     website: '',
@@ -40,6 +40,39 @@ const GeneralSettings = () => {
     androidUrl: '',
     iosUrl: ''
   })
+  console.log(generalData)
+  const [header, setHeader] = useState(null)
+  const [footer, setFooter] = useState(null)
+  console.log(header)
+  const [id, setId] = useState(null)
+
+  useEffect(() => {
+    //using promise 
+    const getSettings = async () => {
+      try {
+        const { data } = await Action.get('/setting')
+        const res = data.data[0]
+        setGeneralData({
+          mobile: res.mobile,
+          email: res.Email,
+          address: res.Address,
+          website: res.website_name,
+          facebook: res.facebook,
+          googlePlus: res.google,
+          twitter: res.twitter,
+          linkedin: res.linkedin,
+          androidUrl: res.android_url,
+          iosUrl: res.ios_url
+        })
+        setHeader(res.header_image)
+        setFooter(res.footer_image)
+        setId(res._id)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getSettings()
+  }, [])
   const [success, setSuccess] = useState(false)
 
   //asigning all values thru on change 
@@ -52,20 +85,23 @@ const GeneralSettings = () => {
       }
     })
   }
-  const data = {
-    text: 'dunno where',
-    mobile: generalData.mobile,
-    email: generalData.email,
-    address: generalData.address,
-    website: generalData.website,
-    facebook: generalData.facebook,
-    instagram: generalData.googlePlus,
-    twitter: generalData.twitter,
-    linkedin: generalData.linkedin
-  }
-  const postSettings = async (e) => {
+  const newData = new FormData()
+  newData.append('website_name', generalData.website)
+  newData.append('android_url', generalData.androidUrl)
+  newData.append('ios_url', generalData.iosUrl)
+  newData.append('facebook', generalData.facebook)
+  newData.append('google', generalData.googlePlus)
+  newData.append('twitter', generalData.twitter)
+  newData.append('linkedin', generalData.linkedin)
+  newData.append('Address', generalData.address)
+  newData.append('Phone', generalData.phone)
+  newData.append('Email', generalData.email)
+  newData.append('file', header)
+  newData.append('file', footer)
+
+  const updateSettings = async (e) => {
     e.preventDefault()
-    const res = await Action.post(`/contact`, data, {})
+    const res = await Action.put(`/setting/${ id }`, newData, {})
     console.log(res)
     if (res.data.success) {
       setSuccess(true)
@@ -103,14 +139,14 @@ const GeneralSettings = () => {
             <Col md='6' sm='12'>
               <FormGroup>
                 <Label for='header'>Header Logo</Label>
-                <CustomInput type='file' id='header' name='customFile' />
+                <CustomInput onChange={ (e) => setHeader(e.target.files[0]) } type='file' id='header' name='customFile' />
               </FormGroup>
             </Col>
             {/* basic image upload */ }
             <Col md='6' sm='12'>
               <FormGroup>
                 <Label for='footer'>Footer Logo</Label>
-                <CustomInput type='file' id='footer' name='customFile' />
+                <CustomInput onChange={ (e) => setFooter(e.target.files[0]) } type='file' id='footer' name='customFile' />
               </FormGroup>
             </Col>
             <Col sm='12' md="6">
@@ -229,7 +265,7 @@ const GeneralSettings = () => {
             </Col>
             <Col sm='12' className="mt-2">
               <FormGroup className='d-flex mb-0'>
-                <Button.Ripple className='mr-1' color='primary' type='submit' onClick={ e => postSettings(e) }>
+                <Button.Ripple className='mr-1' color='primary' type='submit' onClick={ e => updateSettings(e) }>
                   Submit
                 </Button.Ripple>
                 { success ? <Spinner color='primary' /> : null }

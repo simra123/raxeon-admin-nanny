@@ -42,7 +42,7 @@ const GeneralSettings = () => {
           Host: res.Host,
           port: res.port,
           username: res.username,
-          pasword: res.password,
+          pasword: res.pasword,
           mail_address: res.mail_address,
           mail_name: res.mail_name
         })

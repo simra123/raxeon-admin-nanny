@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { EditorState } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg'
 import { stateFromHTML } from 'draft-js-import-html'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import '../../@core/scss/react/libs/editor/editor.scss'
 import { AiFillQuestionCircle } from 'react-icons/ai'
 import { stateToHTML } from 'draft-js-export-html'
@@ -38,13 +38,13 @@ const FAQForm = () => {
     const [value, setValue] = useState(EditorState.createEmpty())
 
     //get id from url
-    const _id = new URLSearchParams(useLocation().search).get('_id')
+    const { id } = useParams()
 
     useEffect(() => {
         //get single faq
         const getSingleFAQ = async () => {
             try {
-                const { data } = await Action.get(`/faq?_id=${ _id }`)
+                const { data } = await Action.get(`/faq?_id=${ id }`)
                 setQuest(data.data[0].question)
                 setValue(EditorState.createWithContent(stateFromHTML(data.data[0].answer)))
             } catch (error) {
@@ -57,7 +57,6 @@ const FAQForm = () => {
 
     //conveting the text from editor into plain html
     const answerToHtml = stateToHTML(value.getCurrentContent())
-    console.log(answerToHtml)
     //loading success 
     const [success, setSuccess] = useState(false)
 
@@ -66,7 +65,7 @@ const FAQForm = () => {
     //post api
     const updateFAQ = async (e) => {
         e.preventDefault()
-        const res = await Action.put(`/faq/${ _id }`, {
+        const res = await Action.put(`/faq/${ id }`, {
             question: quest,
             answer: answerToHtml
         })

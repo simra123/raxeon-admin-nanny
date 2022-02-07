@@ -354,11 +354,11 @@ const AppRoutes = [
     }
   },
   {
-    path: '/faq/edit',
+    path: '/faq/edit/:id',
     component: lazy(() => import('../../views/faq/UpdateForm')),
     exact: true,
     meta: {
-      navLink: '/faq/edit'
+      navLink: '/faq/edit/:id'
     }
   },
   {

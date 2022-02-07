@@ -27,12 +27,12 @@ const DesktopBanner = () => {
 
   useEffect(() => {
     const getBanners = async () => {
-      const { data } = await Action.get(`/banner`)
+      const { data } = await Action.get(`/banner/mobile`)
       setBanners(data.data)
       console.log(data)
     }
     getBanners()
-  }, [])
+  })
 
   const toggleModalDanger = id => {
     if (modal !== id) {
@@ -91,11 +91,12 @@ const DesktopBanner = () => {
   //post api 
   const postBanner = async (e) => {
     e.preventDefault()
-    const res = await Action.post(`/banner`, uploadData, {})
+    const res = await Action.post(`/banner/mobile`, uploadData, {})
     console.log(res)
     console.log(res)
     if (res.data.success) {
       toast.success(<SuccessToast title="Success" text="Banner Uploaded Successfully!" />)
+      setModal3(null)
 
     } else {
       toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
@@ -108,7 +109,7 @@ const DesktopBanner = () => {
     console.log(res)
     if (res.data.success) {
       toast.success(<SuccessToast title="Success" text="Banner Deleted Successfully!" />)
-
+      setModal(null)
     } else {
       toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
     }
@@ -123,7 +124,7 @@ const DesktopBanner = () => {
     console.log(res)
     if (res.data.success) {
       toast.success(<SuccessToast title="Success" text="Banner Updated Successfully!" />)
-
+      setModal2(null)
     } else {
       toast.error(<ErrorToast title="error" text="Something went wrong, try again later" />)
     }
